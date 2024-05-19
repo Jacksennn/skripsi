@@ -4,8 +4,13 @@ import ImageLiteUserCard from "@/modules/user/components/image-lite";
 
 import ImageCard from "@/modules/components/image-card";
 import React from "react";
+import { useMutation, useQuery } from "react-query";
 
 export default function ExamplePage() {
+  // const res = useQuery(["admin/auth/login"],{
+  //   body
+  // });
+  const hehe = useMutation({ mutationKey: "gaas" });
   return (
     <div>
       ExamplePage

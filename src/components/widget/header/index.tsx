@@ -5,8 +5,8 @@ import Button from "@/components/elements/button";
 import UserIcon from "@/components/icon/user-icon";
 import CartIcon from "@/components/icon/cart-icon";
 import DebounceComponent from "@/components/debounce-component";
-import Input from "@/components/elements/input";
 import SearchIcon from "@/components/icon/search-icon";
+import BaseInput from "@/components/elements/input/base-input";
 
 interface Props {
   type?: "default" | "admin";
@@ -27,7 +27,7 @@ export default function Header(props: Props) {
         <div className={headerStyles.searchWrapper}>
           <DebounceComponent value={search} setValue={setSearch}>
             {(value, onAfterChange) => (
-              <Input
+              <BaseInput
                 type="text"
                 size="large"
                 placeholder="Search for anything..."

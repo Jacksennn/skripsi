@@ -1,3 +1,4 @@
+import { queryClient } from "@/common/query-client";
 import "@/styles/globals.css";
 import theme from "@/theming/theme-config";
 
@@ -5,6 +6,7 @@ import { ConfigProvider } from "antd";
 import type { AppProps } from "next/app";
 
 import { Public_Sans } from "next/font/google";
+import { QueryClientProvider } from "react-query";
 
 const publicSans = Public_Sans({
   subsets: ["latin"],
@@ -15,7 +17,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={publicSans.className}>
       <ConfigProvider theme={theme}>
-        <Component {...pageProps} />
+        <QueryClientProvider client={queryClient}>
+          <Component {...pageProps} />
+        </QueryClientProvider>
       </ConfigProvider>
     </div>
   );
