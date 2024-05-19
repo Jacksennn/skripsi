@@ -38,10 +38,11 @@ const logout = async (type: "admin" | "user") => {
 export const login = async (token: string, type: "admin" | "user") => {
   if (type === "admin") {
     await setAdminLoginToken(token);
+    window.location.href = `/${type}/dashboard`;
   } else {
     await setUserLoginToken(token);
+    window.location.href = `/${type}`;
   }
-  window.location.href = `/${type}`;
 };
 
 export const catchUnauthorized = (res: Response, type: "admin" | "user") => {

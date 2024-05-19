@@ -13,6 +13,8 @@ import {
 import { Flex } from "antd";
 import { useRouter } from "next/router";
 import React from "react";
+import { navigationBarStyles } from "./styles.css";
+import { colors } from "@/theming/colors";
 
 const route: {
   [key: string]: { name: string; label: string; icon: React.ReactNode };
@@ -56,9 +58,21 @@ const route: {
 export default function NavigationBar() {
   const router = useRouter();
   return (
-    <div>
+    <div className={navigationBarStyles.container}>
       {Object.keys(route).map((key: string) => (
-        <Flex key={key}>
+        <Flex
+          key={key}
+          className={navigationBarStyles.item}
+          gap={12}
+          {...(router.pathname.includes(route[key].name) && {
+            style: {
+              color: colors.gray00,
+              backgroundColor: colors.secondary800,
+              fontWeight: 600,
+            },
+          })}
+          onClick={() => router.push(route[key].name)}
+        >
           {route[key].icon}
           {route[key].label}
         </Flex>
