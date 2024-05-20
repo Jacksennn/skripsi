@@ -71,17 +71,18 @@ export const queryFetch = async ({
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
       Accept: "application/json",
-      Authorization:
+      Authorization: `Bearer ${
         type === "admin"
           ? await getAdminLoginToken()
-          : await getUserLoginToken(),
+          : await getUserLoginToken()
+      }`,
     },
     body: JSON.stringify(body),
   });
   const _res = await res.json();
   if (!res.ok) {
+    catchUnauthorized(res, type);
     throw new Error(_res?.message);
   }
-  catchUnauthorized(res, type);
   return _res;
 };

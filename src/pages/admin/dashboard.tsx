@@ -1,6 +1,3 @@
-import AdminLayout from "@/components/widget/admin-layout";
-import React from "react";
+import AdminMainPage from "@/modules/admin/pages/dashboard";
 
-export default function AdminMainPage() {
-  return <AdminLayout>main page</AdminLayout>;
-}
+export default AdminMainPage;

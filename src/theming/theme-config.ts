@@ -7,6 +7,7 @@ const theme: ThemeConfig = {
     fontSize: 16,
     colorPrimary: colors.secondary900,
     borderRadius: 2,
+    fontFamily: "Public Sans, sans-serif",
   },
   hashed: false,
 };
