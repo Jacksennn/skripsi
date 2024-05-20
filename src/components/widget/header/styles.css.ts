@@ -22,7 +22,7 @@ export const headerStyles = {
         paddingRight: 32,
       },
       "screen and (min-width: 1200px)": {
-        maxWidth: 1200,
+        maxWidth: 1500,
       },
     },
   }),

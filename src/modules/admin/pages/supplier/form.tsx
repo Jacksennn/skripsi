@@ -6,6 +6,7 @@ import { SupplierInput, useCreateSupplier } from "./api";
 import { Col, Row, notification } from "antd";
 import Input from "@/components/elements/input";
 type Inputs = SupplierInput;
+
 export default function Form() {
   const { handleSubmit, control } = useForm<Inputs>();
   const { mutateAsync } = useCreateSupplier();

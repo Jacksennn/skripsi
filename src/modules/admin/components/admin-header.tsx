@@ -13,7 +13,7 @@ interface Props {
 
 export default function AdminHeader(props: Props) {
   return (
-    <Flex justify="space-between">
+    <Flex justify="space-between" style={{ marginBottom: "24px" }}>
       <Text variant="bodyXxl" weight="medium">
         {props.title}
       </Text>

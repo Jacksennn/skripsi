@@ -18,6 +18,10 @@ export type SupplierInput = {
   city: string;
 };
 
+export type SupplierDeleteInput = {
+  id: string;
+};
+
 export type SuppliersRespondType = {
   id: string;
   no_supplier: string;
@@ -59,6 +63,22 @@ export const useCreateSupplier = (): UseMutationResult<
         method: "POST",
         type: "admin",
         body: input,
+      }),
+  });
+};
+
+export const useDeleteSupplier = (): UseMutationResult<
+  { message: string },
+  unknown,
+  SupplierDeleteInput,
+  unknown
+> => {
+  return useMutation({
+    mutationFn: async (input: SupplierDeleteInput) =>
+      await queryFetch({
+        endpoint: `suppliers/${input.id}`,
+        method: "DELETE",
+        type: "admin",
       }),
   });
 };

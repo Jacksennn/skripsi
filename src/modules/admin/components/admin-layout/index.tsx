@@ -26,7 +26,7 @@ export default function AdminLayout(props: PropsWithChildren) {
   return (
     <MyLayout type="admin">
       <Layout style={layoutStyle}>
-        <Sider width="25%" style={siderStyle} className={siderStyleClass}>
+        <Sider width="20%" style={siderStyle} className={siderStyleClass}>
           <NavigationBar />
         </Sider>
         <Content style={contentStyle}>{props.children}</Content>
