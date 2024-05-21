@@ -14,7 +14,7 @@ export default function Layout(props: Props) {
 
   return (
     <div className={classNames(props.className, layoutStyles.container)}>
-      <Header />
+      <Header type={type} />
       <main
         className={classNames(
           layoutStyles.main({ type }),

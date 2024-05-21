@@ -16,6 +16,7 @@ const isAuthenticated = true;
 export default function Header(props: Props) {
   const { type = "default" } = props;
 
+  const isDefault = type === "default";
   const [search, setSearch] = React.useState<string>("");
 
   return (
@@ -24,23 +25,25 @@ export default function Header(props: Props) {
         <Text variant="heading03" weight="bold" color="gray00">
           TB CAHAYA BARU
         </Text>
-        <div className={headerStyles.searchWrapper}>
-          <DebounceComponent value={search} setValue={setSearch}>
-            {(value, onAfterChange) => (
-              <BaseInput
-                type="text"
-                size="large"
-                placeholder="Search for anything..."
-                value={value}
-                onChange={(e) => onAfterChange(e.target.value)}
-                suffix={<SearchIcon size={20} />}
-                noMb
-              />
-            )}
-          </DebounceComponent>
-        </div>
+        {isDefault && (
+          <div className={headerStyles.searchWrapper}>
+            <DebounceComponent value={search} setValue={setSearch}>
+              {(value, onAfterChange) => (
+                <BaseInput
+                  type="text"
+                  size="large"
+                  placeholder="Search for anything..."
+                  value={value}
+                  onChange={(e) => onAfterChange(e.target.value)}
+                  suffix={<SearchIcon size={20} />}
+                  noMb
+                />
+              )}
+            </DebounceComponent>
+          </div>
+        )}
         <div className={headerStyles.rightWrapper}>
-          {type === "default" &&
+          {isDefault &&
             (isAuthenticated ? (
               <>
                 <Button
@@ -59,7 +62,7 @@ export default function Header(props: Props) {
                 Register | Log in
               </Text>
             ))}
-          {type === "admin" && isAuthenticated && (
+          {!isDefault && isAuthenticated && (
             <Button
               shape="circle"
               icon={<UserIcon size={20} color="white" />}
