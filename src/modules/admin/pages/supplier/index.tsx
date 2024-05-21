@@ -1,11 +1,11 @@
 import AdminLayout from "@/modules/admin/components/admin-layout";
 import React from "react";
 import AdminHeader from "../../components/admin-header";
-import Form from "./form";
 import { useDeleteSupplier, useGetSuppliers } from "./api";
 import { Flex, Table, notification } from "antd";
 import Button from "@/components/elements/button";
 import { TrashSimple } from "@phosphor-icons/react";
+import NewSupplierForm from "./form";
 
 export default function SupplierPage() {
   const { data, refetch } = useGetSuppliers();
@@ -23,7 +23,20 @@ export default function SupplierPage() {
 
   return (
     <AdminLayout>
-      <AdminHeader title="Suppliers" onAdd={() => {}} noAdd right={<Form />} />
+      <AdminHeader
+        title="Suppliers"
+        onAdd={() => {}}
+        noAdd
+        right={
+          <NewSupplierForm
+            target={(showModal) => (
+              <Button variant="primary" onClick={showModal}>
+                ADD NEW
+              </Button>
+            )}
+          />
+        }
+      />
       <Table
         virtual
         columns={[
@@ -54,9 +67,15 @@ export default function SupplierPage() {
             width: 100,
             render: (record) => (
               <Flex gap={16}>
-                <Button variant="white" info>
-                  Details
-                </Button>
+                <NewSupplierForm
+                  id={record.id}
+                  target={(show) => (
+                    <Button variant="white" info onClick={show}>
+                      Details
+                    </Button>
+                  )}
+                />
+
                 <Button
                   variant="white"
                   error

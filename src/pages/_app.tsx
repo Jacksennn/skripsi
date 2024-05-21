@@ -16,11 +16,11 @@ const publicSans = Public_Sans({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={publicSans.className}>
-      <ConfigProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <ConfigProvider theme={theme}>
           <Component {...pageProps} />
-        </QueryClientProvider>
-      </ConfigProvider>
+        </ConfigProvider>
+      </QueryClientProvider>
     </div>
   );
 }

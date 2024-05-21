@@ -29,6 +29,7 @@ export default function AdminModal(props: Props) {
     setIsModalOpen(false);
   };
 
+  console.log(isModalOpen);
   return (
     <>
       {props.target(showModal)}
@@ -78,7 +79,7 @@ export default function AdminModal(props: Props) {
           },
         }}
       >
-        {props.children?.(handleCancel)}
+        {isModalOpen && props.children?.(handleCancel)}
       </Modal>
     </>
   );
