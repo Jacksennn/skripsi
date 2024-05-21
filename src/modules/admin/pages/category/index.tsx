@@ -1,15 +1,17 @@
 import AdminLayout from "@/modules/admin/components/admin-layout";
 import React from "react";
 import AdminHeader from "../../components/admin-header";
-import { useDeleteSupplier, useGetSuppliers } from "./api";
+import { useDeleteCategory, useGetCategories } from "./api";
 import { Flex, Table, notification } from "antd";
 import Button from "@/components/elements/button";
 import { TrashSimple } from "@phosphor-icons/react";
-import NewSupplierForm from "./form";
+import { useRouter } from "next/router";
+import CategoryForm from "./form";
 
-export default function SupplierPage() {
-  const { data, refetch } = useGetSuppliers();
-  const { mutateAsync } = useDeleteSupplier();
+export default function CategoryPage() {
+  const { data, refetch } = useGetCategories();
+  const { mutateAsync } = useDeleteCategory();
+  const { push } = useRouter();
 
   const onDelete = async (id: string) => {
     try {
@@ -24,11 +26,11 @@ export default function SupplierPage() {
   return (
     <AdminLayout>
       <AdminHeader
-        title="Suppliers"
+        title="Categories"
         onAdd={() => {}}
         noAdd
         right={
-          <NewSupplierForm
+          <CategoryForm
             refetch={refetch}
             target={(showModal) => (
               <Button variant="primary" onClick={showModal}>
@@ -42,25 +44,19 @@ export default function SupplierPage() {
         virtual
         columns={[
           {
-            title: "Supplier ID",
-            dataIndex: "no_supplier",
-            width: 100,
+            title: "Category ID",
+            dataIndex: "id",
+            width: 80,
+            render: (a, _, index) => {
+              return <>{index + 1}</>;
+            },
           },
           {
             title: "Name",
-            dataIndex: "nama_supplier",
+            dataIndex: "nama_kategori",
             width: 120,
           },
-          {
-            title: "Phone Number",
-            dataIndex: "notelp_supplier",
-            width: 120,
-          },
-          {
-            title: "Address",
-            dataIndex: "alamat_supplier",
-            width: 120,
-          },
+
           {
             title: "",
             key: "operation",
@@ -68,16 +64,15 @@ export default function SupplierPage() {
             width: 100,
             render: (record) => (
               <Flex gap={16}>
-                <NewSupplierForm
-                  refetch={refetch}
+                <CategoryForm
                   id={record.id}
                   target={(show) => (
                     <Button variant="white" info onClick={show}>
                       Details
                     </Button>
                   )}
+                  refetch={refetch}
                 />
-
                 <Button
                   variant="white"
                   error

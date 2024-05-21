@@ -18,6 +18,7 @@ type Inputs = SupplierInput;
 interface Props {
   target: (showModal: () => void) => React.ReactNode;
   id?: string;
+  refetch: () => void;
 }
 
 export default function SupplierForm(props: Props) {
@@ -56,6 +57,7 @@ export default function SupplierForm(props: Props) {
         : await mutateAsync(data);
       notification.success({ message: res?.message });
       setIsModalOpen(false);
+      props.refetch();
       reset();
     } catch (e: any) {
       notification.error({ message: e?.message });

@@ -12,7 +12,14 @@ type TextProps = TextStyleProps &
   };
 
 export default function Text(props: TextProps) {
-  const { variant, weight, children, color = "gray900", ...rest } = props;
+  const {
+    variant,
+    weight,
+    children,
+    color = "gray900",
+    style,
+    ...rest
+  } = props;
 
   return (
     <p
@@ -20,6 +27,7 @@ export default function Text(props: TextProps) {
       {...rest}
       style={{
         color: colors[color],
+        ...style,
       }}
     >
       {children}

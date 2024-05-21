@@ -1,0 +1,129 @@
+import React, { useState } from "react";
+import {
+  CategoryInput,
+  useCreateCategory,
+  useEditCategory,
+  useGetCategory,
+} from "./api";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { Flex, Modal,  Spin, notification } from "antd";
+import Input from "@/components/elements/input";
+import Text from "@/components/elements/text";
+import { colors } from "@/theming/colors";
+import Button from "@/components/elements/button";
+type Inputs = CategoryInput;
+
+interface Props {
+  target: (showModal: () => void) => React.ReactNode;
+  id?: string;
+  refetch: () => void;
+}
+
+export default function CategoryForm(props: Props) {
+  const { handleSubmit, control, setValue, reset } = useForm<Inputs>();
+  const { mutateAsync, isLoading: isCreating } = useCreateCategory();
+  const { mutateAsync: mutateEdit, isLoading: isEditing } = useEditCategory();
+  const { id } = props;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const {
+    isLoading: isGetCategoryLoading,
+    isRefetching: isGetCategoryRefetching,
+  } = useGetCategory(
+    {
+      id: id!,
+    },
+    {
+      enabled: isModalOpen && !!id,
+      onSuccess(data) {
+        setValue("nama_kategori", data.data.nama_kategori);
+      },
+    },
+  );
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const res = id
+        ? await mutateEdit({ data, id: id })
+        : await mutateAsync(data);
+      notification.success({ message: res?.message });
+      setIsModalOpen(false);
+      props.refetch();
+      reset();
+    } catch (e: any) {
+      notification.error({ message: e?.message });
+      throw e;
+    }
+  };
+
+  return (
+    <>
+      {props.target(() => setIsModalOpen(true))}
+      <Modal
+        title={
+          <Text variant="heading04" weight="semiBold">
+            {!id ? "Add New Category" : "Edit Category"}
+          </Text>
+        }
+        open={isModalOpen}
+        width={400}
+        onCancel={() => setIsModalOpen(false)}
+        okText="Save Changes"
+        footer={[
+          <Button
+            variant="secondary"
+            onClick={() => setIsModalOpen(false)}
+            key="cancel"
+            disabled={isCreating || isEditing}
+          >
+            Cancel
+          </Button>,
+          <Button
+            variant="primary"
+            htmlType="submit"
+            key="submit"
+            loading={isCreating || isEditing}
+            onClick={handleSubmit(onSubmit)}
+          >
+            Save Changes
+          </Button>,
+        ]}
+        styles={{
+          content: {
+            padding: 0,
+          },
+          header: {
+            borderBottom: `1px solid ${colors.gray100}`,
+            padding: "16px 24px",
+            marginBottom: 0,
+          },
+          body: {
+            padding: 24,
+          },
+          footer: {
+            marginTop: 0,
+            padding: "0px 24px 24px",
+          },
+        }}
+      >
+        {isGetCategoryLoading || isGetCategoryRefetching ? (
+          <Flex justify="center">
+            <Spin size="large" />
+          </Flex>
+        ) : (
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              type="text"
+              label="Category Name"
+              placeholder="Category Name"
+              name="nama_kategori"
+              required
+              control={control}
+              noAsterisk
+            />
+          </form>
+        )}
+      </Modal>
+    </>
+  );
+}

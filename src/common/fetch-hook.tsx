@@ -1,5 +1,4 @@
 import { notification } from "antd";
-import { useRouter } from "next/router";
 import { queryClient } from "./query-client";
 
 const BASE_URL = "https://clicon-server.onrender.com/api";
@@ -7,10 +6,10 @@ const LOCAL_STORE_AUTH_ADMIN_KEY = "admin-token";
 const LOCAL_STORE_AUTH_USER_KEY = "user-token";
 
 export const setUserLoginToken = (bearer: string) =>
-  localStorage.setItem(LOCAL_STORE_AUTH_USER_KEY, JSON.stringify(bearer));
+  localStorage.setItem(LOCAL_STORE_AUTH_USER_KEY, bearer);
 
 export const setAdminLoginToken = (bearer: string) =>
-  localStorage.setItem(LOCAL_STORE_AUTH_ADMIN_KEY, JSON.stringify(bearer));
+  localStorage.setItem(LOCAL_STORE_AUTH_ADMIN_KEY, bearer);
 
 export const getUserLoginToken = async () =>
   (await localStorage.getItem(LOCAL_STORE_AUTH_USER_KEY)) || "";

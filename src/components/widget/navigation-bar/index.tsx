@@ -7,6 +7,7 @@ import {
   ShoppingCartSimple,
   Stack,
   Storefront,
+  Tag,
   Truck,
   Users,
 } from "@phosphor-icons/react";
@@ -34,6 +35,7 @@ const route: {
     label: "Product",
     icon: <Storefront size={20} />,
   },
+  category: { name: "category", label: "Category", icon: <Tag size={20} /> },
   supplier: { name: "supplier", label: "Supplier", icon: <Truck size={20} /> },
   customer: { name: "customer", label: "Customer", icon: <Users size={20} /> },
   sales_order: {
