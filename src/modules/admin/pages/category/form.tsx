@@ -6,7 +6,7 @@ import {
   useGetCategory,
 } from "./api";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Flex, Modal,  Spin, notification } from "antd";
+import { Flex, Modal, Spin, notification } from "antd";
 import Input from "@/components/elements/input";
 import Text from "@/components/elements/text";
 import { colors } from "@/theming/colors";

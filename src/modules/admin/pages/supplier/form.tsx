@@ -5,7 +5,7 @@ import {
   useEditSupplier,
   useGetSupplier,
 } from "./api";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, useWatch } from "react-hook-form";
 import { Col, Flex, Modal, Row, Spin, notification } from "antd";
 import Input from "@/components/elements/input";
 import Text from "@/components/elements/text";
@@ -13,6 +13,8 @@ import { colors } from "@/theming/colors";
 import Button from "@/components/elements/button";
 import Image from "next/image";
 import Avatar from "@/svg/Avatar.svg";
+import RegionInput from "@/modules/components/region-input";
+import CityInput from "@/modules/components/city-input";
 type Inputs = SupplierInput;
 
 interface Props {
@@ -64,6 +66,11 @@ export default function SupplierForm(props: Props) {
       throw e;
     }
   };
+
+  const regionId = useWatch({
+    name: "region",
+    control: control,
+  });
 
   return (
     <>
@@ -169,36 +176,28 @@ export default function SupplierForm(props: Props) {
                 </Col>
               </Row>
               <Row>
-                <Input
-                  type="text"
-                  label="Full Address"
-                  name="alamat_supplier"
-                  required
-                  control={control}
-                  noAsterisk
-                />
-              </Row>
-              <Row gutter={[16, 0]}>
-                <Col span={12}>
+                <Col span={24}>
                   <Input
                     type="text"
-                    label="Region"
-                    name="region"
+                    label="Full Address"
+                    name="alamat_supplier"
                     required
                     control={control}
                     noAsterisk
                   />
                 </Col>
+              </Row>
+              <Row gutter={[16, 0]}>
+                <Col span={12}>
+                  <RegionInput control={control} name="region" />
+                </Col>
                 <Col span={12}>
                   <Row gutter={[16, 0]}>
                     <Col span={12}>
-                      <Input
-                        type="text"
-                        label="City"
-                        name="city"
-                        required
+                      <CityInput
                         control={control}
-                        noAsterisk
+                        name="city"
+                        provinceId={regionId}
                       />
                     </Col>
                     <Col span={12}>

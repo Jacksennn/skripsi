@@ -1,9 +1,9 @@
 import Text from "@/components/elements/text";
 import { Card } from "antd";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-interface Props {}
+interface Props extends PropsWithChildren {}
 export default function FormLayout(props: Props) {
   const { pathname } = useRouter();
   const path = pathname.trimStart().split("/");
@@ -26,9 +26,7 @@ export default function FormLayout(props: Props) {
       bordered={false}
       style={{ width: "100%", minHeight: "" }}
     >
-      <p>Card content</p>
-      <p>Card content</p>
-      <p>Card content</p>
+      {props.children}
     </Card>
   );
 }
