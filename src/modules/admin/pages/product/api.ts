@@ -29,6 +29,7 @@ export type ProductDeleteInput = {
 export type ProductsRespondType = {
   id: string;
   nama_produk: string;
+  harga_produk: string;
 };
 
 export type GetProductsRespond = {

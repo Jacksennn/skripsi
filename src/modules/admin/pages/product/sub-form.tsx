@@ -12,15 +12,28 @@ import FormLayout from "../../components/form-layout";
 import CardWrapper from "../../components/card-wrapper";
 import Input from "@/components/elements/input";
 import Text from "@/components/elements/text";
+import ImageUpload from "./upload-image";
+import Button from "@/components/elements/button";
+import { useRouter } from "next/router";
 
 interface Props {
   product?: ProductRespondType;
   id?: string;
 }
 
-type Inputs = ProductInput;
+type Inputs = {
+  id_kategori: string;
+  sku_produk: string;
+  nama_produk: string;
+  harga_produk: number;
+  ket_produk: string;
+  min_produk: number;
+  visibility: boolean;
+  files: string[];
+};
 export default function ProductSubForm(props: Props) {
   const { id } = props;
+  const router = useRouter();
   const { handleSubmit, control, setValue, reset } = useForm<Inputs>({
     defaultValues: {
       files: [],
@@ -38,21 +51,30 @@ export default function ProductSubForm(props: Props) {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
+      const _data = {
+        ...data,
+        files: data.files.map((item, idx) => ({
+          foto_produk: item,
+          urutan: idx,
+        })),
+      };
+
       const res = id
-        ? await mutateEdit({ data, id: id })
-        : await mutateAsync(data);
+        ? await mutateEdit({ data: _data, id: id })
+        : await mutateAsync(_data);
       notification.success({ message: res?.message });
       queryClient.refetchQueries(["daftar-produk"]);
       reset();
+      router.push("/admin/product");
     } catch (e: any) {
       notification.error({ message: e?.message });
-      throw e;
     }
   };
 
   return (
     <FormLayout>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <ImageUpload name="files" control={control} />
         <Row gutter={[16, 0]}>
           <Col span={15}>
             <CardWrapper title="Product Information">
@@ -88,13 +110,6 @@ export default function ProductSubForm(props: Props) {
           <Col span={9}>
             <CardWrapper title="Properties">
               <Input
-                type="number-control"
-                label="Sto"
-                name="soduk"
-                required
-                control={control}
-              />
-              <Input
                 type="number"
                 label="Price"
                 name="harga_produk"
@@ -123,6 +138,7 @@ export default function ProductSubForm(props: Props) {
             </CardWrapper>
           </Col>
         </Row>
+        <Button htmlType="submit">hehe</Button>
       </form>
     </FormLayout>
   );

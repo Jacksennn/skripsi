@@ -85,3 +85,30 @@ export const queryFetch = async ({
   }
   return _res;
 };
+
+export const queryFetchFormData = async ({
+  endpoint,
+  method,
+  type,
+  body,
+}: QueryFetchParams) => {
+  const res = await fetch(`${BASE_URL}/${type}/${endpoint}`, {
+    method: method,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      Accept: "application/json",
+      Authorization: `Bearer ${
+        type === "admin"
+          ? await getAdminLoginToken()
+          : await getUserLoginToken()
+      }`,
+    },
+    body: body,
+  });
+  const _res = await res.json();
+  if (!res.ok) {
+    catchUnauthorized(res, type);
+    throw new Error(_res?.message);
+  }
+  return _res;
+};

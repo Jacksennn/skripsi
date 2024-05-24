@@ -73,7 +73,7 @@ export default function NavigationBar() {
               fontWeight: 600,
             },
           })}
-          onClick={() => router.push(route[key].name)}
+          onClick={() => router.push(`/admin/${route[key].name}`)}
         >
           {route[key].icon}
           {route[key].label}

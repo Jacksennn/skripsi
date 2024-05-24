@@ -11,7 +11,7 @@ interface Props {
 export default function ProductForm(props: Props) {
   return (
     <AdminLayout>
-      <ImageUpload />
+      {/* <ImageUpload /> */}
       <ProductSubForm />
     </AdminLayout>
   );

@@ -191,7 +191,7 @@ export default function SupplierForm(props: Props) {
                 <Col span={12}>
                   <RegionInput control={control} name="region" />
                 </Col>
-                <Col span={12}>
+                <Col span={12}> 
                   <Row gutter={[16, 0]}>
                     <Col span={12}>
                       <CityInput

@@ -1,4 +1,4 @@
-import { queryFetch } from "@/common/fetch-hook";
+import { queryFetch, queryFetchFormData } from "@/common/fetch-hook";
 import { UseMutationResult, useMutation } from "react-query";
 
 type LoginInput = {
@@ -36,14 +36,14 @@ type UploadImageInput = {
 };
 
 export const useUploadImage = (): UseMutationResult<
-  CommonApiRespond<LoginRespond>,
+  { file_name: string },
   unknown,
   UploadImageInput,
   unknown
 > => {
   return useMutation({
     mutationFn: async (input: UploadImageInput) =>
-      await queryFetch({
+      await queryFetchFormData({
         endpoint: "upload-file-data",
         method: "POST",
         type: "admin",
