@@ -1,10 +1,5 @@
-import React, { useState } from "react";
-import {
-  ProductInput,
-  ProductRespondType,
-  useCreateProduct,
-  useEditProduct,
-} from "./api";
+import React from "react";
+import { ProductRespondType, useCreateProduct, useEditProduct } from "./api";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Col, Row, notification } from "antd";
 import { queryClient } from "@/common/query-client";
@@ -18,7 +13,6 @@ import { useRouter } from "next/router";
 
 interface Props {
   product?: ProductRespondType;
-  id?: string;
 }
 
 type Inputs = {
@@ -31,23 +25,42 @@ type Inputs = {
   visibility: boolean;
   files: string[];
 };
+
 export default function ProductSubForm(props: Props) {
-  const { id } = props;
+  const { product } = props;
   const router = useRouter();
   const { handleSubmit, control, setValue, reset } = useForm<Inputs>({
     defaultValues: {
       files: [],
-      harga_produk: 0,
-      id_kategori: "",
-      ket_produk: "",
-      min_produk: 1,
-      nama_produk: "",
-      sku_produk: "",
-      visibility: true,
+      harga_produk: Number(product?.harga_produk) || 0,
+      id_kategori: product?.kategori?.id || "",
+      ket_produk: product?.ket_produk || "",
+      min_produk: product?.min_produk || 1,
+      nama_produk: product?.nama_produk || "",
+      sku_produk: product?.sku_produk || "",
+      visibility: product?.visibility || true,
     },
   });
   const { mutateAsync, isLoading: isCreating } = useCreateProduct();
   const { mutateAsync: mutateEdit, isLoading: isEditing } = useEditProduct();
+
+  React.useEffect(() => {
+    if (product) {
+      const temp: Inputs = {
+        files: [],
+        harga_produk: Number(product?.harga_produk) || 0,
+        id_kategori: product?.kategori?.id || "",
+        ket_produk: product?.ket_produk || "",
+        min_produk: product?.min_produk || 1,
+        nama_produk: product?.nama_produk || "",
+        sku_produk: product?.sku_produk || "",
+        visibility: product?.visibility || true,
+      };
+      Object.keys(temp).forEach((key) =>
+        setValue(key as any, (temp as any)[key]),
+      );
+    }
+  }, [product, setValue]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
@@ -55,12 +68,12 @@ export default function ProductSubForm(props: Props) {
         ...data,
         files: data.files.map((item, idx) => ({
           foto_produk: item,
-          urutan: idx,
+          urutan: idx + 1,
         })),
       };
 
-      const res = id
-        ? await mutateEdit({ data: _data, id: id })
+      const res = product
+        ? await mutateEdit({ data: _data, id: product.id })
         : await mutateAsync(_data);
       notification.success({ message: res?.message });
       queryClient.refetchQueries(["daftar-produk"]);

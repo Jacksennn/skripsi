@@ -7,21 +7,21 @@ interface Props {
   title: string;
   price: number;
   frequency?: number;
+  src: string;
+  onClick?: () => void;
 }
 
 export default function ImageCard(props: Props) {
-  const { title, price, frequency } = props;
+  const { title, price, frequency, src, onClick } = props;
   return (
     <Card
       hoverable
       style={{ width: 240 }}
       cover={
         // eslint-disable-next-line @next/next/no-img-element
-        <img
-          alt="example"
-          src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-        />
+        <img alt={title} src={src} />
       }
+      onClick={onClick}
     >
       <Text variant="bodyMedium" weight="medium">
         {title}

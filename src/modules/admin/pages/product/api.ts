@@ -7,6 +7,7 @@ import {
   useMutation,
   useQuery,
 } from "react-query";
+import { CategoryRespondType } from "../category/api";
 
 export type ProductInput = {
   id_kategori: string;
@@ -30,6 +31,12 @@ export type ProductsRespondType = {
   id: string;
   nama_produk: string;
   harga_produk: string;
+  file: {
+    id: string;
+    foto_produk: string;
+    urutan: number;
+    foto_url: string;
+  };
 };
 
 export type GetProductsRespond = {
@@ -40,6 +47,19 @@ export type GetProductsRespond = {
 export type ProductRespondType = {
   id: string;
   nama_produk: string;
+  sku_produk: string;
+  kategori: CategoryRespondType;
+  harga_produk: string;
+  stok_produk: number;
+  ket_produk: string;
+  min_produk: number;
+  visibility: boolean;
+  files: {
+    id: string;
+    foto_produk: string;
+    urutan: number;
+    foto_url: string;
+  }[];
 };
 
 export type GetProductRespond = {
