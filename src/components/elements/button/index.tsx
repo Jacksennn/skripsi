@@ -44,6 +44,8 @@ export default function Button(props: ButtonProps) {
             : {}),
         }),
       )}
-    />
+    >
+      {restProps.loading ? "" : restProps.children}
+    </RawButton>
   );
 }
