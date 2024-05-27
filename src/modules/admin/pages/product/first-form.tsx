@@ -25,7 +25,7 @@ export default function ProductFirstForm() {
     {
       id: id as string,
     },
-    { enabled: !!id, cacheTime: 600000 },
+    { enabled: !!id },
   );
 
   const data: ProductRespondType = respond?.data || ({} as ProductRespondType);
