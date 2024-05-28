@@ -6,6 +6,9 @@ const withVanillaExtract = createVanillaExtractPlugin();
 
 const nextConfig = {
   reactStrictMode: true,
+  transpilePackages: [
+    "antd",
+  ],
 };
 
 export default withVanillaExtract(nextConfig);;
