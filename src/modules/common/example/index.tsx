@@ -29,11 +29,11 @@ export default function ExamplePage() {
         text="Total Sales This Month"
         variant="warning"
       />
-      <ImageCard
+      {/* <ImageCard
         title={"Semen Merah Putih 40 kg"}
         frequency={18}
         price={50000}
-      />
+      /> */}
       <ImageLiteCard name="Triplek 12mili sms" code="PR00105" />
       <ImageLiteUserCard name="Triplek 12mili sms" />
     </div>

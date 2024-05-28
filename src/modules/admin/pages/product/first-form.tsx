@@ -41,6 +41,7 @@ export default function ProductFirstForm() {
           urutan: Number(fie.urutan),
         })),
         harga_produk: Number(data!.harga_produk),
+        visibility: value,
       };
       const res = await mutateEdit({ id: data!.id, data: body });
       refetch();

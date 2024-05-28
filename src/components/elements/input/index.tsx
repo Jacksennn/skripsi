@@ -77,6 +77,7 @@ export default function Input(props: InputProps) {
             <RawInput
               {...restProps}
               {...field}
+              checked={field.value}
               type={_type}
               placeholder={restProps.placeholder || restProps.title}
               className={classNames(
