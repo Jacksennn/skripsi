@@ -25,7 +25,12 @@ export default function ProductFirstForm() {
     {
       id: id as string,
     },
-    { enabled: !!id },
+    {
+      enabled: !!id,
+      onSuccess: (data) => {
+        setValue(data.data.visibility);
+      },
+    },
   );
 
   const data: ProductRespondType = respond?.data || ({} as ProductRespondType);
