@@ -3,7 +3,9 @@ import { Card } from "antd";
 import { useRouter } from "next/router";
 import React, { PropsWithChildren } from "react";
 
-interface Props extends PropsWithChildren {}
+interface Props extends PropsWithChildren {
+  title?: string;
+}
 export default function FormLayout(props: Props) {
   const { pathname } = useRouter();
   const path = pathname.trimStart().split("/");
@@ -20,7 +22,8 @@ export default function FormLayout(props: Props) {
           weight="medium"
           style={{ textTransform: "uppercase" }}
         >
-          {`${front} > ${isAdd ? `add new ${front}` : `edit ${front}`}`}
+          {props.title ||
+            `${front} > ${isAdd ? `add new ${front}` : `edit ${front}`}`}
         </Text>
       }
       bordered={false}

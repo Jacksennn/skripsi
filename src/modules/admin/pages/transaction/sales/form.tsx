@@ -1,40 +1,35 @@
-import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { PurchaseInput, useCreatePurchase, useEditPurchase } from "./api";
+import { SaleInput, useCreateSale, useEditSale } from "./api";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Flex, Input, notification } from "antd";
 import FormLayout from "@/modules/admin/components/form-layout";
 import CardWrapper from "@/modules/admin/components/card-wrapper";
+import CancelButton from "@/modules/admin/components/cancel-button";
 import Button from "@/components/elements/button";
 import {
   SectionContainerForm,
   SectionForm,
 } from "@/modules/admin/components/split-two-form";
-import SupplierSelect from "@/modules/admin/components/supplier-select";
 import Text from "@/components/elements/text";
 import BaseInput from "@/components/elements/input";
 import PaymentMethodSelect from "@/modules/admin/components/payment-method-select";
-import StatusPembelianSelect from "@/modules/admin/components/status-pembelian-select";
+import StatusPenjualanSelect from "@/modules/admin/components/status-penjualan-select";
 import FormItem from "./form-item";
-import CancelButton from "@/modules/admin/components/cancel-button";
 
-interface Props {}
+type Inputs = SaleInput;
 
-type Inputs = PurchaseInput;
-export default function PurchaseForm(props: Props) {
-  const router = useRouter();
-
+export default function SalesForm() {
   const { handleSubmit, control, setValue, reset } = useForm<Inputs>({
     defaultValues: {
       details: [],
-      id_supplier: "",
-      payment_method: "",
-      status_pembelian: "",
-      tgl_pembelian: "",
+      id_user: "",
+      metode_bayar: "",
+      status_penjualan: "",
+      tgl_penjualan: "",
     },
   });
-  const { mutateAsync, isLoading: isCreating } = useCreatePurchase();
-  const { mutateAsync: mutateEdit, isLoading: isEditing } = useEditPurchase();
+  const { mutateAsync, isLoading: isCreating } = useCreateSale();
+  const { mutateAsync: mutateEdit, isLoading: isEditing } = useEditSale();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
@@ -51,31 +46,28 @@ export default function PurchaseForm(props: Props) {
     }
   };
 
-  const [supplierId, setSupplierId] = useState<string>("");
+  const [customerId, setCustomerId] = useState<string>("");
   return (
-    <FormLayout>
+    <FormLayout title="Direct Transaction > Add new sales">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <CardWrapper title="Purchase Invoice">
+        <CardWrapper title="Customer Invoice">
           <SectionContainerForm>
             <SectionForm>
               <div style={{ marginBottom: 16 }}>
                 <Text variant="bodySmall">
-                  Supplier ID
+                  Customer ID
                   <span className="asterisk">*</span>
                 </Text>
 
                 <Input
                   type="text"
-                  value={supplierId}
+                  value={customerId}
                   disabled={true}
-                  placeholder={"Choose Supplier Name"}
+                  placeholder={"Choose Customer Name"}
                 ></Input>
               </div>
-              <SupplierSelect
-                control={control}
-                name="id_supplier"
-                onChange={(data) => setSupplierId(data?.id || "")}
-              />
+              {/* Customer Select */}
+              <></>
             </SectionForm>
             <SectionForm>
               <BaseInput
@@ -83,13 +75,13 @@ export default function PurchaseForm(props: Props) {
                 label="Invoice Date"
                 required
                 control={control}
-                name="tgl_pembelian"
+                name="tgl_penjualan"
               ></BaseInput>
-              <PaymentMethodSelect control={control} name="payment_method" />
+              <PaymentMethodSelect control={control} name="metode_bayar" />
               <div style={{ marginBottom: 16 }}></div>
-              <StatusPembelianSelect
+              <StatusPenjualanSelect
                 control={control}
-                name="status_pembelian"
+                name="status_penjualan"
               />
             </SectionForm>
           </SectionContainerForm>

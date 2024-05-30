@@ -7,7 +7,7 @@ interface Props {
   control: Control<any, any>;
   name: string;
 }
-export const StatusPembelianStatus = [
+export const StatusPenjualanStatus = [
   {
     label: "On delivery",
     value: "On Delivery",
@@ -20,15 +20,19 @@ export const StatusPembelianStatus = [
     label: "Cancelled",
     value: "Cancelled",
   },
+  {
+    label: "Returned",
+    value: "Returned",
+  },
 ];
 
-export default function StatusPembelianSelect(props: Props) {
+export default function StatusPenjualanSelect(props: Props) {
   const { control, name } = props;
 
   return (
     <div className="mb">
       <Text variant="bodySmall">
-        Delivery Status
+        Sales Status
         <span className="asterisk">*</span>
       </Text>
       <Controller
@@ -37,7 +41,7 @@ export default function StatusPembelianSelect(props: Props) {
         render={({ field }) => (
           <Select
             {...field}
-            options={StatusPembelianStatus}
+            options={StatusPenjualanStatus}
             style={{
               width: "100%",
             }}
