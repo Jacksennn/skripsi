@@ -54,3 +54,8 @@ body {
 .asterisk {
   color: red;
 }
+
+[class^="ant-table"],
+[class*=" ant-table"] {
+  font-size: 14px !important;
+}

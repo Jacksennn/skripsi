@@ -31,6 +31,8 @@ export type ProductsRespondType = {
   id: string;
   nama_produk: string;
   harga_produk: string;
+  kategori: CategoryRespondType;
+  stok_produk: number;
   file: {
     id: string;
     foto_produk: string;
@@ -66,10 +68,9 @@ export type GetProductRespond = {
   data: ProductRespondType;
 };
 
-export const useGetProducts = (): UseQueryResult<
-  GetProductsRespond,
-  unknown
-> => {
+export const useGetProducts = (
+  enabled: boolean = true,
+): UseQueryResult<GetProductsRespond, unknown> => {
   return useQuery({
     queryFn: async (input) =>
       await queryFetch({
@@ -78,6 +79,7 @@ export const useGetProducts = (): UseQueryResult<
         type: "admin",
       }),
     queryKey: ["daftar-produk"],
+    enabled: enabled,
   });
 };
 

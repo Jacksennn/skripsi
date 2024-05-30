@@ -44,7 +44,7 @@ const route: {
     icon: <ShoppingCartSimple size={20} />,
   },
   direct_transaction: {
-    name: "direct-transaction",
+    name: "transaction",
     label: "Direct Transaction",
     icon: <NotePencil size={20} />,
   },
@@ -76,7 +76,9 @@ export default function NavigationBar() {
           onClick={() => router.push(`/admin/${route[key].name}`)}
         >
           {route[key].icon}
-          {route[key].label}
+          <div className={navigationBarStyles.iconContainer}>
+            {route[key].label}
+          </div>
         </Flex>
       ))}
     </div>

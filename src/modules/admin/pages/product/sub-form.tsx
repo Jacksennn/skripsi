@@ -151,7 +151,9 @@ export default function ProductSubForm(props: Props) {
             </CardWrapper>
           </Col>
         </Row>
-        <Button htmlType="submit">Save</Button>
+        <Button htmlType="submit" loading={isCreating || isEditing}>
+          Save
+        </Button>
       </form>
     </FormLayout>
   );

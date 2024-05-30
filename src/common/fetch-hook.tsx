@@ -24,7 +24,7 @@ export const removeAdminLoginToken = async () =>
   await localStorage.removeItem(LOCAL_STORE_AUTH_ADMIN_KEY);
 
 const logout = async (type: "admin" | "user") => {
-  window.location.href = `${type}/sign-in`;
+  window.location.href = `/${type}/sign-in`;
   if (type === "admin") {
     removeAdminLoginToken();
   } else {

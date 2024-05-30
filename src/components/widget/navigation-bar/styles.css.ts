@@ -8,10 +8,25 @@ export const navigationBarStyles = {
     borderRadius: 4,
     boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
     padding: "16px 0px",
+    width: "fit-content",
   }),
   item: style({
     color: colors.gray600,
-    padding: "10px 0px 10px 24px",
     cursor: "pointer",
+    padding: "10px 16px",
+
+    "@media": {
+      "screen and (min-width: 991px)": {
+        padding: "10px 24px",
+      },
+    },
+  }),
+  iconContainer: style({
+    display: "none",
+    "@media": {
+      "screen and (min-width: 991px)": {
+        display: "inline-block",
+      },
+    },
   }),
 };

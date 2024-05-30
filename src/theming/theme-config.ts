@@ -10,6 +10,14 @@ const theme: ThemeConfig = {
     fontFamily: "Public Sans, sans-serif",
   },
   hashed: false,
+  components: {
+    Table: {
+      rowSelectedBg: "#D1D9FF",
+      rowSelectedHoverBg: "#D1D9FF",
+      cellPaddingBlock: 4,
+      cellFontSize: 12,
+    },
+  },
 };
 
 export default theme;
