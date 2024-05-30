@@ -15,7 +15,7 @@ export default function SupplierSelect(props: Props) {
   const { data, isLoading } = useGetSuppliers();
 
   return (
-    <>
+    <div className="mb">
       <Text variant="bodySmall">
         Supplier Name
         <span className="asterisk">*</span>
@@ -45,6 +45,6 @@ export default function SupplierSelect(props: Props) {
           />
         )}
       />
-    </>
+    </div>
   );
 }

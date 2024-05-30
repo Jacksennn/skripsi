@@ -26,7 +26,7 @@ export default function StatusPembelianSelect(props: Props) {
   const { control, name } = props;
 
   return (
-    <>
+    <div className="mb">
       <Text variant="bodySmall">
         Purchase Status
         <span className="asterisk">*</span>
@@ -44,6 +44,6 @@ export default function StatusPembelianSelect(props: Props) {
           />
         )}
       />
-    </>
+    </div>
   );
 }

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { PurchaseInput, useCreatePurchase, useEditPurchase } from "./api";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Input, notification } from "antd";
+import { Flex, Input, notification } from "antd";
 import FormLayout from "@/modules/admin/components/form-layout";
 import CardWrapper from "@/modules/admin/components/card-wrapper";
 import AddProductModal from "../../product/add-product-modal";
@@ -95,7 +95,10 @@ export default function PurchaseForm(props: Props) {
           </SectionContainerForm>
           <FormItem control={control} />
         </CardWrapper>
-        <Button htmlType="submit">Save</Button>
+        <Flex gap={16} justify="end">
+          <Button variant="secondary">Cancel</Button>
+          <Button htmlType="submit">Save</Button>
+        </Flex>
       </form>
     </FormLayout>
   );
