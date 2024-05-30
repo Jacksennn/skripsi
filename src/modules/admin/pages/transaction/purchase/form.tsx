@@ -17,6 +17,7 @@ import BaseInput from "@/components/elements/input";
 import PaymentMethodSelect from "@/modules/admin/components/payment-method-select";
 import StatusPembelianSelect from "@/modules/admin/components/status-pembelian-select";
 import FormItem from "./form-item";
+import CancelButton from "@/modules/admin/components/cancel-button";
 
 interface Props {}
 
@@ -96,7 +97,7 @@ export default function PurchaseForm(props: Props) {
           <FormItem control={control} />
         </CardWrapper>
         <Flex gap={16} justify="end">
-          <Button variant="secondary">Cancel</Button>
+          <CancelButton />
           <Button htmlType="submit">Save</Button>
         </Flex>
       </form>
