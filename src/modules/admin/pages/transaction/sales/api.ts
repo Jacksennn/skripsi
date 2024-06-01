@@ -10,9 +10,10 @@ import {
 
 export type SaleInput = {
   id_user: string;
-  tgl_penjualan: string;
+  tgl_pemesanan: Date;
   metode_bayar: string;
-  status_penjualan: string;
+  status_pemesanan: string;
+  status_pembayaran: string;
   details: {
     id_produk: string;
     jumlah_produk: string;

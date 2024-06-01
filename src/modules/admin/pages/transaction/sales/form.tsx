@@ -15,6 +15,8 @@ import BaseInput from "@/components/elements/input";
 import PaymentMethodSelect from "@/modules/admin/components/payment-method-select";
 import StatusPenjualanSelect from "@/modules/admin/components/status-penjualan-select";
 import FormItem from "./form-item";
+import UserSelect from "@/modules/admin/components/user-select";
+import StatusPembayaranSelect from "@/modules/admin/components/status-pembayaran-select";
 
 type Inputs = SaleInput;
 
@@ -24,8 +26,9 @@ export default function SalesForm() {
       details: [],
       id_user: "",
       metode_bayar: "",
-      status_penjualan: "",
-      tgl_penjualan: "",
+      status_pemesanan: "",
+      status_pembayaran: "",
+      tgl_pemesanan: new Date(),
     },
   });
   const { mutateAsync, isLoading: isCreating } = useCreateSale();
@@ -66,8 +69,12 @@ export default function SalesForm() {
                   placeholder={"Choose Customer Name"}
                 ></Input>
               </div>
-              {/* Customer Select */}
-              <></>
+
+              <UserSelect
+                control={control}
+                name="id_user"
+                onChange={(data) => setCustomerId(data?.id || "")}
+              />
             </SectionForm>
             <SectionForm>
               <BaseInput
@@ -75,13 +82,19 @@ export default function SalesForm() {
                 label="Invoice Date"
                 required
                 control={control}
-                name="tgl_penjualan"
+                name="tgl_pemesanan"
               ></BaseInput>
               <PaymentMethodSelect control={control} name="metode_bayar" />
               <div style={{ marginBottom: 16 }}></div>
+
+              <StatusPembayaranSelect
+                control={control}
+                name="status_pembayaran"
+              />
+              <div style={{ marginBottom: 16 }}></div>
               <StatusPenjualanSelect
                 control={control}
-                name="status_penjualan"
+                name="status_pemesanan"
               />
             </SectionForm>
           </SectionContainerForm>
@@ -89,7 +102,9 @@ export default function SalesForm() {
         </CardWrapper>
         <Flex gap={16} justify="end">
           <CancelButton />
-          <Button htmlType="submit">Save</Button>
+          <Button htmlType="submit" loading={isCreating || isEditing}>
+            Save
+          </Button>
         </Flex>
       </form>
     </FormLayout>

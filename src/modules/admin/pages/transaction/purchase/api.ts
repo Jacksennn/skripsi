@@ -26,11 +26,20 @@ export type PurchaseDeleteInput = {
 };
 
 export type PurchasesRespondType = {
-  id: string;
+  [key: string]: {
+    id: string;
+    no_pembelian: string;
+    no_supplier: string;
+    produk: string;
+    produk_tersembunyi: string;
+    status: string;
+    total_harga: string;
+    total_qty: string;
+  }[];
 };
 
 export type GetPurchasesRespond = {
-  data: PurchaseRespondType[];
+  data: PurchasesRespondType;
   meta: MetaType;
 };
 
