@@ -9,7 +9,6 @@ export const dashboardCardStyles = {
       display: "flex",
       alignItems: "center",
       gap: 16,
-      maxWidth: 300,
     },
     variants: {
       variant: {

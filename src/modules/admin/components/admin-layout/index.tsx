@@ -9,6 +9,7 @@ const contentStyle: React.CSSProperties = {
   minHeight: "calc(100vh - 123px)",
   backgroundColor: "#fff",
   paddingTop: 20,
+  paddingRight: 16,
 };
 
 const siderStyle: React.CSSProperties = {

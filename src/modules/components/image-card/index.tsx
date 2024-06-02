@@ -7,12 +7,18 @@ interface Props {
   title: string;
   price: number;
   frequency?: number;
-  src: string;
+  src?: string;
   onClick?: () => void;
 }
 
 export default function ImageCard(props: Props) {
-  const { title, price, frequency, src, onClick } = props;
+  const {
+    title,
+    price,
+    frequency,
+    src = "https://placehold.co/600x400",
+    onClick,
+  } = props;
   return (
     <Card
       hoverable
