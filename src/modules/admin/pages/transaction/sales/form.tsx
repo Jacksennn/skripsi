@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SaleInput, useCreateSale, useEditSale } from "./api";
+import { SaleInput, SaleRespondType, useCreateSale, useEditSale } from "./api";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Flex, Input, notification } from "antd";
 import FormLayout from "@/modules/admin/components/form-layout";
@@ -17,10 +17,19 @@ import StatusPenjualanSelect from "@/modules/admin/components/status-penjualan-s
 import FormItem from "./form-item";
 import UserSelect from "@/modules/admin/components/user-select";
 import StatusPembayaranSelect from "@/modules/admin/components/status-pembayaran-select";
+import dayjs from "dayjs";
+import DatePicker from "@/components/elements/input/date-picker";
+import { queryClient } from "@/common/query-client";
+import { useRouter } from "next/router";
 
 type Inputs = SaleInput;
 
-export default function SalesForm() {
+interface Props {
+  data?: SaleRespondType;
+}
+
+export default function SalesForm(props: Props) {
+  const { data } = props;
   const { handleSubmit, control, setValue, reset } = useForm<Inputs>({
     defaultValues: {
       details: [],
@@ -28,30 +37,60 @@ export default function SalesForm() {
       metode_bayar: "",
       status_pemesanan: "",
       status_pembayaran: "",
-      tgl_pemesanan: new Date(),
+      tgl_pemesanan: dayjs(),
     },
   });
   const { mutateAsync, isLoading: isCreating } = useCreateSale();
   const { mutateAsync: mutateEdit, isLoading: isEditing } = useEditSale();
+  const router = useRouter();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (values) => {
     try {
       // const res =
       //   ? await mutateEdit({ data: _data, id: product.id })
-      const res = await mutateAsync(data);
+      const res = data
+        ? await mutateEdit({ data: values, id: data?.id })
+        : await mutateAsync(values);
       notification.success({ message: res?.message });
-      //   queryClient.refetchQueries(["daftar-produk"]);
+      queryClient.refetchQueries(["daftar-penjualan"]);
 
-      // reset();
-      // router.push("/admin/product");
+      reset();
+      router.push("/admin/report");
     } catch (e: any) {
       notification.error({ message: e?.message });
     }
   };
 
   const [customerId, setCustomerId] = useState<string>("");
+
+  React.useEffect(() => {
+    if (data) {
+      const temp: Inputs = {
+        details:
+          data?.details.map((item) => ({
+            diskon_produk: Number(item.diskon_produk),
+            harga_produk: Number(item.harga_produk),
+            id_produk: item.product.id,
+            jumlah_produk: Number(item.jumlah_produk),
+            name: item.product.nama_produk,
+          })) || [],
+        id_user: data?.user?.id || "",
+        metode_bayar: data?.metode_bayar || "",
+        status_pembayaran: data?.status_pembayaran || "",
+        tgl_pemesanan: data?.tgl_pemesanan
+          ? dayjs(data?.tgl_pemesanan, "YYYY-MM-DD")
+          : dayjs(),
+        status_pemesanan: data?.status_pemesanan || "",
+      };
+      Object.keys(temp).forEach((key) =>
+        setValue(key as any, (temp as any)[key]),
+      );
+    }
+  }, [data, setValue]);
   return (
-    <FormLayout title="Direct Transaction > Add new sales">
+    <FormLayout
+      title={`Direct Transaction > ${data ? "Edit" : "Add new"} Sales`}
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardWrapper title="Customer Invoice">
           <SectionContainerForm>
@@ -77,13 +116,12 @@ export default function SalesForm() {
               />
             </SectionForm>
             <SectionForm>
-              <BaseInput
-                type="date"
+              <DatePicker
                 label="Invoice Date"
                 required
                 control={control}
                 name="tgl_pemesanan"
-              ></BaseInput>
+              ></DatePicker>
               <PaymentMethodSelect control={control} name="metode_bayar" />
               <div style={{ marginBottom: 16 }}></div>
 

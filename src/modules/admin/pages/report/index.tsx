@@ -5,6 +5,8 @@ import { reportTabContainerStyle, reportTabStyle } from "./styles.css";
 import { colors } from "@/theming/colors";
 import { useGetSales } from "../transaction/sales/api";
 import { useGetPurchase, useGetPurchases } from "../transaction/purchase/api";
+import PurchaseTab from "./components/purchase-tab";
+import SalesTab from "./components/sales-tab";
 
 const activeStyle = {
   backgroundColor: colors.secondary800,
@@ -14,10 +16,21 @@ const inactiveStyle = {
   backgroundColor: "#BBBBBB",
   color: "#6B6B6B",
 };
+
+function CondtionalRender({
+  fullfiled,
+  children,
+}: {
+  fullfiled: boolean;
+  children: React.ReactNode;
+}) {
+  if (fullfiled) return children;
+  return <></>;
+}
+
 export default function ReportPage() {
   const [tab, setTab] = useState<string>("sales");
   const { data } = useGetPurchases();
-  console.log(Object.values(data?.data || {}));
   return (
     <AdminLayout>
       <div>
@@ -47,6 +60,13 @@ export default function ReportPage() {
             Retur
           </button>
         </div>
+        <div className="mb"></div>
+        <CondtionalRender fullfiled={tab === "sales"}>
+          <SalesTab />
+        </CondtionalRender>
+        <CondtionalRender fullfiled={tab === "purchase"}>
+          <PurchaseTab />
+        </CondtionalRender>
       </div>
     </AdminLayout>
   );

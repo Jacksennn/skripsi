@@ -7,17 +7,18 @@ import {
   useMutation,
   useQuery,
 } from "react-query";
+import { ProductRespondType } from "../../product/api";
 
 export type PurchaseInput = {
   id_supplier: string;
-  tgl_pembelian: string;
+  tgl_pembelian: any;
   payment_method: string;
   status_pembelian: string;
   details: {
     id_produk: string;
-    jumlah_produk: string;
-    harga_produk: string;
-    diskon_produk: string;
+    jumlah_produk: number;
+    harga_produk: number;
+    diskon_produk: number;
   }[];
 };
 
@@ -45,6 +46,16 @@ export type GetPurchasesRespond = {
 
 export type PurchaseRespondType = {
   id: string;
+  payment_method: string;
+  status_pembelian: string;
+  tgl_pembelian: string;
+  details: {
+    diskon_produk: string;
+    harga_produk: string;
+    id: string;
+    jumlah_produk: number;
+    produk: ProductRespondType;
+  }[];
 };
 
 export type GetPurchaseRespond = {

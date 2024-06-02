@@ -1,6 +1,11 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { PurchaseInput, useCreatePurchase, useEditPurchase } from "./api";
+import {
+  PurchaseInput,
+  PurchaseRespondType,
+  useCreatePurchase,
+  useEditPurchase,
+} from "./api";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Flex, Input, notification } from "antd";
 import FormLayout from "@/modules/admin/components/form-layout";
@@ -17,35 +22,69 @@ import PaymentMethodSelect from "@/modules/admin/components/payment-method-selec
 import StatusPembelianSelect from "@/modules/admin/components/status-pembelian-select";
 import FormItem from "./form-item";
 import CancelButton from "@/modules/admin/components/cancel-button";
+import { queryClient } from "@/common/query-client";
+import dayjs from "dayjs";
+import DatePicker from "@/components/elements/input/date-picker";
 
-interface Props {}
+interface Props {
+  data?: PurchaseRespondType;
+}
 
 type Inputs = PurchaseInput;
 export default function PurchaseForm(props: Props) {
   const router = useRouter();
-
+  const { data } = props;
   const { handleSubmit, control, setValue, reset } = useForm<Inputs>({
     defaultValues: {
-      details: [],
+      details:
+        data?.details.map((item) => ({
+          diskon_produk: Number(item.diskon_produk),
+          harga_produk: Number(item.harga_produk),
+          id_produk: item.produk.id,
+          jumlah_produk: Number(item.jumlah_produk),
+          name: item.produk.nama_produk,
+        })) || [],
       id_supplier: "",
-      payment_method: "",
-      status_pembelian: "",
-      tgl_pembelian: "",
+      payment_method: data?.payment_method || "",
+      status_pembelian: data?.status_pembelian || "",
+      tgl_pembelian: data?.tgl_pembelian || dayjs(),
     },
   });
   const { mutateAsync, isLoading: isCreating } = useCreatePurchase();
   const { mutateAsync: mutateEdit, isLoading: isEditing } = useEditPurchase();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    try {
-      // const res =
-      //   ? await mutateEdit({ data: _data, id: product.id })
-      const res = await mutateAsync(data);
-      notification.success({ message: res?.message });
-      //   queryClient.refetchQueries(["daftar-produk"]);
+  React.useEffect(() => {
+    if (data) {
+      const temp: Inputs = {
+        details:
+          data?.details.map((item) => ({
+            diskon_produk: Number(item.diskon_produk),
+            harga_produk: Number(item.harga_produk),
+            id_produk: item.produk.id,
+            jumlah_produk: Number(item.jumlah_produk),
+            name: item.produk.nama_produk,
+          })) || [],
+        id_supplier: "",
+        payment_method: data?.payment_method || "",
+        status_pembelian: data?.status_pembelian || "",
+        tgl_pembelian: dayjs(data?.tgl_pembelian, "YYYY-MM-DD") || dayjs(),
+      };
+      Object.keys(temp).forEach((key) =>
+        setValue(key as any, (temp as any)[key]),
+      );
+    }
+  }, [data, setValue]);
 
-      // reset();
-      // router.push("/admin/product");
+  const onSubmit: SubmitHandler<Inputs> = async (values) => {
+    try {
+      const res = data
+        ? await mutateEdit({ data: values, id: data?.id })
+        : await mutateAsync(values);
+      notification.success({ message: res?.message });
+      queryClient.refetchQueries(["daftar-pembelian"]);
+
+      reset();
+      router.push("/admin/report");
     } catch (e: any) {
       notification.error({ message: e?.message });
     }
@@ -53,7 +92,9 @@ export default function PurchaseForm(props: Props) {
 
   const [supplierId, setSupplierId] = useState<string>("");
   return (
-    <FormLayout>
+    <FormLayout
+      title={`Direct Transaction > ${data ? "Edit" : "Add new"} Purchase`}
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardWrapper title="Purchase Invoice">
           <SectionContainerForm>
@@ -78,13 +119,13 @@ export default function PurchaseForm(props: Props) {
               />
             </SectionForm>
             <SectionForm>
-              <BaseInput
-                type="date"
+              <DatePicker
                 label="Invoice Date"
                 required
                 control={control}
                 name="tgl_pembelian"
-              ></BaseInput>
+              ></DatePicker>
+
               <PaymentMethodSelect control={control} name="payment_method" />
               <div style={{ marginBottom: 16 }}></div>
               <StatusPembelianSelect

@@ -15,8 +15,6 @@ export interface InputProps extends Omit<RawInputProps, "name" | "type"> {
     | "button"
     | "checkbox"
     | "color"
-    | "date"
-    | "datetime-local"
     | "email"
     | "file"
     | "hidden"
@@ -69,7 +67,7 @@ export default function Input(props: InputProps) {
             <TextArea
               {...(restProps as any)}
               {...field}
-              placeholder={restProps.placeholder || restProps.title}
+              placeholder={restProps.placeholder || label}
               className={classNames(className, inputStyles, !noMb && "mb")}
               size="large"
             ></TextArea>
@@ -79,7 +77,7 @@ export default function Input(props: InputProps) {
               {...field}
               checked={field.value}
               type={_type}
-              placeholder={restProps.placeholder || restProps.title}
+              placeholder={restProps.placeholder || label}
               className={classNames(
                 className,
                 inputStyles,

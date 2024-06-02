@@ -7,18 +7,19 @@ import {
   useMutation,
   useQuery,
 } from "react-query";
+import { ProductRespondType } from "../../product/api";
 
 export type SaleInput = {
   id_user: string;
-  tgl_pemesanan: Date;
+  tgl_pemesanan: any;
   metode_bayar: string;
   status_pemesanan: string;
   status_pembayaran: string;
   details: {
     id_produk: string;
-    jumlah_produk: string;
-    harga_produk: string;
-    diskon_produk: string;
+    jumlah_produk: number;
+    harga_produk: number;
+    diskon_produk: number;
   }[];
 };
 
@@ -27,20 +28,52 @@ export type SaleDeleteInput = {
 };
 
 export type SalesRespondType = {
-  id: string;
+  [key: string]: {
+    id: string;
+    no_pemesanan: string;
+    no_user: string;
+    produk: string;
+    produk_tersembunyi: number;
+    total_qty: number;
+    total_harga: number;
+    status_pembayaran: string;
+    status_pemesanan: string;
+  }[];
 };
 
 export type GetSalesRespond = {
-  data: SalesRespondType[];
+  data: SalesRespondType;
   meta: MetaType;
 };
 
 export type SaleRespondType = {
   id: string;
+  metode_bayar: string;
+  tgl_pemesanan: string;
+  status_pemesanan: string;
+  status_pembayaran: string;
+  user: {
+    id: string;
+    no_user: string;
+    nama_user: string;
+    notelp_user: string;
+    alamat_user: string;
+    email_user: string;
+    region: string | null;
+    city: string | null;
+    zip_code: string | null;
+  };
+  details: {
+    diskon_produk: string;
+    harga_produk: string;
+    id: string;
+    jumlah_produk: number;
+    product: ProductRespondType;
+  }[];
 };
 
 export type GetSaleRespond = {
-  data: SalesRespondType;
+  data: SaleRespondType;
 };
 
 export const useGetSales = (): UseQueryResult<GetSalesRespond, unknown> => {
