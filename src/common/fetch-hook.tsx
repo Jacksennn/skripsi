@@ -57,27 +57,33 @@ type QueryFetchParams = {
   method: string;
   type: "admin" | "user";
   body?: any;
+  params?: { [key: string]: any };
 };
 export const queryFetch = async ({
   endpoint,
   method,
   type,
   body,
+  params,
 }: QueryFetchParams) => {
-  const res = await fetch(`${BASE_URL}/${type}/${endpoint}`, {
-    method: method,
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      Accept: "application/json",
-      Authorization: `Bearer ${
-        type === "admin"
-          ? await getAdminLoginToken()
-          : await getUserLoginToken()
-      }`,
+  const res = await fetch(
+    `${BASE_URL}/${type}/${endpoint}` +
+      `${params ? `?${new URLSearchParams(params).toString()}` : ""}`,
+    {
+      method: method,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Accept: "application/json",
+        Authorization: `Bearer ${
+          type === "admin"
+            ? await getAdminLoginToken()
+            : await getUserLoginToken()
+        }`,
+      },
+      body: JSON.stringify(body),
     },
-    body: JSON.stringify(body),
-  });
+  );
   const _res = await res.json();
   if (!res.ok) {
     catchUnauthorized(res, type);

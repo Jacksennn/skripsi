@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className={footerStyles.container}>
       <div className={footerStyles.innerContainer}>
         <Text variant="heading03" weight="bold" color="gray00">
-          TB CAHAYA BARU
+          {/* TB CAHAYA BARU */}
         </Text>
 
         <div>

@@ -114,7 +114,7 @@ export default function ProductFirstForm() {
               </Text>
             </div>
             <div>
-              <Flex gap={16}>
+              <Flex gap={16} align="center">
                 <Checkbox
                   value={value}
                   onChange={(e) => setValue(e.target.checked)}
