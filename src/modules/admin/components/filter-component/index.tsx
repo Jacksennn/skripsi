@@ -21,7 +21,7 @@ export default function FilterComponent(props: Props) {
       .filter((item) => !!item.value)
       ?.forEach((item) => {
         if (item.behaviour === "multiple") {
-          temp[item.name] = (item.value as string).split("|");
+          temp[item.name] = (item.value as string).split(",");
         }
       });
     setState(temp);
@@ -92,7 +92,7 @@ export default function FilterComponent(props: Props) {
                   const val = state[s];
 
                   if (Array.isArray(val)) {
-                    temp[`filter[${s}]`] = val.join("|");
+                    temp[`filter[${s}]`] = val.join(",");
                   } else {
                     temp[`filter[${s}]`] = val;
                   }
