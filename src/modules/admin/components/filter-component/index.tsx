@@ -8,9 +8,10 @@ import React, { useCallback, useState } from "react";
 interface Props {
   filters: FilterType[];
   onChange: (value: { [key: string]: any }) => void;
+  isLoading: boolean;
 }
 export default function FilterComponent(props: Props) {
-  const { filters } = props;
+  const { filters, isLoading } = props;
   const [open, setIsOpen] = useState<boolean>(false);
 
   const [state, setState] = useState<{ [key: string]: any }>({});
@@ -107,7 +108,11 @@ export default function FilterComponent(props: Props) {
         </div>
       }
     >
-      <Button variant="tertiary" onClick={() => setIsOpen(true)}>
+      <Button
+        variant="tertiary"
+        onClick={() => setIsOpen(true)}
+        disabled={isLoading}
+      >
         Filter
       </Button>
     </Popover>

@@ -55,13 +55,14 @@ export default function ProductPage() {
             )}
           </DebounceComponent>
           <FilterComponent
+            isLoading={isLoading}
             filters={data?.filters || []}
             onChange={(value) => setFilters(value)}
           />
         </Flex>
         <div className={gridStyle}>
           {isLoading && (
-            <Flex align="center">
+            <Flex justify="center">
               <Spin />
             </Flex>
           )}
