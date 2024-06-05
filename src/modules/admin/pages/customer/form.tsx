@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import {
-  SupplierInput,
-  useCreateSupplier,
-  useEditSupplier,
-  useGetSupplier,
+  CustomerInput,
+  useCreateCustomer,
+  useEditCustomer,
+  useGetCustomer,
 } from "./api";
 import { SubmitHandler, useForm, useWatch } from "react-hook-form";
 import { Col, Flex, Modal, Row, Spin, notification } from "antd";
@@ -15,7 +15,7 @@ import Image from "next/image";
 import Avatar from "@/svg/Avatar.svg";
 import RegionInput from "@/modules/components/region-input";
 import CityInput from "@/modules/components/city-input";
-type Inputs = SupplierInput;
+type Inputs = CustomerInput;
 
 interface Props {
   target: (showModal: () => void) => React.ReactNode;
@@ -23,29 +23,29 @@ interface Props {
   refetch: () => void;
 }
 
-export default function SupplierForm(props: Props) {
+export default function CustomerForm(props: Props) {
   const { handleSubmit, control, setValue, reset } = useForm<Inputs>();
-  const { mutateAsync, isLoading: isCreating } = useCreateSupplier();
-  const { mutateAsync: mutateEdit, isLoading: isEditing } = useEditSupplier();
+  const { mutateAsync, isLoading: isCreating } = useCreateCustomer();
+  const { mutateAsync: mutateEdit, isLoading: isEditing } = useEditCustomer();
   const { id } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
-    isLoading: isGetSupplierLoading,
-    isRefetching: isGetSupplierRefetching,
-  } = useGetSupplier(
+    isLoading: isGetCustomerLoading,
+    isRefetching: isGetCustomerRefetching,
+  } = useGetCustomer(
     {
       id: id!,
     },
     {
       enabled: isModalOpen && !!id,
       onSuccess(data) {
-        setValue("alamat_supplier", data.data.alamat_supplier);
+        setValue("alamat_user", data.data.alamat_user);
         setValue("city", data.data.city);
-        setValue("email_supplier", data.data.email_supplier);
-        setValue("nama_supplier", data.data.nama_supplier);
-        setValue("no_supplier", data.data.no_supplier);
-        setValue("notelp_supplier", data.data.notelp_supplier);
+        setValue("email_user", data.data.email_user);
+        setValue("nama_user", data.data.nama_user);
+        setValue("no_user", data.data.no_user);
+        setValue("notelp_user", data.data.notelp_user);
         setValue("region", data.data.region);
         setValue("zip_code", data.data.zip_code);
       },
@@ -78,7 +78,7 @@ export default function SupplierForm(props: Props) {
       <Modal
         title={
           <Text variant="heading04" weight="semiBold">
-            {!id ? "Add New Supplier" : "Edit Supplier"}
+            {!id ? "Add New Customer" : "Edit Customer"}
           </Text>
         }
         open={isModalOpen}
@@ -122,7 +122,7 @@ export default function SupplierForm(props: Props) {
           },
         }}
       >
-        {isGetSupplierLoading || isGetSupplierRefetching ? (
+        {isGetCustomerLoading || isGetCustomerRefetching ? (
           <Flex justify="center">
             <Spin size="large" />
           </Flex>
@@ -134,8 +134,8 @@ export default function SupplierForm(props: Props) {
                 <Col span={12}>
                   <Input
                     type="text"
-                    label="Supplier ID"
-                    name="no_supplier"
+                    label="Customer ID"
+                    name="no_user"
                     required
                     control={control}
                     noAsterisk
@@ -145,7 +145,7 @@ export default function SupplierForm(props: Props) {
                   <Input
                     type="text"
                     label="Full Name"
-                    name="nama_supplier"
+                    name="nama_user"
                     required
                     control={control}
                     noAsterisk
@@ -158,7 +158,7 @@ export default function SupplierForm(props: Props) {
                   <Input
                     type="email"
                     label="Email"
-                    name="email_supplier"
+                    name="email_user"
                     required
                     control={control}
                     noAsterisk
@@ -168,7 +168,7 @@ export default function SupplierForm(props: Props) {
                   <Input
                     type="tel"
                     label="Phone Number"
-                    name="notelp_supplier"
+                    name="notelp_user"
                     required
                     control={control}
                     noAsterisk
@@ -180,7 +180,7 @@ export default function SupplierForm(props: Props) {
                   <Input
                     type="text"
                     label="Full Address"
-                    name="alamat_supplier"
+                    name="alamat_user"
                     required
                     control={control}
                     noAsterisk
