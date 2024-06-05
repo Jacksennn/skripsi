@@ -54,7 +54,7 @@ const route: {
     icon: <Heart size={20} />,
   },
   report: { name: "report", label: "Report", icon: <Notebook size={20} /> },
-  setting: { name: "setting", label: "Setting", icon: <Gear size={20} /> },
+  setting: { name: "settings", label: "Setting", icon: <Gear size={20} /> },
 };
 
 export default function NavigationBar() {

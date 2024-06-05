@@ -52,7 +52,6 @@ export default function CategoryForm(props: Props) {
       reset();
     } catch (e: any) {
       notification.error({ message: e?.message });
-      throw e;
     }
   };
 

@@ -63,7 +63,6 @@ export default function SupplierForm(props: Props) {
       reset();
     } catch (e: any) {
       notification.error({ message: e?.message });
-      throw e;
     }
   };
 
