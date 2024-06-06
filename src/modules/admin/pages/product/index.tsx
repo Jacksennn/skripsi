@@ -74,7 +74,7 @@ export default function ProductPage() {
             />
           ))}
         </div>
-        <Flex justify="end" style={{ marginTop: 32 }}>
+        <Flex justify="center" style={{ marginTop: 32 }}>
           <Pagination
             current={page}
             total={data?.meta?.last_page}
