@@ -72,6 +72,9 @@ export type GetProductRespond = {
 export const useGetProducts = (
   enabled: boolean = true,
   filters?: { [key: string]: any },
+  extra?: {
+    onSuccess?: (data: GetProductsRespond) => void;
+  },
 ): UseQueryResult<GetProductsRespond, unknown> => {
   return useQuery({
     queryFn: async () =>
@@ -83,6 +86,9 @@ export const useGetProducts = (
       }),
     queryKey: ["daftar-produk", filters],
     enabled: enabled,
+    onSuccess(data) {
+      extra?.onSuccess?.(data);
+    },
   });
 };
 

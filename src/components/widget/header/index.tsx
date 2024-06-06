@@ -23,7 +23,7 @@ export default function Header(props: Props) {
     <header className={headerStyles.container}>
       <div className={headerStyles.innerContainer}>
         <Text variant="heading03" weight="bold" color="gray00">
-          {/* TB CAHAYA BARU */}
+          TB CAHAYA BARU
         </Text>
         {isDefault && (
           <div className={headerStyles.searchWrapper}>

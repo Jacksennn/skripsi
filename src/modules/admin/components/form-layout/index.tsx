@@ -31,7 +31,7 @@ export default function FormLayout(props: Props) {
         </Flex>
       }
       bordered={false}
-      style={{ width: "100%", minHeight: "" }}
+      style={{ width: "100%" }}
     >
       {props.children}
     </Card>

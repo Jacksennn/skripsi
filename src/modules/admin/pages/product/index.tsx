@@ -1,7 +1,7 @@
 import AdminLayout from "@/modules/admin/components/admin-layout";
 import React, { useState } from "react";
 import { useGetProducts } from "./api";
-import { Flex, Input, Spin } from "antd";
+import { Flex, Input, Pagination, Spin } from "antd";
 
 import { useRouter } from "next/router";
 import ImageCard from "@/modules/components/image-card";
@@ -13,11 +13,21 @@ import DebounceComponent from "@/components/debounce-component";
 
 export default function ProductPage() {
   const [filters, setFilters] = React.useState<{ [key: string]: any }>();
+  const [page, setPage] = React.useState<number>(1);
   const [search, setSearch] = useState<string>("");
-  const { data, refetch, isLoading } = useGetProducts(true, {
-    ...(filters || {}),
-    q: search,
-  });
+  const { data, refetch, isLoading } = useGetProducts(
+    true,
+    {
+      ...(filters || {}),
+      q: search,
+      page,
+    },
+    {
+      onSuccess(data) {
+        setPage(data.meta.current_page);
+      },
+    },
+  );
 
   const { push } = useRouter();
 
@@ -64,6 +74,9 @@ export default function ProductPage() {
             />
           ))}
         </div>
+        <Flex justify="end" style={{ marginTop: 32 }}>
+          <Pagination defaultCurrent={page} total={data?.meta?.last_page} />
+        </Flex>
       </FormLayout>
     </AdminLayout>
   );
