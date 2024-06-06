@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import AdminLayout from "../../components/admin-layout";
-import { Flex, Tabs } from "antd";
 import { reportTabContainerStyle, reportTabStyle } from "./styles.css";
 import { colors } from "@/theming/colors";
-import { useGetSales } from "../transaction/sales/api";
-import { useGetPurchase, useGetPurchases } from "../transaction/purchase/api";
 import PurchaseTab from "./components/purchase-tab";
 import SalesTab from "./components/sales-tab";
 
@@ -30,7 +27,6 @@ function CondtionalRender({
 
 export default function ReportPage() {
   const [tab, setTab] = useState<string>("sales");
-  const { data } = useGetPurchases();
   return (
     <AdminLayout>
       <div>

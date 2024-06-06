@@ -54,7 +54,7 @@ export type GetSupplierRespond = {
 
 export const useGetSuppliers = (
   params: { [key: string]: any },
-  extra: UseQueryOptions<GetSuppliersRespond>,
+  extra?: UseQueryOptions<GetSuppliersRespond>,
 ): UseQueryResult<GetSuppliersRespond, unknown> => {
   return useQuery({
     queryFn: async (input) =>
@@ -65,7 +65,7 @@ export const useGetSuppliers = (
         params,
       }),
     queryKey: ["suppliers", params],
-    ...extra,
+    ...(extra || {}),
   });
 };
 
