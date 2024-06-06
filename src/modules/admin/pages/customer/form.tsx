@@ -55,7 +55,7 @@ export default function CustomerForm(props: Props) {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const res = id
-        ? await mutateEdit({ data, id: id })
+        ? await mutateEdit({ data: { ...data, password: null }, id: id })
         : await mutateAsync(data);
       notification.success({ message: res?.message });
       setIsModalOpen(false);
@@ -174,6 +174,20 @@ export default function CustomerForm(props: Props) {
                   />
                 </Col>
               </Row>
+              {!id && (
+                <Row>
+                  <Col span={24}>
+                    <Input
+                      type="password"
+                      label="Password"
+                      name="password"
+                      required
+                      control={control}
+                      noAsterisk
+                    />
+                  </Col>
+                </Row>
+              )}
               <Row>
                 <Col span={24}>
                   <Input

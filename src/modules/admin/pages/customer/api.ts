@@ -17,7 +17,7 @@ export type CustomerInput = {
   region: string;
   zip_code: string;
   city: string;
-  password: string;
+  password: string | null;
 };
 
 export type CustomerDeleteInput = {
