@@ -11,7 +11,16 @@ import { queryClient } from "@/common/query-client";
 import { useRouter } from "next/router";
 
 export default function PurchaseTab() {
-  const { data, isLoading } = useGetPurchases();
+  const [page, setPage] = React.useState<number>(1);
+
+  const { data, isLoading } = useGetPurchases(
+    { page },
+    {
+      onSuccess(data) {
+        setPage(data?.meta?.current_page);
+      },
+    },
+  );
 
   const { mutateAsync } = useDeletePurchase();
 
@@ -131,6 +140,11 @@ export default function PurchaseTab() {
       rowKey={"id"}
       pagination={{
         position: ["bottomCenter"],
+        current: page,
+        total: data?.meta?.last_page,
+        onChange(page) {
+          setPage(page);
+        },
       }}
       loading={isLoading}
       expandable={{

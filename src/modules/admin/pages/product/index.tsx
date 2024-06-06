@@ -75,7 +75,11 @@ export default function ProductPage() {
           ))}
         </div>
         <Flex justify="end" style={{ marginTop: 32 }}>
-          <Pagination defaultCurrent={page} total={data?.meta?.last_page} />
+          <Pagination
+            current={page}
+            total={data?.meta?.last_page}
+            onChange={(page) => setPage(page)}
+          />
         </Flex>
       </FormLayout>
     </AdminLayout>

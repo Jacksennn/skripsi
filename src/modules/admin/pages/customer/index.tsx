@@ -8,7 +8,16 @@ import { TrashSimple } from "@phosphor-icons/react";
 import NewCustomerForm from "./form";
 
 export default function CustomerPage() {
-  const { data, refetch } = useGetCustomers();
+  const [page, setPage] = React.useState<number>(1);
+
+  const { data, refetch } = useGetCustomers(
+    { page },
+    {
+      onSuccess(data) {
+        setPage(data?.meta?.current_page);
+      },
+    },
+  );
   const { mutateAsync } = useDeleteCustomer();
 
   const onDelete = async (id: string) => {
@@ -93,6 +102,11 @@ export default function CustomerPage() {
         dataSource={data?.data}
         pagination={{
           position: ["bottomCenter"],
+          current: page,
+          total: data?.meta?.last_page,
+          onChange(page) {
+            setPage(page);
+          },
         }}
       />
     </AdminLayout>

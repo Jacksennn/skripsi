@@ -76,15 +76,20 @@ export type GetSaleRespond = {
   data: SaleRespondType;
 };
 
-export const useGetSales = (): UseQueryResult<GetSalesRespond, unknown> => {
+export const useGetSales = (
+  params: { [key: string]: any },
+  extra: UseQueryOptions<GetSalesRespond>,
+): UseQueryResult<GetSalesRespond, unknown> => {
   return useQuery({
     queryFn: async (input) =>
       await queryFetch({
         endpoint: "penjualan",
         method: "GET",
         type: "admin",
+        params,
       }),
-    queryKey: ["daftar-penjualan"],
+    queryKey: ["daftar-penjualan", params],
+    ...extra,
   });
 };
 

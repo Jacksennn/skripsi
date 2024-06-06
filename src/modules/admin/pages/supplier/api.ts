@@ -52,18 +52,20 @@ export type GetSupplierRespond = {
   data: SupplierRespondType;
 };
 
-export const useGetSuppliers = (): UseQueryResult<
-  GetSuppliersRespond,
-  unknown
-> => {
+export const useGetSuppliers = (
+  params: { [key: string]: any },
+  extra: UseQueryOptions<GetSuppliersRespond>,
+): UseQueryResult<GetSuppliersRespond, unknown> => {
   return useQuery({
     queryFn: async (input) =>
       await queryFetch({
         endpoint: "suppliers",
         method: "GET",
         type: "admin",
+        params,
       }),
-    queryKey: ["suppliers"],
+    queryKey: ["suppliers", params],
+    ...extra,
   });
 };
 

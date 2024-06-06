@@ -62,18 +62,20 @@ export type GetPurchaseRespond = {
   data: PurchaseRespondType;
 };
 
-export const useGetPurchases = (): UseQueryResult<
-  GetPurchasesRespond,
-  unknown
-> => {
+export const useGetPurchases = (
+  params: { [key: string]: any },
+  extra: UseQueryOptions<GetPurchasesRespond>,
+): UseQueryResult<GetPurchasesRespond, unknown> => {
   return useQuery({
     queryFn: async (input) =>
       await queryFetch({
         endpoint: "pembelian",
         method: "GET",
         type: "admin",
+        params,
       }),
-    queryKey: ["daftar-pembelian"],
+    queryKey: ["daftar-pembelian", params],
+    ...extra,
   });
 };
 

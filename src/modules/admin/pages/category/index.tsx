@@ -9,7 +9,15 @@ import { useRouter } from "next/router";
 import CategoryForm from "./form";
 
 export default function CategoryPage() {
-  const { data, refetch } = useGetCategories();
+  const [page, setPage] = React.useState<number>(1);
+  const { data, refetch } = useGetCategories(
+    { page },
+    {
+      onSuccess(data) {
+        setPage(data?.meta?.current_page);
+      },
+    },
+  );
   const { mutateAsync } = useDeleteCategory();
   const { push } = useRouter();
 
@@ -88,6 +96,11 @@ export default function CategoryPage() {
         dataSource={data?.data}
         pagination={{
           position: ["bottomCenter"],
+          current: page,
+          total: data?.meta?.last_page,
+          onChange(page) {
+            setPage(page);
+          },
         }}
       />
     </AdminLayout>

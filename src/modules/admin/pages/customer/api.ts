@@ -53,18 +53,20 @@ export type GetCustomerRespond = {
   data: CustomerRespondType;
 };
 
-export const useGetCustomers = (): UseQueryResult<
-  GetCustomersRespond,
-  unknown
-> => {
+export const useGetCustomers = (
+  params: { [key: string]: any },
+  extra: UseQueryOptions<GetCustomersRespond>,
+): UseQueryResult<GetCustomersRespond, unknown> => {
   return useQuery({
     queryFn: async (input) =>
       await queryFetch({
         endpoint: "users",
         method: "GET",
         type: "admin",
+        params,
       }),
-    queryKey: ["users"],
+    queryKey: ["users", params],
+    ...extra,
   });
 };
 

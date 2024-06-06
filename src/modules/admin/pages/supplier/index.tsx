@@ -8,7 +8,16 @@ import { TrashSimple } from "@phosphor-icons/react";
 import NewSupplierForm from "./form";
 
 export default function SupplierPage() {
-  const { data, refetch } = useGetSuppliers();
+  const [page, setPage] = React.useState<number>(1);
+
+  const { data, refetch } = useGetSuppliers(
+    { page },
+    {
+      onSuccess(data) {
+        setPage(data?.meta?.current_page);
+      },
+    },
+  );
   const { mutateAsync } = useDeleteSupplier();
 
   const onDelete = async (id: string) => {
@@ -93,6 +102,11 @@ export default function SupplierPage() {
         dataSource={data?.data}
         pagination={{
           position: ["bottomCenter"],
+          current: page,
+          total: data?.meta?.last_page,
+          onChange(page) {
+            setPage(page);
+          },
         }}
       />
     </AdminLayout>
