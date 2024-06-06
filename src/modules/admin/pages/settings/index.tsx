@@ -11,6 +11,8 @@ export default function SettingsPage() {
     <AdminLayout>
       {(isLoading || isRefetching) && <Spin fullscreen />}
       <SettingAccountInformationForm data={respond?.data} />
+      <div className="mb"></div>
+      <div className="mb"></div>
       <PasswordChangeForm />
     </AdminLayout>
   );

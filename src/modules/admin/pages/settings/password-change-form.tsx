@@ -35,7 +35,7 @@ export default function PasswordChangeForm() {
     }
   };
   return (
-    <FormLayout title="Account Setting">
+    <FormLayout title="Change Password">
       <form onSubmit={handleSubmit(onSubmit)} style={{ flex: 1 }}>
         <Row>
           <Col span={24}>
