@@ -19,7 +19,7 @@ export type ProductAlertType = {
 };
 
 export type GetProductAlertRespond = {
-  data: ProductsRespondType[];
+  data: ProductAlertType[];
   meta: MetaType;
 };
 
