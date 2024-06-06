@@ -59,6 +59,7 @@ const route: {
 
 export default function NavigationBar() {
   const router = useRouter();
+
   return (
     <div className={navigationBarStyles.container}>
       {Object.keys(route).map((key: string) => (
@@ -66,7 +67,7 @@ export default function NavigationBar() {
           key={key}
           className={navigationBarStyles.item}
           gap={12}
-          {...(router.pathname.includes(route[key].name) && {
+          {...(router.pathname.split("/")?.[2] === route[key].name && {
             style: {
               color: colors.gray00,
               backgroundColor: colors.secondary800,

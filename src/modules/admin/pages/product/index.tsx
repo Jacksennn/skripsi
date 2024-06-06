@@ -1,10 +1,9 @@
 import AdminLayout from "@/modules/admin/components/admin-layout";
 import React, { useState } from "react";
-import AdminHeader from "../../components/admin-header";
-import { useDeleteProduct, useGetProducts } from "./api";
-import { Flex, Input, Spin, notification } from "antd";
+import { useGetProducts } from "./api";
+import { Flex, Input, Spin } from "antd";
 
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import ImageCard from "@/modules/components/image-card";
 import { gridStyle } from "./styles.css";
 import FilterComponent from "../../components/filter-component";
@@ -20,18 +19,7 @@ export default function ProductPage() {
     q: search,
   });
 
-  const { mutateAsync } = useDeleteProduct();
   const { push } = useRouter();
-
-  const onDelete = async (id: string) => {
-    try {
-      const res = await mutateAsync({ id });
-      refetch();
-      notification.success({ message: res?.message });
-    } catch (e: any) {
-      notification.error({ message: e?.message });
-    }
-  };
 
   return (
     <AdminLayout>
