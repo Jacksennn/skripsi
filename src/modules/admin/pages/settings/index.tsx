@@ -3,6 +3,7 @@ import SettingAccountInformationForm from "./account-information-form";
 import AdminLayout from "../../components/admin-layout";
 import { useGetMe } from "./api";
 import { Spin } from "antd";
+import PasswordChangeForm from "./password-change-form";
 
 export default function SettingsPage() {
   const { data: respond, refetch, isLoading, isRefetching } = useGetMe();
@@ -10,6 +11,7 @@ export default function SettingsPage() {
     <AdminLayout>
       {(isLoading || isRefetching) && <Spin fullscreen />}
       <SettingAccountInformationForm data={respond?.data} />
+      <PasswordChangeForm />
     </AdminLayout>
   );
 }

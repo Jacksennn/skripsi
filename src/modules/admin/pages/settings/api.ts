@@ -32,6 +32,12 @@ export type MeUpdateInput = {
   zipcode: string;
 };
 
+export type ChangePasswordInput = {
+  current_password: string;
+  password: string;
+  password_confirmation: string;
+};
+
 export const useGetMe = (
   options?: UseQueryOptions<GetMeRespond, unknown>,
 ): UseQueryResult<GetMeRespond, unknown> => {
@@ -60,6 +66,23 @@ export const useEditMe = (): UseMutationResult<
         method: "PUT",
         type: "admin",
         body: input.data,
+      }),
+  });
+};
+
+export const useChangePassword = (): UseMutationResult<
+  { message: string },
+  unknown,
+  ChangePasswordInput,
+  unknown
+> => {
+  return useMutation({
+    mutationFn: async (input: ChangePasswordInput) =>
+      await queryFetch({
+        endpoint: `me/change-password`,
+        method: "PATCH",
+        type: "admin",
+        body: input,
       }),
   });
 };
