@@ -12,3 +12,8 @@ export type FilterType = {
   options: { label: string; value: string }[];
   value: string | null;
 };
+
+export type SortType = {
+  options: string[];
+  value: string | undefined;
+};

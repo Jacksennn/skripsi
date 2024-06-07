@@ -7,11 +7,17 @@ import Button from "@/components/elements/button";
 import { TrashSimple } from "@phosphor-icons/react";
 import { useRouter } from "next/router";
 import CategoryForm from "./form";
+import FilterBySortComponent from "../../components/filter-by-sort-component";
+import DebounceComponent from "@/components/debounce-component";
+import BaseInput from "@/components/elements/input/base-input";
+import SearchIcon from "@/components/icon/search-icon";
 
 export default function CategoryPage() {
   const [page, setPage] = React.useState<number>(1);
-  const { data, refetch } = useGetCategories(
-    { page },
+  const [search, setSearch] = React.useState<string>("");
+  const [params, setParams] = React.useState<{ [key: string]: any }>({});
+  const { data, refetch, isLoading } = useGetCategories(
+    { page, ...params, q: search },
     {
       onSuccess(data) {
         setPage(data?.meta?.current_page);
@@ -48,6 +54,31 @@ export default function CategoryPage() {
           />
         }
       />
+      <Flex style={{ marginBottom: 20 }} gap={32}>
+        <DebounceComponent value={search} setValue={setSearch}>
+          {(value, onAfterChange) => (
+            <BaseInput
+              type="text"
+              size="large"
+              placeholder="Search for anything..."
+              value={value}
+              onChange={(e) => onAfterChange(e.target.value)}
+              suffix={<SearchIcon size={20} />}
+              noMb
+            />
+          )}
+        </DebounceComponent>
+        <FilterBySortComponent
+          isLoading={isLoading}
+          onChange={(par) => setParams(par)}
+          sorts={
+            data?.sorts || {
+              options: [],
+              value: undefined,
+            }
+          }
+        />
+      </Flex>
       <Table
         virtual
         columns={[

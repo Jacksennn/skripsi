@@ -13,4 +13,12 @@ export const reportTabContainerStyle = style({
   display: "grid",
   gridTemplateColumns: "1fr 1fr 1fr",
   maxWidth: 300,
+  marginBottom: 32,
+});
+
+export const reportContainer = style({
+  display: "grid",
+  // gridTemplateColumns: "auto auto auto",
+  // gridTemplateRows: "1fr 1fr",
+  justifyContent: "start",
 });

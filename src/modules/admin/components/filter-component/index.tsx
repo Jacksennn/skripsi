@@ -2,6 +2,7 @@ import { FilterType } from "@/api/type";
 import Button from "@/components/elements/button";
 import BaseInput from "@/components/elements/input/base-input";
 import Text from "@/components/elements/text";
+import { SlidersHorizontal } from "@phosphor-icons/react";
 import { Checkbox, Dropdown, Flex, Popover } from "antd";
 import React, { useCallback, useState } from "react";
 
@@ -112,6 +113,7 @@ export default function FilterComponent(props: Props) {
         variant="tertiary"
         onClick={() => setIsOpen(true)}
         disabled={isLoading}
+        icon={<SlidersHorizontal />}
       >
         Filter
       </Button>

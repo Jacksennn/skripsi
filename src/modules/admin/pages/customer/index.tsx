@@ -6,12 +6,18 @@ import { Flex, Table, notification } from "antd";
 import Button from "@/components/elements/button";
 import { TrashSimple } from "@phosphor-icons/react";
 import NewCustomerForm from "./form";
+import DebounceComponent from "@/components/debounce-component";
+import BaseInput from "@/components/elements/input/base-input";
+import SearchIcon from "@/components/icon/search-icon";
+import FilterBySortComponent from "../../components/filter-by-sort-component";
 
 export default function CustomerPage() {
   const [page, setPage] = React.useState<number>(1);
+  const [search, setSearch] = React.useState<string>("");
+  const [params, setParams] = React.useState<{ [key: string]: any }>({});
+  const { data, refetch, isLoading } = useGetCustomers(
+    { page, ...params, q: search },
 
-  const { data, refetch } = useGetCustomers(
-    { page },
     {
       onSuccess(data) {
         setPage(data?.meta?.current_page);
@@ -47,6 +53,31 @@ export default function CustomerPage() {
           />
         }
       />
+      <Flex style={{ marginBottom: 20 }} gap={32}>
+        <DebounceComponent value={search} setValue={setSearch}>
+          {(value, onAfterChange) => (
+            <BaseInput
+              type="text"
+              size="large"
+              placeholder="Search for anything..."
+              value={value}
+              onChange={(e) => onAfterChange(e.target.value)}
+              suffix={<SearchIcon size={20} />}
+              noMb
+            />
+          )}
+        </DebounceComponent>
+        <FilterBySortComponent
+          isLoading={isLoading}
+          onChange={(par) => setParams(par)}
+          sorts={
+            data?.sorts || {
+              options: [],
+              value: undefined,
+            }
+          }
+        />
+      </Flex>
       <Table
         virtual
         columns={[

@@ -1,4 +1,4 @@
-import { MetaType } from "@/api/type";
+import { MetaType, SortType } from "@/api/type";
 import { queryFetch } from "@/common/fetch-hook";
 import {
   UseMutationResult,
@@ -35,6 +35,7 @@ export type CustomersRespondType = {
 export type GetCustomersRespond = {
   data: CustomersRespondType[];
   meta: MetaType;
+  sorts: SortType;
 };
 
 export type CustomerRespondType = {
