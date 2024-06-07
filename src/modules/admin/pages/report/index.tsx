@@ -8,6 +8,7 @@ import {
 import { colors } from "@/theming/colors";
 import PurchaseTab from "./components/purchase-tab";
 import SalesTab from "./components/sales-tab";
+import ReturTab from "./components/retur-tab";
 
 const activeStyle = {
   backgroundColor: colors.secondary800,
@@ -65,6 +66,9 @@ export default function ReportPage() {
         </CondtionalRender>
         <CondtionalRender fullfiled={tab === "purchase"}>
           <PurchaseTab />
+        </CondtionalRender>
+        <CondtionalRender fullfiled={tab === "retur"}>
+          <ReturTab />
         </CondtionalRender>
       </div>
     </AdminLayout>
