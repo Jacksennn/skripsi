@@ -12,7 +12,7 @@ interface Props {
 
 export default function SupplierSelect(props: Props) {
   const { control, name, onChange } = props;
-  const { data, isLoading } = useGetSuppliers();
+  const { data, isLoading } = useGetSuppliers({ limit: -1 });
 
   return (
     <div className="mb">

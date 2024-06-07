@@ -29,13 +29,19 @@ export default function SignInUpPage(props: Props) {
                 </div>
               ),
             },
-            {
-              key: "2",
-              label: "Sign Up",
-              children: (
-                <div className={signInUpStyles.tabItemContainer}>sign up</div>
-              ),
-            },
+            ...(type !== "admin"
+              ? [
+                  {
+                    key: "2",
+                    label: "Sign Up",
+                    children: (
+                      <div className={signInUpStyles.tabItemContainer}>
+                        sign up
+                      </div>
+                    ),
+                  },
+                ]
+              : []),
           ]}
           className={signInUpStyles.tab}
           tabBarStyle={{

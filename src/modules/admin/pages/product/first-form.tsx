@@ -2,13 +2,14 @@ import React from "react";
 import {
   ProductInput,
   ProductRespondType,
+  useDeleteProduct,
   useEditProduct,
   useGetProduct,
 } from "./api";
 import FormLayout from "../../components/form-layout";
 import { firstFormStyle } from "./styles.css";
 import Text from "@/components/elements/text";
-import { Flex, Spin, message } from "antd";
+import { Flex, Spin, message, notification } from "antd";
 import Checkbox from "antd/es/checkbox/Checkbox";
 import Button from "@/components/elements/button";
 import { useRouter } from "next/router";
@@ -53,6 +54,18 @@ export default function ProductFirstForm() {
       message.success(res?.message);
     } catch (e: any) {
       message.success(e?.message);
+    }
+  };
+
+  const { mutateAsync, isLoading: isDeleteLoad } = useDeleteProduct();
+
+  const onDelete = async (id: string) => {
+    try {
+      const res = await mutateAsync({ id });
+      push("/admin/product");
+      notification.success({ message: res?.message });
+    } catch (e: any) {
+      notification.error({ message: e?.message });
     }
   };
 
@@ -114,7 +127,7 @@ export default function ProductFirstForm() {
               </Text>
             </div>
             <div>
-              <Flex gap={16}>
+              <Flex gap={16} align="center">
                 <Checkbox
                   value={value}
                   onChange={(e) => setValue(e.target.checked)}
@@ -127,7 +140,13 @@ export default function ProductFirstForm() {
           </Flex>
 
           <Flex gap={16} justify="end" style={{ marginTop: 23 }}>
-            <Button variant="secondary">DELETE</Button>
+            <Button
+              variant="secondary"
+              onClick={() => onDelete}
+              loading={isDeleteLoad}
+            >
+              DELETE
+            </Button>
             <Button
               variant="secondary"
               onClick={() => edit()}

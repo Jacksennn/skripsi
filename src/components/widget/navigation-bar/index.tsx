@@ -54,11 +54,12 @@ const route: {
     icon: <Heart size={20} />,
   },
   report: { name: "report", label: "Report", icon: <Notebook size={20} /> },
-  setting: { name: "setting", label: "Setting", icon: <Gear size={20} /> },
+  setting: { name: "settings", label: "Setting", icon: <Gear size={20} /> },
 };
 
 export default function NavigationBar() {
   const router = useRouter();
+
   return (
     <div className={navigationBarStyles.container}>
       {Object.keys(route).map((key: string) => (
@@ -66,7 +67,7 @@ export default function NavigationBar() {
           key={key}
           className={navigationBarStyles.item}
           gap={12}
-          {...(router.pathname.includes(route[key].name) && {
+          {...(router.pathname.split("/")?.[2] === route[key].name && {
             style: {
               color: colors.gray00,
               backgroundColor: colors.secondary800,

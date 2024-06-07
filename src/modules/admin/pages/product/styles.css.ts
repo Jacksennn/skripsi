@@ -3,7 +3,6 @@ import { style } from "@vanilla-extract/css";
 export const gridStyle = style({
   display: "grid",
   gap: 16,
-  justifyContent: "space-between",
   alignContent: "space-between",
   "@media": {
     "screen and (min-width: 576px)": {

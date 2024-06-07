@@ -1,4 +1,4 @@
-import { MetaType } from "@/api/type";
+import { MetaType, SortType } from "@/api/type";
 import { queryFetch } from "@/common/fetch-hook";
 import {
   UseMutationResult,
@@ -24,6 +24,7 @@ export type CategoriesRespondType = {
 export type GetCategoriesRespond = {
   data: CategoriesRespondType[];
   meta: MetaType;
+  sorts: SortType;
 };
 
 export type CategoryRespondType = {
@@ -35,18 +36,20 @@ export type GetCategoryRespond = {
   data: CategoryRespondType;
 };
 
-export const useGetCategories = (): UseQueryResult<
-  GetCategoriesRespond,
-  unknown
-> => {
+export const useGetCategories = (
+  params: { [key: string]: any },
+  extra: UseQueryOptions<GetCategoriesRespond>,
+): UseQueryResult<GetCategoriesRespond, unknown> => {
   return useQuery({
     queryFn: async (input) =>
       await queryFetch({
         endpoint: "kategori",
         method: "GET",
         type: "admin",
+        params,
       }),
-    queryKey: ["daftar-kategori"],
+    queryKey: ["daftar-kategori", params],
+    ...extra,
   });
 };
 

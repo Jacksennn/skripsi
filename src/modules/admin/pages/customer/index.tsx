@@ -1,30 +1,30 @@
 import AdminLayout from "@/modules/admin/components/admin-layout";
 import React from "react";
 import AdminHeader from "../../components/admin-header";
-import { useDeleteSupplier, useGetSuppliers } from "./api";
+import { useDeleteCustomer, useGetCustomers } from "./api";
 import { Flex, Table, notification } from "antd";
 import Button from "@/components/elements/button";
 import { TrashSimple } from "@phosphor-icons/react";
-import NewSupplierForm from "./form";
+import NewCustomerForm from "./form";
 import DebounceComponent from "@/components/debounce-component";
 import BaseInput from "@/components/elements/input/base-input";
 import SearchIcon from "@/components/icon/search-icon";
 import FilterBySortComponent from "../../components/filter-by-sort-component";
 
-export default function SupplierPage() {
+export default function CustomerPage() {
   const [page, setPage] = React.useState<number>(1);
   const [search, setSearch] = React.useState<string>("");
   const [params, setParams] = React.useState<{ [key: string]: any }>({});
-
-  const { data, refetch, isLoading } = useGetSuppliers(
+  const { data, refetch, isLoading } = useGetCustomers(
     { page, ...params, q: search },
+
     {
       onSuccess(data) {
         setPage(data?.meta?.current_page);
       },
     },
   );
-  const { mutateAsync } = useDeleteSupplier();
+  const { mutateAsync } = useDeleteCustomer();
 
   const onDelete = async (id: string) => {
     try {
@@ -39,11 +39,11 @@ export default function SupplierPage() {
   return (
     <AdminLayout>
       <AdminHeader
-        title="Suppliers"
+        title="Customers"
         onAdd={() => {}}
         noAdd
         right={
-          <NewSupplierForm
+          <NewCustomerForm
             refetch={refetch}
             target={(showModal) => (
               <Button variant="primary" onClick={showModal}>
@@ -82,23 +82,23 @@ export default function SupplierPage() {
         virtual
         columns={[
           {
-            title: "Supplier ID",
-            dataIndex: "no_supplier",
+            title: "Customer ID",
+            dataIndex: "no_user",
             width: 100,
           },
           {
             title: "Name",
-            dataIndex: "nama_supplier",
+            dataIndex: "nama_user",
             width: 120,
           },
           {
             title: "Phone Number",
-            dataIndex: "notelp_supplier",
+            dataIndex: "notelp_user",
             width: 120,
           },
           {
             title: "Address",
-            dataIndex: "alamat_supplier",
+            dataIndex: "alamat_user",
             width: 120,
           },
           {
@@ -108,7 +108,7 @@ export default function SupplierPage() {
             width: 100,
             render: (record) => (
               <Flex gap={16}>
-                <NewSupplierForm
+                <NewCustomerForm
                   refetch={refetch}
                   id={record.id}
                   target={(show) => (

@@ -1,4 +1,4 @@
-import { MetaType } from "@/api/type";
+import { MetaType, SortType } from "@/api/type";
 import { queryFetch } from "@/common/fetch-hook";
 import {
   UseMutationResult,
@@ -44,6 +44,7 @@ export type SalesRespondType = {
 export type GetSalesRespond = {
   data: SalesRespondType;
   meta: MetaType;
+  sorts: SortType;
 };
 
 export type SaleRespondType = {
@@ -76,15 +77,20 @@ export type GetSaleRespond = {
   data: SaleRespondType;
 };
 
-export const useGetSales = (): UseQueryResult<GetSalesRespond, unknown> => {
+export const useGetSales = (
+  params: { [key: string]: any },
+  extra: UseQueryOptions<GetSalesRespond>,
+): UseQueryResult<GetSalesRespond, unknown> => {
   return useQuery({
     queryFn: async (input) =>
       await queryFetch({
         endpoint: "penjualan",
         method: "GET",
         type: "admin",
+        params,
       }),
-    queryKey: ["daftar-penjualan"],
+    queryKey: ["daftar-penjualan", params],
+    ...extra,
   });
 };
 

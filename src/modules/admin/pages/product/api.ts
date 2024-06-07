@@ -1,4 +1,4 @@
-import { MetaType } from "@/api/type";
+import { FilterType, MetaType } from "@/api/type";
 import { queryFetch } from "@/common/fetch-hook";
 import {
   UseMutationResult,
@@ -44,6 +44,7 @@ export type ProductsRespondType = {
 export type GetProductsRespond = {
   data: ProductsRespondType[];
   meta: MetaType;
+  filters: FilterType[];
 };
 
 export type ProductRespondType = {
@@ -70,16 +71,24 @@ export type GetProductRespond = {
 
 export const useGetProducts = (
   enabled: boolean = true,
+  filters?: { [key: string]: any },
+  extra?: {
+    onSuccess?: (data: GetProductsRespond) => void;
+  },
 ): UseQueryResult<GetProductsRespond, unknown> => {
   return useQuery({
-    queryFn: async (input) =>
+    queryFn: async () =>
       await queryFetch({
         endpoint: "produk",
         method: "GET",
         type: "admin",
+        params: filters,
       }),
-    queryKey: ["daftar-produk"],
+    queryKey: ["daftar-produk", filters],
     enabled: enabled,
+    onSuccess(data) {
+      extra?.onSuccess?.(data);
+    },
   });
 };
 

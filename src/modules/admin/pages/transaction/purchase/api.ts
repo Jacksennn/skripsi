@@ -1,4 +1,4 @@
-import { MetaType } from "@/api/type";
+import { MetaType, SortType } from "@/api/type";
 import { queryFetch } from "@/common/fetch-hook";
 import {
   UseMutationResult,
@@ -42,6 +42,7 @@ export type PurchasesRespondType = {
 export type GetPurchasesRespond = {
   data: PurchasesRespondType;
   meta: MetaType;
+  sorts: SortType;
 };
 
 export type PurchaseRespondType = {
@@ -62,18 +63,20 @@ export type GetPurchaseRespond = {
   data: PurchaseRespondType;
 };
 
-export const useGetPurchases = (): UseQueryResult<
-  GetPurchasesRespond,
-  unknown
-> => {
+export const useGetPurchases = (
+  params: { [key: string]: any },
+  extra: UseQueryOptions<GetPurchasesRespond>,
+): UseQueryResult<GetPurchasesRespond, unknown> => {
   return useQuery({
     queryFn: async (input) =>
       await queryFetch({
         endpoint: "pembelian",
         method: "GET",
         type: "admin",
+        params,
       }),
-    queryKey: ["daftar-pembelian"],
+    queryKey: ["daftar-pembelian", params],
+    ...extra,
   });
 };
 

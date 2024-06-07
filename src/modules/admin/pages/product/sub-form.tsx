@@ -47,7 +47,7 @@ export default function ProductSubForm(props: Props) {
   React.useEffect(() => {
     if (product) {
       const temp: Inputs = {
-        files: [],
+        files: product.files.map((item) => item.foto_produk) || "",
         harga_produk: Number(product?.harga_produk) || 0,
         id_kategori: product?.kategori?.id || "",
         ket_produk: product?.ket_produk || "",

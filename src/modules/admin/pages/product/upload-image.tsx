@@ -30,7 +30,13 @@ export default function ImageUpload(props: Props) {
     setUploading(true);
     try {
       const res = await mutateAsync(formData as any);
-      field.onChange([...field.value, res.file_name]);
+      field.onChange([
+        ...field.value,
+        {
+          name: res.file_name,
+          // url: res.file_url,
+        },
+      ]);
       message.success("upload successfully.");
     } catch (e) {
       message.error("upload failed.");

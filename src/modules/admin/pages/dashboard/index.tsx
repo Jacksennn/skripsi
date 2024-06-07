@@ -7,38 +7,42 @@ import ImageCard from "@/modules/components/image-card";
 import Text from "@/components/elements/text";
 import { Flex } from "antd";
 import Button from "@/components/elements/button";
+import { useGetDashboard } from "./api";
 
 export default function AdminMainPage() {
+  const { data } = useGetDashboard();
   return (
     <AdminLayout>
       <div className={dashboardStyles.grid}>
         <DashboardCard
-          content={"154"}
+          content={data?.data?.total_sales_this_month || 0}
           text="Total Sales This Month"
           variant="success"
         />
         <DashboardCard
-          content={"149"}
+          content={data?.data?.total_sales_last_month || 0}
           text="Total Sales Last Month"
           variant="info"
         />
         <DashboardCard
-          content={"05"}
+          content={data?.data?.pending_sales_order || 0}
           text="Pending Sales Order"
           variant="warning"
         />
         <DashboardCard
-          content={"18.275.500"}
+          content={data?.data?.total_income_this_month || 0}
           text="Total Income This Month"
           variant="success"
         />
         <DashboardCard
-          content={"17.556.500"}
+          content={data?.data?.total_income_last_month || 0}
           text="Total Income Last Month"
           variant="info"
         />
         <DashboardCard
-          content={"+719.000"}
+          content={`${(data?.data?.income_difference || 0) > -1 ? "+" : "-"} ${
+            data?.data?.income_difference || 0
+          }`}
           text="Income Difference"
           variant="warning"
         />

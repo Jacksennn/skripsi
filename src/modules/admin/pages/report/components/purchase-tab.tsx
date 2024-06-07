@@ -9,9 +9,23 @@ import Button from "@/components/elements/button";
 import { TrashSimple } from "@phosphor-icons/react";
 import { queryClient } from "@/common/query-client";
 import { useRouter } from "next/router";
+import DebounceComponent from "@/components/debounce-component";
+import BaseInput from "@/components/elements/input/base-input";
+import SearchIcon from "@/components/icon/search-icon";
+import FilterBySortComponent from "@/modules/admin/components/filter-by-sort-component";
 
 export default function PurchaseTab() {
-  const { data, isLoading } = useGetPurchases();
+  const [page, setPage] = React.useState<number>(1);
+  const [search, setSearch] = React.useState<string>("");
+  const [params, setParams] = React.useState<{ [key: string]: any }>({});
+  const { data, isLoading } = useGetPurchases(
+    { page, ...params, q: search },
+    {
+      onSuccess(data) {
+        setPage(data?.meta?.current_page);
+      },
+    },
+  );
 
   const { mutateAsync } = useDeletePurchase();
 
@@ -46,96 +60,128 @@ export default function PurchaseTab() {
 
   const { push } = useRouter();
   return (
-    <Table
-      virtual
-      style={{
-        fontSize: 14,
-      }}
-      columns={[
-        {
-          title: "Name",
-          dataIndex: "name",
-          width: 100,
-        },
-        {
-          title: "Supplier ID",
-          dataIndex: "no_supplier",
-          width: 100,
-        },
-        {
-          title: "Produk",
-          dataIndex: "produk",
-          width: 120,
-        },
-        { title: "Quantity", dataIndex: "total_qty", width: 100 },
-        { title: "Total", dataIndex: "total_harga", width: 100 },
-        {
-          title: "Delivery Status",
-          dataIndex: "status",
-          width: 100,
-          render: (value) => {
-            switch (value) {
-              case "On Delivery":
-                return (
-                  <span style={{ color: colors.warning500 }}>{value}</span>
-                );
-              case "Packing":
-                return (
-                  <span style={{ color: colors.primary500 }}>{value}</span>
-                );
-              case "Delivered":
-                return (
-                  <span style={{ color: colors.success500 }}>{value}</span>
-                );
-              case "Cancelled":
-                return <span style={{ color: colors.danger500 }}>{value}</span>;
-              default:
-                return (
-                  <span style={{ color: colors.primary600 }}>{value}</span>
-                );
-            }
+    <>
+      <DebounceComponent value={search} setValue={setSearch}>
+        {(value, onAfterChange) => (
+          <BaseInput
+            type="text"
+            size="large"
+            placeholder="Search for anything..."
+            value={value}
+            onChange={(e) => onAfterChange(e.target.value)}
+            suffix={<SearchIcon size={20} />}
+            noMb
+          />
+        )}
+      </DebounceComponent>
+      <FilterBySortComponent
+        isLoading={isLoading}
+        onChange={(par) => setParams(par)}
+        sorts={
+          data?.sorts || {
+            options: [],
+            value: undefined,
+          }
+        }
+      />
+      <Table
+        virtual
+        style={{
+          fontSize: 14,
+        }}
+        columns={[
+          {
+            title: "Name",
+            dataIndex: "name",
+            width: 300,
           },
-        },
-        {
-          title: "",
-          key: "operation",
-          fixed: "right",
-          width: 100,
-          render: (record) =>
-            record?.id ? (
-              <Flex gap={16}>
-                <Button
-                  variant="white"
-                  info
-                  onClick={() =>
-                    push(`/admin/transaction/purchase/edit/${record.id}`)
-                  }
-                >
-                  Details
-                </Button>
-                <Button
-                  variant="white"
-                  error
-                  shape={"circle"}
-                  onClick={() => onDelete(record.id)}
-                >
-                  <TrashSimple size={22} />
-                </Button>
-              </Flex>
-            ) : (
-              <></>
-            ),
-        },
-      ]}
-      dataSource={tempData}
-      rowKey={"id"}
-      pagination={{
-        position: ["bottomCenter"],
-      }}
-      loading={isLoading}
-      expandable={{
-        defaultExpandAllRows: true,
-      }}
-    />
+          {
+            title: "Supplier ID",
+            dataIndex: "no_supplier",
+            width: 100,
+          },
+          {
+            title: "Produk",
+            dataIndex: "produk",
+            width: 120,
+          },
+          { title: "Quantity", dataIndex: "total_qty", width: 100 },
+          { title: "Total", dataIndex: "total_harga", width: 100 },
+          {
+            title: "Delivery Status",
+            dataIndex: "status",
+            width: 100,
+            render: (value) => {
+              switch (value) {
+                case "On Delivery":
+                  return (
+                    <span style={{ color: colors.warning500 }}>{value}</span>
+                  );
+                case "Packing":
+                  return (
+                    <span style={{ color: colors.primary500 }}>{value}</span>
+                  );
+                case "Delivered":
+                  return (
+                    <span style={{ color: colors.success500 }}>{value}</span>
+                  );
+                case "Cancelled":
+                  return (
+                    <span style={{ color: colors.danger500 }}>{value}</span>
+                  );
+                default:
+                  return (
+                    <span style={{ color: colors.primary600 }}>{value}</span>
+                  );
+              }
+            },
+          },
+          {
+            title: "",
+            key: "operation",
+            fixed: "right",
+            width: 100,
+            render: (record) =>
+              record?.id ? (
+                <Flex gap={16}>
+                  <Button
+                    variant="white"
+                    info
+                    onClick={() =>
+                      push(`/admin/transaction/purchase/edit/${record.id}`)
+                    }
+                  >
+                    Details
+                  </Button>
+                  <Button
+                    variant="white"
+                    error
+                    shape={"circle"}
+                    onClick={() => onDelete(record.id)}
+                  >
+                    <TrashSimple size={22} />
+                  </Button>
+                </Flex>
+              ) : (
+                <></>
+              ),
+          },
+        ]}
+        dataSource={tempData}
+        rowKey={"id"}
+        pagination={{
+          position: ["bottomCenter"],
+          current: page,
+          total: data?.meta?.last_page,
+          onChange(page) {
+            setPage(page);
+          },
+        }}
+        loading={isLoading}
+        expandable={{
+          defaultExpandAllRows: true,
+        }}
+      />
+    </>
   );
 }

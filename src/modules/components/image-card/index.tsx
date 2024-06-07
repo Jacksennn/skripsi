@@ -22,7 +22,7 @@ export default function ImageCard(props: Props) {
   return (
     <Card
       hoverable
-      style={{ width: 240 }}
+      style={{ minWidth: 200 }}
       cover={
         // eslint-disable-next-line @next/next/no-img-element
         <img alt={title} src={src} />
