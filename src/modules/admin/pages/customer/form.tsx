@@ -175,18 +175,32 @@ export default function CustomerForm(props: Props) {
                 </Col>
               </Row>
               {!id && (
-                <Row>
-                  <Col span={24}>
-                    <Input
-                      type="password"
-                      label="Password"
-                      name="password"
-                      required
-                      control={control}
-                      noAsterisk
-                    />
-                  </Col>
-                </Row>
+                <>
+                  <Row>
+                    <Col span={24}>
+                      <Input
+                        type="password"
+                        label="Password"
+                        name="password"
+                        required
+                        control={control}
+                        noAsterisk
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col span={24}>
+                      <Input
+                        type="password"
+                        label="Password Confirmaio"
+                        name="password_confirmation"
+                        required
+                        control={control}
+                        noAsterisk
+                      />
+                    </Col>
+                  </Row>
+                </>
               )}
               <Row>
                 <Col span={24}>
