@@ -192,7 +192,7 @@ export default function CustomerForm(props: Props) {
                     <Col span={24}>
                       <Input
                         type="password"
-                        label="Password Confirmaio"
+                        label="Password Confirmation"
                         name="password_confirmation"
                         required
                         control={control}
