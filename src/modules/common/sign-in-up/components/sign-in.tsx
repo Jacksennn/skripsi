@@ -12,7 +12,13 @@ type Inputs = {
   username: string;
   password: string;
 };
-export default function SignInTab() {
+
+interface Props {
+  type?: "default" | "admin";
+}
+export default function SignInTab(props: Props) {
+  const { type = "default" } = props;
+
   const {
     register,
     handleSubmit,
@@ -21,11 +27,13 @@ export default function SignInTab() {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const { mutateAsync, isLoading } = useLogin();
+  const { mutateAsync, isLoading } = useLogin(
+    type === "default" ? "user" : "admin",
+  );
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const res = await mutateAsync(data);
-      login(res?.data.access_token, "admin");
+      login(res?.data.access_token, type === "default" ? "user" : "admin");
       notification.success({ message: "Logged In!" });
     } catch (e: any) {
       notification.error({ message: e?.message });

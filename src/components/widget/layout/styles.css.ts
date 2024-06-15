@@ -17,7 +17,7 @@ export const layoutStyles = {
           paddingRight: 32,
         },
         "screen and (min-width: 1200px)": {
-          maxWidth: 1500,
+          maxWidth: 1400,
         },
       },
     },
@@ -26,7 +26,10 @@ export const layoutStyles = {
         admin: {
           height: `calc(100vh - 82px)`,
         },
-        default: {},
+        default: {
+          minHeight: `calc(100vh - 200px)`,
+          padding: 16,
+        },
       },
     },
   }),

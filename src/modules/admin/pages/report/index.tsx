@@ -35,7 +35,10 @@ export default function ReportPage() {
   return (
     <AdminLayout>
       <div className={reportContainer}>
-        <div className={reportTabContainerStyle}>
+        <div
+          className={reportTabContainerStyle}
+          style={{ gridColumn: "1 / span 1" }}
+        >
           <button
             type="button"
             onClick={() => setTab("sales")}

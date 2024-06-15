@@ -24,7 +24,7 @@ export const removeAdminLoginToken = async () =>
   await localStorage.removeItem(LOCAL_STORE_AUTH_ADMIN_KEY);
 
 const logout = async (type: "admin" | "user") => {
-  window.location.href = `/${type}/sign-in`;
+  window.location.href = type == "user" ? "/sign-in" : `/${type}/sign-in`;
   if (type === "admin") {
     removeAdminLoginToken();
   } else {
@@ -37,10 +37,10 @@ const logout = async (type: "admin" | "user") => {
 export const login = async (token: string, type: "admin" | "user") => {
   if (type === "admin") {
     await setAdminLoginToken(token);
-    window.location.href = `/${type}/dashboard`;
+    window.location.href = `/admin/dashboard`;
   } else {
     await setUserLoginToken(token);
-    window.location.href = `/${type}`;
+    window.location.href = `/`;
   }
 };
 

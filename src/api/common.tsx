@@ -14,7 +14,9 @@ type LoginRespond = {
 
 type CommonApiRespond<T> = { data: T };
 
-export const useLogin = (): UseMutationResult<
+export const useLogin = (
+  type: "admin" | "user",
+): UseMutationResult<
   CommonApiRespond<LoginRespond>,
   unknown,
   LoginInput,
@@ -25,7 +27,7 @@ export const useLogin = (): UseMutationResult<
       await queryFetch({
         endpoint: "auth/login",
         method: "POST",
-        type: "admin",
+        type,
         body: input,
       }),
   });
@@ -57,7 +59,9 @@ type Province = {
   name: string;
 };
 
-export const useGetProvinces = (): UseMutationResult<
+export const useGetProvinces = (
+  type: "user" | "admin",
+): UseMutationResult<
   CommonApiRespond<Province[]>,
   unknown,
   unknown,
@@ -68,7 +72,7 @@ export const useGetProvinces = (): UseMutationResult<
       await queryFetch({
         endpoint: "provinces",
         method: "POST",
-        type: "admin",
+        type: type,
       }),
   });
 };
@@ -82,18 +86,15 @@ type CityInput = {
   province_id: string;
 };
 
-export const useGetCity = (): UseMutationResult<
-  CommonApiRespond<City[]>,
-  unknown,
-  CityInput,
-  unknown
-> => {
+export const useGetCity = (
+  type: "admin" | "user",
+): UseMutationResult<CommonApiRespond<City[]>, unknown, CityInput, unknown> => {
   return useMutation({
     mutationFn: async (body: CityInput) =>
       await queryFetch({
         endpoint: "cities",
         method: "POST",
-        type: "admin",
+        type: type,
         body,
       }),
   });

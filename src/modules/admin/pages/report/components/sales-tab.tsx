@@ -65,25 +65,31 @@ export default function SalesTab() {
             value={value}
             onChange={(e) => onAfterChange(e.target.value)}
             suffix={<SearchIcon size={20} />}
-            style={{ width: "100%" }}
+            style={{
+              width: "100%",
+              gridColumn: "2 / span 3",
+            }}
             noMb
           />
         )}
       </DebounceComponent>
-      <FilterBySortComponent
-        isLoading={isLoading}
-        onChange={(par) => setParams(par)}
-        sorts={
-          data?.sorts || {
-            options: [],
-            value: undefined,
+      <div style={{ gridColumn: "5/ span 1" }}>
+        <FilterBySortComponent
+          isLoading={isLoading}
+          onChange={(par) => setParams(par)}
+          sorts={
+            data?.sorts || {
+              options: [],
+              value: undefined,
+            }
           }
-        }
-      />
+        />
+      </div>
       <Table
         virtual
         style={{
           fontSize: 14,
+          gridColumn: "1 / span 5",
         }}
         columns={[
           {

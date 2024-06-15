@@ -8,11 +8,12 @@ interface Props {
   control: Control<any, any>;
   name: string;
   provinceId: string;
+  type?: "user" | "admin";
 }
 
 export default function CityInput(props: Props) {
   const { control, name } = props;
-  const { data, isLoading, mutate } = useGetCity();
+  const { data, isLoading, mutate } = useGetCity(props.type || "admin");
 
   React.useEffect(() => {
     if (props.provinceId) {

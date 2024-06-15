@@ -7,10 +7,11 @@ import { Control, Controller } from "react-hook-form";
 interface Props {
   control: Control<any, any>;
   name: string;
+  type?: "user" | "admin";
 }
 export default function RegionInput(props: Props) {
   const { control, name } = props;
-  const { data, isLoading, mutate } = useGetProvinces();
+  const { data, isLoading, mutate } = useGetProvinces(props.type || "admin");
 
   React.useEffect(() => {
     mutate({});
