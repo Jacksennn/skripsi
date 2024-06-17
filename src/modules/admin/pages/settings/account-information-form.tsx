@@ -125,18 +125,7 @@ export default function SettingAccountInformationForm({
               />
             </Col>
           </Row>
-          <Row>
-            <Col span={24}>
-              <Input
-                type="text"
-                label="Full Address"
-                name="alamat_supplier"
-                required
-                control={control}
-                noAsterisk
-              />
-            </Col>
-          </Row>
+
           <Row gutter={[16, 0]}>
             <Col span={12}>
               <RegionInput control={control} name="region" />
