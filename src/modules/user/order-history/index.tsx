@@ -127,15 +127,15 @@ export default function OrderHistory() {
             </Flex>
           ) : (
             <>
-              {data?.data.map((cart) => (
+              {data?.data.map((item) => (
                 <div
                   className={classNames(itemstyle.container, "mb")}
-                  key={cart.id}
+                  key={item.id}
                 >
                   <Flex gap={16}>
                     <Image
                       alt="example"
-                      src={cart.produk.file.foto_url}
+                      src={item.produk.file.foto_url}
                       width={100}
                       height={100}
                       style={{ objectFit: "contain" }}
@@ -148,16 +148,16 @@ export default function OrderHistory() {
                             weight="medium"
                             color="secondary500"
                           >
-                            {cart.produk.sku_produk}
+                            {item.produk.sku_produk}
                           </Text>
                           <Text variant="bodySmall" weight="medium">
-                            {cart.produk.nama_produk}
+                            {item.produk.nama_produk}
                           </Text>
                         </div>
                         <Flex vertical gap={8}>
                           <OrderHistoryDetail
                             status={tab}
-                            id={cart.id}
+                            id={item.id}
                             target={(show) => (
                               <Button
                                 variant="secondary"
@@ -174,7 +174,7 @@ export default function OrderHistory() {
                               variant="secondary"
                               size="small"
                               style={{ borderRadius: 4 }}
-                              onClick={() => push(`/request-retur/${cart.id}`)}
+                              onClick={() => push(`/request-retur/${item.id}`)}
                             >
                               Retur
                             </Button>
@@ -187,8 +187,8 @@ export default function OrderHistory() {
                         weight="regular"
                         color="gray600"
                       >
-                        {Number(cart.other_produk)
-                          ? `...+${cart.other_produk} more`
+                        {Number(item.other_produk)
+                          ? `...+${item.other_produk} more`
                           : ""}
                       </Text>
                       <Flex gap={20} flex={1} align="center">
@@ -197,7 +197,7 @@ export default function OrderHistory() {
                           weight="regular"
                           color="gray600"
                         >
-                          {`Qty: ${cart.jumlah_produk}`}
+                          {`Qty: ${item.jumlah_produk}`}
                         </Text>
                         <Flex vertical align="flex-end" flex={1}>
                           <Text variant="bodyTiny" weight="regular">
@@ -208,7 +208,7 @@ export default function OrderHistory() {
                             weight="regular"
                             color="gray600"
                           >
-                            {`Rp. ${cart.total_amount}`}
+                            {`Rp. ${item.total_amount}`}
                           </Text>
                         </Flex>
                       </Flex>
