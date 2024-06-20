@@ -5,13 +5,15 @@ import React from "react";
 interface Props {
   onChange: (val: number) => void;
   value: Number;
+  classname?: string;
+  size?: "small" | "large";
 }
 export default function NumberControlInput(props: Props) {
   return (
     <Input
       type="number"
-      className={classNames(inputStyles)}
-      size="large"
+      className={classNames(inputStyles, props.classname)}
+      size={props.size || "large"}
       style={{ textAlign: "center" }}
       value={props.value as any}
       {...{

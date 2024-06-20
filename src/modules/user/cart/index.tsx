@@ -1,7 +1,7 @@
 import Layout from "@/components/widget/layout";
 import React from "react";
 import { useGetCalculation, useGetCarts, useUpdateCart } from "./api";
-import { Divider, Flex, Table, message } from "antd";
+import { Checkbox, Divider, Flex, Image, Table, message } from "antd";
 import ImageLiteCard from "../components/image-lite";
 import DebounceComponent from "@/components/debounce-component";
 import NumberControlInput from "../components/number-control-input";
@@ -9,17 +9,20 @@ import { cartStyles } from "./styles.css";
 import Text from "@/components/elements/text";
 import Button from "@/components/elements/button";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
-import { getBucket, resetBucket, setCheckoutBucket } from "../checkout/helpers";
+import { resetBucket, setCheckoutBucket } from "../checkout/helpers";
 import { useRouter } from "next/router";
+import classNames from "classnames";
 
 function NumberInput({
   id,
   init,
   refetch,
+  size,
 }: {
   id: string;
   init: number;
   refetch: () => void;
+  size?: "small" | "large";
 }) {
   const [value, setValue] = React.useState<number>(init);
   const { mutateAsync } = useUpdateCart();
@@ -47,6 +50,8 @@ function NumberInput({
         <NumberControlInput
           value={change as unknown as any}
           onChange={setChange}
+          classname={cartStyles.numberInput}
+          size={size}
         ></NumberControlInput>
       )}
     </DebounceComponent>
@@ -76,54 +81,118 @@ export default function Cart() {
               Shopping Card
             </Text>
           </div>
-          <Table
-            virtual
-            style={{
-              fontSize: 14,
-            }}
-            rowSelection={{
-              selectedRowKeys: selectedRowKey,
-              type: "checkbox",
-              onChange: (val) => setSelectedRowKey(val as any[]),
-            }}
-            columns={[
-              {
-                title: "Product",
-                dataIndex: "produk",
-                render: (_, record) => (
-                  <ImageLiteCard
-                    name={record.produk.nama_produk}
-                    url={record.produk.file.foto_url}
+          <div className={cartStyles.tableSmallContainer}>
+            {data?.data.map((cart) => (
+              <div
+                className={classNames(cartStyles.cartItem, "mb")}
+                key={cart.id}
+              >
+                <Flex gap={16}>
+                  <Checkbox
+                    checked={selectedRowKey.includes(cart.id)}
+                    onChange={(e) => {
+                      const checked = e.target.checked;
+                      if (checked)
+                        setSelectedRowKey((prev) => [...prev, cart.id]);
+                      else
+                        setSelectedRowKey((prev) =>
+                          prev.filter((item) => item !== cart.id),
+                        );
+                    }}
                   />
-                ),
-              },
+                  <Image
+                    alt="example"
+                    src={cart.produk.file.foto_url}
+                    width={100}
+                    height={100}
+                    style={{ objectFit: "contain" }}
+                  />
+                  <Flex vertical justify="center" gap={4}>
+                    <Text variant="bodySmall" weight="medium">
+                      {cart.produk.nama_produk}
+                    </Text>
+                    <Text variant="bodySmall" weight="regular" color="gray600">
+                      {`Rp. ${cart.produk.harga_produk}`}
+                    </Text>
+                    <Flex gap={20}>
+                      <div style={{ width: 100 }}>
+                        <NumberInput
+                          id={cart.id}
+                          init={cart.jumlah_produk}
+                          size="small"
+                          refetch={refetch}
+                        />
+                      </div>
+                      <Flex vertical align="flex-end">
+                        <Text variant="bodyTiny" weight="regular">
+                          Sub Total
+                        </Text>
+                        <Text
+                          variant="bodySmall"
+                          weight="regular"
+                          color="gray600"
+                        >
+                          {`Rp. ${cart.produk.harga_produk}`}
+                        </Text>
+                      </Flex>
+                    </Flex>
+                  </Flex>
+                </Flex>
+              </div>
+            ))}
+          </div>
+          <div className={cartStyles.tableContainer}>
+            <Table
+              virtual
+              style={{
+                fontSize: 14,
+              }}
+              rowSelection={{
+                selectedRowKeys: selectedRowKey,
+                type: "checkbox",
+                onChange: (val) => setSelectedRowKey(val as any[]),
+              }}
+              columns={[
+                {
+                  title: "Product",
+                  dataIndex: "produk",
+                  render: (_, record) => (
+                    <ImageLiteCard
+                      name={record.produk.nama_produk}
+                      url={record.produk.file.foto_url}
+                    />
+                  ),
+                },
 
-              {
-                title: "Price",
-                dataIndex: "harga",
-                render: (_, record) => record.produk.harga_produk,
-              },
-              {
-                title: "Quantity",
-                dataIndex: "jumlah_produk",
-                render: (_, record) => (
-                  <NumberInput
-                    id={record.id}
-                    init={record.jumlah_produk}
-                    refetch={refetch}
-                  />
-                ),
-              },
-              {
-                title: "Subtotal",
-                dataIndex: "subtotal",
-                render: (_, record) => record.sub_total,
-              },
-            ]}
-            dataSource={data?.data}
-            rowKey={"id"}
-            pagination={false}
-          />
+                {
+                  title: "Price",
+                  dataIndex: "harga",
+                  render: (_, record) => record.produk.harga_produk,
+                },
+                {
+                  title: "Quantity",
+                  dataIndex: "jumlah_produk",
+                  width: 200,
+
+                  render: (_, record) => (
+                    <NumberInput
+                      id={record.id}
+                      init={record.jumlah_produk}
+                      refetch={refetch}
+                    />
+                  ),
+                },
+                {
+                  title: "Subtotal",
+                  dataIndex: "subtotal",
+                  render: (_, record) => record.sub_total,
+                },
+              ]}
+              dataSource={data?.data}
+              rowKey={"id"}
+              pagination={false}
+            />
+          </div>
           <Flex
             flex={1}
             align="center"
