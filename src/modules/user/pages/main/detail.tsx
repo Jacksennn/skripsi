@@ -146,7 +146,7 @@ export default function MainDetail() {
             <Button
               iconPosition="end"
               variant="secondary"
-              style={{ height: "100%" }}
+              className={detailStyle.buyNowButton}
             >
               Buy Now
             </Button>

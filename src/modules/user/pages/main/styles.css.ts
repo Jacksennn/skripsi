@@ -54,9 +54,26 @@ export const detailStyle = {
   }),
   button: style({
     display: "grid",
-    gridTemplateColumns: "1fr 2fr 1fr",
+
     gap: 16,
     marginTop: 20,
+    gridTemplateColumns: "1fr 2fr",
+    "@media": {
+      "screen and (min-width: 962px)": {
+        gridTemplateColumns: "1fr 2fr 1fr",
+      },
+    },
+  }),
+
+  buyNowButton: style({
+    gridColumn: "1/span2",
+    height: "100% !important",
+    "@media": {
+      "screen and (min-width: 962px)": {
+        gridColumn: "3",
+        gridRow: "1",
+      },
+    },
   }),
   bigScreenFilter: style({
     display: "none",
