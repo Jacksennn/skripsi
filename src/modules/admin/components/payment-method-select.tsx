@@ -9,8 +9,20 @@ interface Props {
 }
 export const PaymentMethodStatus = [
   {
-    label: "Cash",
+    name: "Transfer",
+    value: "Transfer",
+  },
+  {
+    name: "Qris",
+    value: "Qris",
+  },
+  {
+    name: "Cash",
     value: "Cash",
+  },
+  {
+    name: "Xendit",
+    value: "Xendit",
   },
 ];
 
