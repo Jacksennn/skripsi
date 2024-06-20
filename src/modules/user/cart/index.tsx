@@ -1,7 +1,7 @@
 import Layout from "@/components/widget/layout";
 import React from "react";
 import { useGetCalculation, useGetCarts, useUpdateCart } from "./api";
-import { Checkbox, Divider, Flex, Image, Table, message } from "antd";
+import { Checkbox, Divider, Flex, Image, Spin, Table, message } from "antd";
 import ImageLiteCard from "../components/image-lite";
 import DebounceComponent from "@/components/debounce-component";
 import NumberControlInput from "../components/number-control-input";
@@ -82,50 +82,45 @@ export default function Cart() {
             </Text>
           </div>
           <div className={cartStyles.tableSmallContainer}>
-            {data?.data.map((cart) => (
-              <div
-                className={classNames(cartStyles.cartItem, "mb")}
-                key={cart.id}
+            {isLoading || isRefetching ? (
+              <Flex
+                flex={1}
+                align="center"
+                justify="center"
+                style={{ width: "100%", marginTop: 20 }}
               >
-                <Flex gap={16}>
-                  <Checkbox
-                    checked={selectedRowKey.includes(cart.id)}
-                    onChange={(e) => {
-                      const checked = e.target.checked;
-                      if (checked)
-                        setSelectedRowKey((prev) => [...prev, cart.id]);
-                      else
-                        setSelectedRowKey((prev) =>
-                          prev.filter((item) => item !== cart.id),
-                        );
-                    }}
-                  />
-                  <Image
-                    alt="example"
-                    src={cart.produk.file.foto_url}
-                    width={100}
-                    height={100}
-                    style={{ objectFit: "contain" }}
-                  />
-                  <Flex vertical justify="center" gap={4}>
-                    <Text variant="bodySmall" weight="medium">
-                      {cart.produk.nama_produk}
-                    </Text>
-                    <Text variant="bodySmall" weight="regular" color="gray600">
-                      {`Rp. ${cart.produk.harga_produk}`}
-                    </Text>
-                    <Flex gap={20}>
-                      <div style={{ width: 100 }}>
-                        <NumberInput
-                          id={cart.id}
-                          init={cart.jumlah_produk}
-                          size="small"
-                          refetch={refetch}
-                        />
-                      </div>
-                      <Flex vertical align="flex-end">
-                        <Text variant="bodyTiny" weight="regular">
-                          Sub Total
+                <Spin size={"large"} />
+              </Flex>
+            ) : (
+              <>
+                {data?.data.map((cart) => (
+                  <div
+                    className={classNames(cartStyles.cartItem, "mb")}
+                    key={cart.id}
+                  >
+                    <Flex gap={16}>
+                      <Checkbox
+                        checked={selectedRowKey.includes(cart.id)}
+                        onChange={(e) => {
+                          const checked = e.target.checked;
+                          if (checked)
+                            setSelectedRowKey((prev) => [...prev, cart.id]);
+                          else
+                            setSelectedRowKey((prev) =>
+                              prev.filter((item) => item !== cart.id),
+                            );
+                        }}
+                      />
+                      <Image
+                        alt="example"
+                        src={cart.produk.file.foto_url}
+                        width={100}
+                        height={100}
+                        style={{ objectFit: "contain" }}
+                      />
+                      <Flex vertical justify="center" gap={4}>
+                        <Text variant="bodySmall" weight="medium">
+                          {cart.produk.nama_produk}
                         </Text>
                         <Text
                           variant="bodySmall"
@@ -134,12 +129,34 @@ export default function Cart() {
                         >
                           {`Rp. ${cart.produk.harga_produk}`}
                         </Text>
+                        <Flex gap={20}>
+                          <div style={{ width: 100 }}>
+                            <NumberInput
+                              id={cart.id}
+                              init={cart.jumlah_produk}
+                              size="small"
+                              refetch={refetch}
+                            />
+                          </div>
+                          <Flex vertical align="flex-end">
+                            <Text variant="bodyTiny" weight="regular">
+                              Sub Total
+                            </Text>
+                            <Text
+                              variant="bodySmall"
+                              weight="regular"
+                              color="gray600"
+                            >
+                              {`Rp. ${cart.produk.harga_produk}`}
+                            </Text>
+                          </Flex>
+                        </Flex>
                       </Flex>
                     </Flex>
-                  </Flex>
-                </Flex>
-              </div>
-            ))}
+                  </div>
+                ))}
+              </>
+            )}
           </div>
           <div className={cartStyles.tableContainer}>
             <Table

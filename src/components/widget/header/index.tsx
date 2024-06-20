@@ -41,7 +41,9 @@ export default function Header(props: Props) {
   return (
     <header className={headerStyles.container}>
       <div className={headerStyles.innerContainer}>
-        <div className={headerStyles.searchSmallScreen}>{props.left}</div>
+        {!!props.left && (
+          <div className={headerStyles.searchSmallScreen}>{props.left}</div>
+        )}
         <div className={headerStyles.searchBigScreen}>
           <Text
             variant="heading03"
