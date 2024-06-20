@@ -9,11 +9,13 @@ import SearchIcon from "@/components/icon/search-icon";
 import BaseInput from "@/components/elements/input/base-input";
 import { useRouter } from "next/router";
 import { getUserLoginToken } from "@/common/fetch-hook";
-import { Truck } from "@phosphor-icons/react";
+import { Hamburger, Truck, X } from "@phosphor-icons/react";
+import classNames from "classnames";
 
 interface Props {
   type?: "default" | "admin";
   hideSearchBar?: boolean;
+  left?: React.ReactNode;
 }
 
 export default function Header(props: Props) {
@@ -21,6 +23,7 @@ export default function Header(props: Props) {
   const router = useRouter();
   const isDefault = type === "default";
   const [search, setSearch] = React.useState<string>("");
+  const [isSearchExpand, setIsSearchExpand] = React.useState<boolean>();
 
   const [isAuthenticated, setIsAuthenticated] = React.useState<boolean>(true);
 
@@ -38,11 +41,44 @@ export default function Header(props: Props) {
   return (
     <header className={headerStyles.container}>
       <div className={headerStyles.innerContainer}>
-        <Text variant="heading03" weight="bold" color="gray00">
-          TB CAHAYA BARU
-        </Text>
+        <div className={headerStyles.searchSmallScreen}>{props.left}</div>
+        <div className={headerStyles.searchBigScreen}>
+          <Text
+            variant="heading03"
+            weight="bold"
+            color="gray00"
+            className={headerStyles.title}
+            onClick={() => router.push("/")}
+          >
+            TB CAHAYA BARU
+          </Text>
+        </div>
+        <div className={headerStyles.searchSmallScreen}>
+          {isSearchExpand ? (
+            <Button
+              shape="circle"
+              icon={<X size={20} color="white" />}
+              variant="white"
+              onClick={() => setIsSearchExpand(false)}
+            />
+          ) : (
+            <Text
+              variant="heading03"
+              weight="bold"
+              color="gray00"
+              className={headerStyles.title}
+            >
+              TB CAHAYA BARU
+            </Text>
+          )}
+        </div>
         {isDefault && !props.hideSearchBar && (
-          <div className={headerStyles.searchWrapper}>
+          <div
+            className={classNames(
+              headerStyles.searchWrapper,
+              headerStyles.searchBigScreen,
+            )}
+          >
             <DebounceComponent value={search} setValue={setSearch}>
               {(value, onAfterChange) => (
                 <BaseInput
@@ -58,7 +94,32 @@ export default function Header(props: Props) {
             </DebounceComponent>
           </div>
         )}
+
         <div className={headerStyles.rightWrapper}>
+          <div className={headerStyles.searchSmallScreen}>
+            {!isSearchExpand ? (
+              <Button
+                shape="circle"
+                icon={<SearchIcon size={20} color="white" />}
+                variant="white"
+                onClick={() => setIsSearchExpand(true)}
+              />
+            ) : (
+              <DebounceComponent value={search} setValue={setSearch}>
+                {(value, onAfterChange) => (
+                  <BaseInput
+                    type="text"
+                    size="large"
+                    placeholder="Search for anything..."
+                    value={value}
+                    onChange={(e) => onAfterChange(e.target.value)}
+                    suffix={<SearchIcon size={20} />}
+                    noMb
+                  />
+                )}
+              </DebounceComponent>
+            )}
+          </div>
           {isDefault &&
             (isAuthenticated ? (
               <>

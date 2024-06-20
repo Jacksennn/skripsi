@@ -4,6 +4,7 @@ export const gridStyle = style({
   display: "grid",
   gap: 16,
   alignContent: "space-between",
+  gridTemplateColumns: "1fr 1fr",
 
   "@media": {
     "screen and (min-width: 576px)": {
@@ -23,6 +24,16 @@ export const layout = style({
   gap: 20,
   padding: 20,
 });
+
+export const mainStyle = {
+  card: style({
+    "@media": {
+      "screen and (min-width: 768px)": {
+        minWidth: 200,
+      },
+    },
+  }),
+};
 
 export const detailStyle = {
   container: style({
@@ -46,5 +57,13 @@ export const detailStyle = {
     gridTemplateColumns: "1fr 2fr 1fr",
     gap: 16,
     marginTop: 20,
+  }),
+  bigScreenFilter: style({
+    display: "none",
+    "@media": {
+      "screen and (min-width: 768px)": {
+        display: "block",
+      },
+    },
   }),
 };

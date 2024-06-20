@@ -2,6 +2,7 @@ import Text from "@/components/elements/text";
 import { Card } from "antd";
 import Meta from "antd/es/card/Meta";
 import React from "react";
+import { imageCardStyle } from "./styles.css";
 
 interface Props {
   title: string;
@@ -9,6 +10,7 @@ interface Props {
   frequency?: number;
   src?: string;
   onClick?: () => void;
+  classname?: string;
 }
 
 export default function ImageCard(props: Props) {
@@ -22,7 +24,7 @@ export default function ImageCard(props: Props) {
   return (
     <Card
       hoverable
-      style={{ minWidth: 200 }}
+      className={props.classname}
       cover={
         // eslint-disable-next-line @next/next/no-img-element
         <img alt={title} src={src} />

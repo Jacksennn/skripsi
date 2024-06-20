@@ -16,6 +16,8 @@ export const headerStyles = {
     alignItems: "center",
     gap: 32,
     justifyContent: "space-between",
+    paddingLeft: 16,
+    paddingRight: 16,
     "@media": {
       "screen and (min-width: 768px)": {
         paddingLeft: 32,
@@ -33,5 +35,30 @@ export const headerStyles = {
   }),
   searchWrapper: style({
     flex: 1,
+  }),
+  searchBigScreen: style({
+    display: "none",
+    "@media": {
+      "screen and (min-width: 768px)": {
+        display: "block",
+      },
+    },
+  }),
+  searchSmallScreen: style({
+    display: "block",
+    "@media": {
+      "screen and (min-width: 768px)": {
+        display: "none",
+      },
+    },
+  }),
+  title: style({
+    cursor: "pointer",
+    fontSize: 18,
+    "@media": {
+      "screen and (min-width: 768px)": {
+        fontSize: 24,
+      },
+    },
   }),
 };
