@@ -109,7 +109,7 @@ export const useAcceptSalesOrder = (): UseMutationResult<
     mutationFn: async (input: { id: string }) =>
       await queryFetch({
         endpoint: `sales-orders/${input.id}/accept`,
-        method: "DELETE",
+        method: "POST",
         type: "admin",
       }),
   });
@@ -125,7 +125,7 @@ export const useDeclineSalesOrder = (): UseMutationResult<
     mutationFn: async (input: { id: string }) =>
       await queryFetch({
         endpoint: `sales-orders/${input.id}/decline`,
-        method: "DELETE",
+        method: "POST",
         type: "admin",
       }),
   });

@@ -68,6 +68,7 @@ export default function SalesForm(props: Props) {
       const temp: Inputs = {
         details:
           data?.details.map((item) => ({
+            id: item.id,
             diskon_produk: Number(item.diskon_produk),
             harga_produk: Number(item.harga_produk),
             id_produk: item.product.id,

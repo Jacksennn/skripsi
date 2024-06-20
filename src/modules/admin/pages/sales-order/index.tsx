@@ -26,7 +26,7 @@ const inactiveStyle = {
 };
 
 export default function SalesOrderPage() {
-  const [tab, setTab] = useState<string>("Order Placed");
+  const [tab, setTab] = useState<string>("News Order");
   const [search, setSearch] = useState<string>("");
   const { data, isLoading, isRefetching, refetch } = useGetSalesOrders({
     status_pemesanan: tab,
@@ -55,9 +55,9 @@ export default function SalesOrderPage() {
         <div className={tabContainerStyle} style={{ gridColumn: "1 / span 4" }}>
           <button
             type="button"
-            onClick={() => setTab("Order Placed")}
+            onClick={() => setTab("News Order")}
             className={tabStyle}
-            style={tab === "Order Placed" ? activeStyle : inactiveStyle}
+            style={tab === "News Order" ? activeStyle : inactiveStyle}
           >
             New Orders
           </button>
@@ -163,29 +163,33 @@ export default function SalesOrderPage() {
               />
             ),
           },
-          {
-            title: "",
-            key: "action",
-            fixed: "right",
-            width: 100,
-            render: (_, record) => (
-              <Flex>
-                <Button
-                  variant="secondary"
-                  error
-                  onClick={() => onAction(record.id, "decline")}
-                >
-                  Decline
-                </Button>
-                <Button
-                  variant="primary"
-                  onClick={() => onAction(record.id, "accept")}
-                >
-                  ACCEPT
-                </Button>
-              </Flex>
-            ),
-          },
+          ...(tab === "News Order"
+            ? ([
+                {
+                  title: "",
+                  key: "action",
+                  fixed: "right",
+                  width: 300,
+                  render: (_: any, record: any) => (
+                    <Flex gap={16}>
+                      <Button
+                        variant="secondary"
+                        error
+                        onClick={() => onAction(record.id, "decline")}
+                      >
+                        Decline
+                      </Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => onAction(record.id, "accept")}
+                      >
+                        ACCEPT
+                      </Button>
+                    </Flex>
+                  ),
+                },
+              ] as any)
+            : []),
         ]}
         dataSource={data?.data || []}
         rowKey={"id"}

@@ -9,20 +9,28 @@ interface Props {
 }
 export const StatusPenjualanStatus = [
   {
-    label: "On delivery",
+    label: "Order Placed",
+    value: "Order Placed",
+  },
+  {
+    label: "Packing",
+    value: "Packing",
+  },
+  {
+    label: "On Delivery",
     value: "On Delivery",
   },
   {
-    label: "Completed",
-    value: "Completed",
+    label: "Delivered",
+    value: "Delivered",
   },
   {
     label: "Cancelled",
     value: "Cancelled",
   },
   {
-    label: "Returned",
-    value: "Returned",
+    label: "Retur",
+    value: "Retur",
   },
 ];
 

@@ -10,6 +10,7 @@ import { Flex, Table } from "antd";
 import ImageLiteCard from "../components/image-lite";
 import OrderHistoryDetail from "./detail";
 import Button from "@/components/elements/button";
+import { useRouter } from "next/router";
 
 const activeStyle = {
   backgroundColor: colors.secondary800,
@@ -38,6 +39,7 @@ export default function OrderHistory() {
     status_pemesanan: tab,
     q: search,
   });
+  const { push } = useRouter();
 
   return (
     <Layout>
@@ -157,17 +159,29 @@ export default function OrderHistory() {
             title: "",
             key: "operation",
             fixed: "right",
-            width: 100,
-            render: (record) => (
-              <OrderHistoryDetail
-                status={tab}
-                id={record.id}
-                target={(show) => (
-                  <Button variant="white" info onClick={show}>
-                    Details
+
+            render: (_, record) => (
+              <Flex gap={16}>
+                <OrderHistoryDetail
+                  status={tab}
+                  id={record.id}
+                  target={(show) => (
+                    <Button variant="secondary" onClick={show}>
+                      Details
+                    </Button>
+                  )}
+                />
+
+                {tab === "Delivered" && (
+                  <Button
+                    variant="secondary"
+                    info
+                    onClick={() => push(`/request-retur/${record.id}`)}
+                  >
+                    Retur
                   </Button>
                 )}
-              />
+              </Flex>
             ),
           },
         ]}
