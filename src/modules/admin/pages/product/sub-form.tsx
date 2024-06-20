@@ -67,7 +67,7 @@ export default function ProductSubForm(props: Props) {
       const _data = {
         ...data,
         files: data.files.map((item, idx) => ({
-          foto_produk: item,
+          foto_produk: (item as any)?.name,
           urutan: idx + 1,
         })),
       };
