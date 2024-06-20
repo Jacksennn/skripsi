@@ -154,15 +154,32 @@ export default function OrderHistory() {
                             {cart.produk.nama_produk}
                           </Text>
                         </div>
-                        <OrderHistoryDetail
-                          status={tab}
-                          id={cart.id}
-                          target={(show) => (
-                            <Button variant="secondary" onClick={show}>
-                              Details
+                        <Flex vertical gap={8}>
+                          <OrderHistoryDetail
+                            status={tab}
+                            id={cart.id}
+                            target={(show) => (
+                              <Button
+                                variant="secondary"
+                                onClick={show}
+                                size="small"
+                                style={{ borderRadius: 4 }}
+                              >
+                                Details
+                              </Button>
+                            )}
+                          />
+                          {tab === "Delivered" && (
+                            <Button
+                              variant="secondary"
+                              size="small"
+                              style={{ borderRadius: 4 }}
+                              onClick={() => push(`/request-retur/${cart.id}`)}
+                            >
+                              Retur
                             </Button>
                           )}
-                        />
+                        </Flex>
                       </Flex>
 
                       <Text
@@ -264,7 +281,6 @@ export default function OrderHistory() {
                     {tab === "Delivered" && (
                       <Button
                         variant="secondary"
-                        info
                         onClick={() => push(`/request-retur/${record.id}`)}
                       >
                         Retur
