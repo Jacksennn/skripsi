@@ -10,6 +10,7 @@ import Text from "@/components/elements/text";
 import ImageUpload from "./upload-image";
 import Button from "@/components/elements/button";
 import { useRouter } from "next/router";
+import CategorySelect from "../../components/category-select";
 
 interface Props {
   product?: ProductRespondType;
@@ -111,13 +112,7 @@ export default function ProductSubForm(props: Props) {
                 required
                 control={control}
               />
-              <Input
-                type="text"
-                label="Product Category"
-                name="id_kategori"
-                required
-                control={control}
-              />
+              <CategorySelect name="id_kategori" control={control} />
               <Input
                 type="textarea"
                 label="Description"
