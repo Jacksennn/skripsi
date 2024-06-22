@@ -79,7 +79,7 @@ export type ProductSuggestRespondType = {
       id: string;
       nama_produk: string;
       harga_produk: string;
-      stok_produk: -2;
+      stok_produk: number;
       sku_produk: string;
       kategori: {
         id: string;

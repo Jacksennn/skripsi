@@ -11,6 +11,7 @@ import Button from "@/components/elements/button";
 import CartIcon from "@/components/icon/cart-icon";
 import { useAddCart } from "../../cart/api";
 import ImageCard from "@/modules/components/image-card";
+import { formatPricing } from "@/common/price";
 
 export default function MainDetail() {
   const {
@@ -121,7 +122,7 @@ export default function MainDetail() {
                   Price:
                 </Text>
                 <Text color="secondary500" variant="heading03">
-                  Rp. {data!.harga_produk},-
+                  {formatPricing.format(Number(data!.harga_produk) || 0)},-
                 </Text>
               </div>
             </Flex>
@@ -180,6 +181,7 @@ export default function MainDetail() {
                       src={combi.produk.file.foto_url}
                       price={Number(combi.produk.harga_produk)}
                       title={combi.produk.nama_produk}
+                      discountPrice={Number(combi.harga_produk)}
                     />
                     {!index && "+"}
                   </React.Fragment>

@@ -17,6 +17,7 @@ import CardWrapper from "@/modules/admin/components/card-wrapper";
 import CancelButton from "@/modules/admin/components/cancel-button";
 import Button from "@/components/elements/button";
 import { TrashSimple } from "@phosphor-icons/react";
+import { formatPricing } from "@/common/price";
 type Inputs = {
   id_jual: string;
   alasan_retur: string;
@@ -145,26 +146,24 @@ export default function RequestRetur() {
                 {
                   title: "Price",
                   dataIndex: "harga_produk",
-                  width: 200,
-                },
-                {
-                  title: "Price",
-                  dataIndex: "harga_produk",
                   width: 120,
-                  render: (_, record) => `Rp.${record.price}`,
+                  render: (_, record) =>
+                    `${formatPricing.format(record.price)},-`,
                 },
                 {
                   title: "Price",
                   dataIndex: "diskon_produk",
                   width: 120,
-                  render: (_, record) => `Rp.${record.discount}`,
+                  render: (_, record) =>
+                    `${formatPricing.format(record.discount)},-`,
                 },
                 {
                   title: "Total",
                   dataIndex: "total",
                   width: 120,
                   align: "right",
-                  render: (_, record) => `Rp.${record.total}`,
+                  render: (_, record) =>
+                    `${formatPricing.format(record.total)},-`,
                 },
                 {
                   title: "Total",
@@ -191,16 +190,20 @@ export default function RequestRetur() {
               >
                 <Text variant="bodySmall">Amount:</Text>
                 <Text variant="bodySmall">
-                  {`Rp.${fields.reduce(
-                    (acc, curr) => (acc += Number(curr.price)),
-                    0,
+                  {`${formatPricing.format(
+                    fields.reduce(
+                      (acc, curr) => (acc += Number(curr.price)),
+                      0,
+                    ),
                   )},-`}
                 </Text>
                 <Text variant="bodySmall">Discount:</Text>
                 <Text variant="bodySmall">
-                  {`Rp.${fields.reduce(
-                    (acc, curr) => (acc += Number(curr.discount)),
-                    0,
+                  {`${formatPricing.format(
+                    fields.reduce(
+                      (acc, curr) => (acc += Number(curr.discount)),
+                      0,
+                    ),
                   )},-`}
                 </Text>
 
@@ -208,9 +211,11 @@ export default function RequestRetur() {
                   Total Amount:
                 </Text>
                 <Text variant="bodyLarge" weight="semiBold">
-                  {`Rp. ${fields.reduce(
-                    (acc, curr) => (acc += Number(curr.total)),
-                    0,
+                  {`${formatPricing.format(
+                    fields.reduce(
+                      (acc, curr) => (acc += Number(curr.total)),
+                      0,
+                    ),
                   )},-`}
                 </Text>
               </div>

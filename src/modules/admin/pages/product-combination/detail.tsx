@@ -12,6 +12,7 @@ import Text from "@/components/elements/text";
 import Input from "@/components/elements/input";
 import Button from "@/components/elements/button";
 import { queryClient } from "@/common/query-client";
+import { formatPricing } from "@/common/price";
 
 interface Props {
   target: (showModal: () => void) => React.ReactNode;
@@ -122,7 +123,8 @@ export default function ProductCombinationDetail(props: Props) {
                         {item.produk.nama_produk}
                       </Text>
                       <Text variant="bodySmall" color="gray700" weight="medium">
-                        Original Price: Rp. {item.harga_produk},-
+                        Original Price:
+                        {formatPricing.format(Number(item.harga_produk))},-
                       </Text>
                       <div className="mb"></div>
                       <Input

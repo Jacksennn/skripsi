@@ -10,6 +10,7 @@ import {
 import BaseInput from "@/components/elements/input/base-input";
 import { Flex, Spin, Table } from "antd";
 import dayjs from "dayjs";
+import { formatPricing } from "@/common/price";
 
 interface Props {
   target: (showModal: () => void) => React.ReactNode;
@@ -143,20 +144,29 @@ export default function OrderHistoryDetail(props: Props) {
                   title: "Price",
                   dataIndex: "harga_produk",
                   width: 120,
-                  render: (_, record) => `Rp.${record.harga_produk}`,
+                  render: (_, record) =>
+                    `${formatPricing.format(
+                      Number(record.harga_produk || 0),
+                    )},-`,
                 },
                 {
                   title: "Price",
                   dataIndex: "diskon_produk",
                   width: 120,
-                  render: (_, record) => `Rp.${record.diskon_produk}`,
+                  render: (_, record) =>
+                    `${formatPricing.format(
+                      Number(record.diskon_produk || 0),
+                    )},-`,
                 },
                 {
                   title: "Total",
                   dataIndex: "total",
                   width: 120,
                   align: "right",
-                  render: (_, record) => `Rp.${record.total_harga}`,
+                  render: (_, record) =>
+                    `${formatPricing.format(
+                      Number(record.total_harga || 0),
+                    )},-`,
                 },
               ]}
             ></Table>
@@ -172,16 +182,24 @@ export default function OrderHistoryDetail(props: Props) {
               >
                 <Text variant="bodySmall">Amount:</Text>
                 <Text variant="bodySmall">
-                  {`Rp.${data?.data?.details.reduce(
-                    (acc, curr) => (acc += Number(curr.total_harga)),
-                    0,
+                  {`Rp.${formatPricing.format(
+                    Number(
+                      data?.data?.details.reduce(
+                        (acc, curr) => (acc += Number(curr.total_harga)),
+                        0,
+                      ),
+                    ),
                   )},-`}
                 </Text>
                 <Text variant="bodySmall">Discount:</Text>
                 <Text variant="bodySmall">
-                  {`Rp.${data?.data?.details.reduce(
-                    (acc, curr) => (acc += Number(curr.diskon_produk)),
-                    0,
+                  {`Rp.${formatPricing.format(
+                    Number(
+                      data?.data?.details.reduce(
+                        (acc, curr) => (acc += Number(curr.diskon_produk)),
+                        0,
+                      ),
+                    ),
                   )},-`}
                 </Text>
 
@@ -189,11 +207,16 @@ export default function OrderHistoryDetail(props: Props) {
                   Total Amount:
                 </Text>
                 <Text variant="bodyLarge" weight="semiBold">
-                  {`Rp. ${data?.data?.details.reduce(
-                    (acc, curr) =>
-                      (acc +=
-                        Number(curr.total_harga) - Number(curr.diskon_produk)),
-                    0,
+                  {`Rp.${formatPricing.format(
+                    Number(
+                      data?.data?.details.reduce(
+                        (acc, curr) =>
+                          (acc +=
+                            Number(curr.total_harga) -
+                            Number(curr.diskon_produk)),
+                        0,
+                      ),
+                    ),
                   )},-`}
                 </Text>
               </div>

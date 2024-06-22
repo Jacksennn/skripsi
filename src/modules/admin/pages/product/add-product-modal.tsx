@@ -3,6 +3,7 @@ import { ProductsRespondType, useGetProducts } from "./api";
 import { Modal, Table, message } from "antd";
 import Text from "@/components/elements/text";
 import Button from "@/components/elements/button";
+import { formatPricing } from "@/common/price";
 
 interface Props {
   target: (showModal: () => void) => React.ReactNode;
@@ -115,6 +116,8 @@ export default function AddProductModal(props: Props) {
               title: "Price",
               dataIndex: "harga_produk",
               width: 200,
+              render: (_, record) =>
+                `${formatPricing.format(Number(record.harga_produk))},-`,
             },
           ]}
           dataSource={data?.data}

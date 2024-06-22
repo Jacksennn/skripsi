@@ -35,7 +35,7 @@ export default function ExamplePage() {
         price={50000}
       /> */}
       <ImageLiteCard name="Triplek 12mili sms" code="PR00105" />
-      <ImageLiteUserCard name="Triplek 12mili sms" />
+      {/* <ImageLiteUserCard name="Triplek 12mili sms" /> */}
     </div>
   );
 }

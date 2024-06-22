@@ -1,8 +1,9 @@
 import Text from "@/components/elements/text";
-import { Card } from "antd";
+import { Card, Flex } from "antd";
 import Meta from "antd/es/card/Meta";
 import React from "react";
 import { imageCardStyle } from "./styles.css";
+import { formatPricing } from "@/common/price";
 
 interface Props {
   title: string;
@@ -11,6 +12,7 @@ interface Props {
   src?: string;
   onClick?: () => void;
   classname?: string;
+  discountPrice?: number;
 }
 
 export default function ImageCard(props: Props) {
@@ -20,6 +22,7 @@ export default function ImageCard(props: Props) {
     frequency,
     src = "https://placehold.co/600x400",
     onClick,
+    discountPrice,
   } = props;
   return (
     <Card
@@ -34,9 +37,23 @@ export default function ImageCard(props: Props) {
       <Text variant="bodyMedium" weight="medium">
         {title}
       </Text>
-      <Text variant="bodyMedium" color="secondary500" weight="medium">
-        Rp. {price},-
-      </Text>
+      <div className={imageCardStyle.price}>
+        <Text
+          variant="bodyMedium"
+          color={!!discountPrice ? "gray400" : "secondary500"}
+          weight="medium"
+          style={{
+            textDecoration: discountPrice ? "line-through" : undefined,
+          }}
+        >
+          {formatPricing.format(price)},-
+        </Text>
+        {!!discountPrice && (
+          <Text variant="bodyMedium" color="secondary500" weight="medium">
+            {formatPricing.format(discountPrice)},-
+          </Text>
+        )}
+      </div>
       {typeof frequency === "number" && (
         <Text variant="bodyTiny" color="gray600" style={{ textAlign: "right" }}>
           Sales Frequency : {frequency}

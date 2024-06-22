@@ -12,6 +12,7 @@ import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import { resetBucket, setCheckoutBucket } from "../checkout/helpers";
 import { useRouter } from "next/router";
 import classNames from "classnames";
+import { formatPricing } from "@/common/price";
 
 function NumberInput({
   id,
@@ -184,7 +185,8 @@ export default function Cart() {
                 {
                   title: "Price",
                   dataIndex: "harga",
-                  render: (_, record) => record.produk.harga_produk,
+                  render: (_, record) =>
+                    formatPricing.format(Number(record.produk.harga_produk)),
                 },
                 {
                   title: "Quantity",
@@ -202,7 +204,8 @@ export default function Cart() {
                 {
                   title: "Subtotal",
                   dataIndex: "subtotal",
-                  render: (_, record) => record.sub_total,
+                  render: (_, record) =>
+                    formatPricing.format(Number(record.sub_total)),
                 },
               ]}
               dataSource={data?.data}

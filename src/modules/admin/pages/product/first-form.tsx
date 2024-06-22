@@ -13,6 +13,7 @@ import { Flex, Spin, message, notification } from "antd";
 import Checkbox from "antd/es/checkbox/Checkbox";
 import Button from "@/components/elements/button";
 import { useRouter } from "next/router";
+import { formatPricing } from "@/common/price";
 
 export default function ProductFirstForm() {
   const [value, setValue] = React.useState<boolean>(false);
@@ -123,7 +124,7 @@ export default function ProductFirstForm() {
                 Price:
               </Text>
               <Text color="secondary500" variant="heading03">
-                Rp. {data!.harga_produk},-
+                {formatPricing.format(Number(data!.harga_produk || 0))},-
               </Text>
             </div>
             <div>

@@ -1,3 +1,4 @@
+import { formatPricing } from "@/common/price";
 import Text from "@/components/elements/text";
 import { colors } from "@/theming/colors";
 import { Flex, Image } from "antd";
@@ -24,9 +25,9 @@ export default function SummaryImageCard(props: Props) {
         <Text variant="bodySmall">{props.name}</Text>
         <Text variant="bodySmall">
           {`${props.qty}x `}{" "}
-          <span
-            style={{ color: colors.secondary500 }}
-          >{`Rp${props.price}`}</span>
+          <span style={{ color: colors.secondary500 }}>{`${formatPricing.format(
+            props.price,
+          )},-`}</span>
         </Text>
       </Flex>
     </Flex>

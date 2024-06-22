@@ -2,6 +2,7 @@ import React from "react";
 import { Flex, Table } from "antd";
 import Input from "@/components/elements/input";
 import { SaleRespondType } from "../sales/api";
+import { formatPricing } from "@/common/price";
 
 export default function FormItem({
   control,
@@ -64,11 +65,15 @@ export default function FormItem({
             title: "Price",
             dataIndex: "harga_produk",
             width: 200,
+            render: (_, record) =>
+              formatPricing.format(Number(record.harga_produk)),
           },
           {
             title: "Discount",
             dataIndex: "diskon_produk",
             width: 200,
+            render: (_, record) =>
+              formatPricing.format(Number(record.diskon_produk)),
           },
         ]}
       ></Table>

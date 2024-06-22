@@ -20,6 +20,7 @@ import Button from "@/components/elements/button";
 import { useRouter } from "next/router";
 import Text from "@/components/elements/text";
 import classNames from "classnames";
+import { formatPricing } from "@/common/price";
 
 const activeStyle = {
   backgroundColor: colors.secondary800,
@@ -252,6 +253,10 @@ export default function OrderHistory() {
               {
                 title: "Price",
                 dataIndex: "harga_produk",
+                render: (_, record) =>
+                  `${formatPricing.format(
+                    Number(record.harga_produk),
+                  )},-` as string,
               },
               {
                 title: "Quantity",
@@ -260,6 +265,10 @@ export default function OrderHistory() {
               {
                 title: "Total Amount",
                 dataIndex: "total_amount",
+                render: (_, record) =>
+                  `${formatPricing.format(
+                    Number(record.total_amount),
+                  )},-` as string,
               },
               {
                 title: "",

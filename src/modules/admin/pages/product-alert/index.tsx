@@ -4,6 +4,7 @@ import { useGetProductAlert } from "./api";
 import AdminLayout from "../../components/admin-layout";
 import Text from "@/components/elements/text";
 import { Flex, Image, Table, Typography } from "antd";
+import { formatPricing } from "@/common/price";
 
 export default function ProductAlert() {
   const { data, refetch, isLoading } = useGetProductAlert();
@@ -49,6 +50,8 @@ export default function ProductAlert() {
             title: "Price",
             dataIndex: "harga_produk",
             width: 120,
+            render: (_, record) =>
+              formatPricing.format(Number(record.harga_produk)),
           },
           {
             title: "Quantity",

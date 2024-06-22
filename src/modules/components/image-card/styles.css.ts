@@ -9,4 +9,13 @@ export const imageCardStyle = {
       },
     },
   }),
+  price: style({
+    display: "flex",
+    flexDirection: "column",
+    "@media": {
+      "screen and (min-width: 768px)": {
+        flexDirection: "row",
+      },
+    },
+  }),
 };
