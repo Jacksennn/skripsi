@@ -12,6 +12,7 @@ import CartIcon from "@/components/icon/cart-icon";
 import { useAddCart } from "../../cart/api";
 import ImageCard from "@/modules/components/image-card";
 import { formatPricing } from "@/common/price";
+import ProductSearch from "../../product-search";
 
 export default function MainDetail() {
   const {
@@ -55,7 +56,7 @@ export default function MainDetail() {
   }
 
   return (
-    <Layout>
+    <Layout searchComponent={<ProductSearch />}>
       <div className={detailStyle.container}>
         <div style={{ width: 400, height: 500 }}>
           {/* <Carousel autoplay> */}

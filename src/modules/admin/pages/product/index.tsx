@@ -10,16 +10,15 @@ import FilterComponent from "../../components/filter-component";
 import FormLayout from "../../components/form-layout";
 import Button from "@/components/elements/button";
 import DebounceComponent from "@/components/debounce-component";
+import ProductSearch from "../../components/product-search";
 
 export default function ProductPage() {
   const [filters, setFilters] = React.useState<{ [key: string]: any }>();
   const [page, setPage] = React.useState<number>(1);
-  const [search, setSearch] = useState<string>("");
   const { data, refetch, isLoading } = useGetProducts(
     true,
     {
       ...(filters || {}),
-      q: search,
       page,
     },
     {
@@ -42,16 +41,7 @@ export default function ProductPage() {
         }
       >
         <Flex gap={32} style={{ marginBottom: 32 }}>
-          <DebounceComponent setValue={setSearch} value={search}>
-            {(value, change) => (
-              <Input
-                type="text"
-                placeholder="Search for product"
-                value={value}
-                onChange={(e) => change(e.target.value)}
-              />
-            )}
-          </DebounceComponent>
+          <ProductSearch />
           <FilterComponent
             isLoading={isLoading}
             filters={data?.filters || []}

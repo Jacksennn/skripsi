@@ -16,7 +16,6 @@ export default function SignInUpPage(props: Props) {
       type={type}
       className={signInUpStyles.outerContainer}
       contentClassname={signInUpStyles.outerContentContainer}
-      hideSearchBar
     >
       <div className={signInUpStyles.container}>
         <Tabs

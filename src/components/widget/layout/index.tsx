@@ -8,7 +8,7 @@ interface Props extends React.PropsWithChildren {
   type?: "default" | "admin";
   className?: string;
   contentClassname?: string;
-  hideSearchBar?: boolean;
+  searchComponent?: React.ReactNode;
   headerLeft?: React.ReactNode;
 }
 
@@ -19,7 +19,7 @@ export default function Layout(props: Props) {
     <div className={classNames(props.className, layoutStyles.container)}>
       <Header
         type={type}
-        hideSearchBar={props?.hideSearchBar}
+        searchComponent={props.searchComponent}
         left={props.headerLeft}
       />
       <main

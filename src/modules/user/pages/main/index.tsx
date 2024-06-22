@@ -8,6 +8,7 @@ import { detailStyle, gridStyle, layout, mainStyle } from "./styles.css";
 import { Drawer, Empty, Flex, Pagination, Spin } from "antd";
 import Button from "@/components/elements/button";
 import { List } from "@phosphor-icons/react";
+import ProductSearch from "../../product-search";
 
 export default function Main() {
   const [filters, setFilters] = React.useState<{ [key: string]: any }>();
@@ -38,6 +39,7 @@ export default function Main() {
           onClick={() => setIsFilterExpand(true)}
         />
       }
+      searchComponent={<ProductSearch />}
     >
       <Drawer
         title="Filter"

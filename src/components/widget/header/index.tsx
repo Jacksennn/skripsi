@@ -11,18 +11,18 @@ import { useRouter } from "next/router";
 import { getUserLoginToken } from "@/common/fetch-hook";
 import { Hamburger, Truck, X } from "@phosphor-icons/react";
 import classNames from "classnames";
+import { Flex } from "antd";
 
 interface Props {
   type?: "default" | "admin";
-  hideSearchBar?: boolean;
+  searchComponent?: React.ReactNode;
   left?: React.ReactNode;
 }
 
 export default function Header(props: Props) {
-  const { type = "default" } = props;
+  const { type = "default", searchComponent } = props;
   const router = useRouter();
   const isDefault = type === "default";
-  const [search, setSearch] = React.useState<string>("");
   const [isSearchExpand, setIsSearchExpand] = React.useState<boolean>();
 
   const [isAuthenticated, setIsAuthenticated] = React.useState<boolean>(true);
@@ -41,87 +41,67 @@ export default function Header(props: Props) {
   return (
     <header className={headerStyles.container}>
       <div className={headerStyles.innerContainer}>
-        {!!props.left && (
-          <div className={headerStyles.searchSmallScreen}>{props.left}</div>
-        )}
-        <div className={headerStyles.searchBigScreen}>
-          <Text
-            variant="heading03"
-            weight="bold"
-            color="gray00"
-            className={headerStyles.title}
-            onClick={() => router.push("/")}
-          >
-            TB CAHAYA BARU
-          </Text>
-        </div>
-        <div className={headerStyles.searchSmallScreen}>
-          {isSearchExpand ? (
-            <Button
-              shape="circle"
-              icon={<X size={20} color="white" />}
-              variant="white"
-              onClick={() => setIsSearchExpand(false)}
-            />
-          ) : (
+        <Flex gap={12}>
+          {!!props.left && (
+            <div className={headerStyles.searchSmallScreen}>{props.left}</div>
+          )}
+          <div className={headerStyles.searchBigScreen}>
             <Text
               variant="heading03"
               weight="bold"
               color="gray00"
               className={headerStyles.title}
+              onClick={() => router.push("/")}
             >
               TB CAHAYA BARU
             </Text>
-          )}
-        </div>
-        {isDefault && !props.hideSearchBar && (
+          </div>
+          <div className={headerStyles.searchSmallScreen}>
+            {isSearchExpand ? (
+              <Button
+                shape="circle"
+                icon={<X size={20} color="white" />}
+                variant="white"
+                onClick={() => setIsSearchExpand(false)}
+              />
+            ) : (
+              <Text
+                variant="heading03"
+                weight="bold"
+                color="gray00"
+                className={headerStyles.title}
+              >
+                TB CAHAYA BARU
+              </Text>
+            )}
+          </div>
+        </Flex>
+        {isDefault && !!searchComponent && (
           <div
             className={classNames(
               headerStyles.searchWrapper,
               headerStyles.searchBigScreen,
             )}
           >
-            <DebounceComponent value={search} setValue={setSearch}>
-              {(value, onAfterChange) => (
-                <BaseInput
-                  type="text"
-                  size="large"
-                  placeholder="Search for anything..."
-                  value={value}
-                  onChange={(e) => onAfterChange(e.target.value)}
-                  suffix={<SearchIcon size={20} />}
-                  noMb
-                />
-              )}
-            </DebounceComponent>
+            {searchComponent}
           </div>
         )}
 
         <div className={headerStyles.rightWrapper}>
-          <div className={headerStyles.searchSmallScreen}>
-            {!isSearchExpand ? (
-              <Button
-                shape="circle"
-                icon={<SearchIcon size={20} color="white" />}
-                variant="white"
-                onClick={() => setIsSearchExpand(true)}
-              />
-            ) : (
-              <DebounceComponent value={search} setValue={setSearch}>
-                {(value, onAfterChange) => (
-                  <BaseInput
-                    type="text"
-                    size="large"
-                    placeholder="Search for anything..."
-                    value={value}
-                    onChange={(e) => onAfterChange(e.target.value)}
-                    suffix={<SearchIcon size={20} />}
-                    noMb
-                  />
-                )}
-              </DebounceComponent>
-            )}
-          </div>
+          {!!searchComponent && (
+            <div className={headerStyles.searchSmallScreen}>
+              {!isSearchExpand ? (
+                <Button
+                  shape="circle"
+                  icon={<SearchIcon size={20} color="white" />}
+                  variant="white"
+                  onClick={() => setIsSearchExpand(true)}
+                />
+              ) : (
+                <>{searchComponent}</>
+              )}
+            </div>
+          )}
           {isDefault &&
             (isAuthenticated ? (
               <>

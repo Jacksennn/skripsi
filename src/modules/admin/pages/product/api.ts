@@ -33,6 +33,7 @@ export type ProductsRespondType = {
   harga_produk: string;
   kategori: CategoryRespondType;
   stok_produk: number;
+  sku_produk: string;
   file: {
     id: string;
     foto_produk: string;

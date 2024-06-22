@@ -32,6 +32,12 @@ export const headerStyles = {
     display: "flex",
     alignItems: "center",
     gap: 16,
+    justifyContent: "flex-end",
+    "@media": {
+      "screen and (max-width: 768px)": {
+        flex: 1,
+      },
+    },
   }),
   searchWrapper: style({
     flex: 1,
@@ -46,6 +52,7 @@ export const headerStyles = {
   }),
   searchSmallScreen: style({
     display: "block",
+    flex: 1,
     "@media": {
       "screen and (min-width: 768px)": {
         display: "none",

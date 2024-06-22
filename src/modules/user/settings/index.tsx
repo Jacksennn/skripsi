@@ -9,7 +9,7 @@ import Layout from "@/components/widget/layout";
 export default function SettingsPage() {
   const { data: respond, refetch, isLoading, isRefetching } = useGetMe();
   return (
-    <Layout hideSearchBar>
+    <Layout>
       {(isLoading || isRefetching) && <Spin fullscreen />}
       <SettingAccountInformationForm data={respond?.data} />
       <div className="mb"></div>
