@@ -23,7 +23,7 @@ type Inputs = {
   ket_produk: string;
   min_produk: number;
   visibility: boolean;
-  files: string[];
+  files: any[];
 };
 
 export default function ProductSubForm(props: Props) {
@@ -47,7 +47,12 @@ export default function ProductSubForm(props: Props) {
   React.useEffect(() => {
     if (product) {
       const temp: Inputs = {
-        files: product.files.map((item) => item.foto_produk) || "",
+        files:
+          product.files.map((item) => ({
+            name: item.foto_produk,
+            url: item.foto_url,
+            id: item.id,
+          })) || "",
         harga_produk: Number(product?.harga_produk) || 0,
         id_kategori: product?.kategori?.id || "",
         ket_produk: product?.ket_produk || "",
@@ -69,6 +74,7 @@ export default function ProductSubForm(props: Props) {
         files: data.files.map((item, idx) => ({
           foto_produk: (item as any)?.name,
           urutan: idx + 1,
+          ...item,
         })),
       };
 

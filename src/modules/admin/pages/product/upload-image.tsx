@@ -24,17 +24,34 @@ export default function ImageUpload(props: Props) {
     name: props.name,
   });
 
+  React.useEffect(() => {
+    if (field?.value?.length > fileList.length) {
+      setFileList(
+        field.value.map((item: any) => ({
+          name: item.name,
+          url: item.url,
+        })),
+      );
+    }
+  }, [field.value, fileList]);
+
   const handleUpload = async (file: UploadFile<any>) => {
     const formData = new FormData();
     formData.append("file", file as FileType);
     setUploading(true);
     try {
       const res = await mutateAsync(formData as any);
+      setFileList((prev) => {
+        const currIdx = prev.findIndex((item) => item.name === file.name);
+        const temp = [...prev];
+        temp[currIdx].url = res.url;
+        return temp;
+      });
       field.onChange([
         ...field.value,
         {
           name: res.file_name,
-          // url: res.file_url,
+          url: res.url,
         },
       ]);
       message.success("upload successfully.");
@@ -48,7 +65,10 @@ export default function ImageUpload(props: Props) {
     onRemove: (file) => {
       const index = fileList.indexOf(file);
       const newFileList = fileList.slice();
+      const newField = [...field.value];
       newFileList.splice(index, 1);
+      newField.splice(index, 1);
+      field.onChange(newField);
       setFileList(newFileList);
     },
     onChange: async ({ file }) => {
@@ -62,14 +82,15 @@ export default function ImageUpload(props: Props) {
 
       return false;
     },
+
     fileList,
   };
 
   return (
-    <>
+    <div className="mb">
       <Upload {...uploadProps} listType="picture-card">
         <Button icon={<Upload />}>Select File</Button>
       </Upload>
-    </>
+    </div>
   );
 }

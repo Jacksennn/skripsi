@@ -9,7 +9,7 @@ import {
 import FormLayout from "../../components/form-layout";
 import { firstFormStyle } from "./styles.css";
 import Text from "@/components/elements/text";
-import { Flex, Spin, message, notification } from "antd";
+import { Flex, Image, Spin, message, notification } from "antd";
 import Checkbox from "antd/es/checkbox/Checkbox";
 import Button from "@/components/elements/button";
 import { useRouter } from "next/router";
@@ -82,7 +82,12 @@ export default function ProductFirstForm() {
     <FormLayout>
       <div className={firstFormStyle}>
         <div>
-          <img alt="product-image" src={data!.files?.[0]?.foto_url}></img>
+          <Image
+            alt="product-image"
+            src={data!.files?.[0]?.foto_url}
+            width={400}
+            height={400}
+          ></Image>
         </div>
         <div>
           <Text variant="bodyXl" weight="medium" style={{ marginBottom: 24 }}>
@@ -143,7 +148,7 @@ export default function ProductFirstForm() {
           <Flex gap={16} justify="end" style={{ marginTop: 23 }}>
             <Button
               variant="secondary"
-              onClick={() => onDelete}
+              onClick={() => onDelete(id as string)}
               loading={isDeleteLoad}
             >
               DELETE

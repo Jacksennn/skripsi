@@ -38,7 +38,7 @@ type UploadImageInput = {
 };
 
 export const useUploadImage = (): UseMutationResult<
-  { file_name: string },
+  { file_name: string; url: string },
   unknown,
   UploadImageInput,
   unknown
