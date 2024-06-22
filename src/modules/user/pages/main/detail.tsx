@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { useGetProduct } from "./api";
+import { useGetProduct, useGetProductSuggest } from "./api";
 import Layout from "@/components/widget/layout";
 import Text from "@/components/elements/text";
 import { ProductRespondType } from "@/modules/admin/pages/product/api";
@@ -10,6 +10,7 @@ import NumberControlInput from "../../components/number-control-input";
 import Button from "@/components/elements/button";
 import CartIcon from "@/components/icon/cart-icon";
 import { useAddCart } from "../../cart/api";
+import ImageCard from "@/modules/components/image-card";
 
 export default function MainDetail() {
   const {
@@ -17,6 +18,12 @@ export default function MainDetail() {
   } = useRouter();
 
   const { data: respond, isLoading } = useGetProduct(
+    {
+      id: id as string,
+    },
+    { enabled: !!id },
+  );
+  const { data: suggest } = useGetProductSuggest(
     {
       id: id as string,
     },
@@ -152,6 +159,35 @@ export default function MainDetail() {
             </Button>
           </div>
         </div>
+      </div>
+      <div style={{ marginTop: 20 }} className={detailStyle.container}>
+        {suggest?.data?.map((item) => (
+          <div key={item.id} className={detailStyle.cardContainer}>
+            <Text
+              variant="bodyLarge"
+              color="danger500"
+              weight="semiBold"
+              className={detailStyle.cardTitle}
+            >
+              Buy selected products to get discount!
+            </Text>
+            <div className={detailStyle.flexItemContainer}>
+              <>
+                {item.combinations?.map((combi, index) => (
+                  <React.Fragment key={item.id + combi.id}>
+                    <ImageCard
+                      classname={detailStyle.card}
+                      src={combi.produk.file.foto_url}
+                      price={Number(combi.produk.harga_produk)}
+                      title={combi.produk.nama_produk}
+                    />
+                    {!index && "+"}
+                  </React.Fragment>
+                ))}
+              </>
+            </div>
+          </div>
+        ))}
       </div>
     </Layout>
   );

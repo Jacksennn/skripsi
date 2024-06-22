@@ -1,3 +1,4 @@
+import { colors } from "@/theming/colors";
 import { style } from "@vanilla-extract/css";
 
 export const gridStyle = style({
@@ -80,6 +81,56 @@ export const detailStyle = {
     "@media": {
       "screen and (min-width: 768px)": {
         display: "block",
+      },
+    },
+  }),
+  card: style({
+    maxWidth: 120,
+    "@media": {
+      "screen and (min-width: 425px)": {
+        maxWidth: 200,
+      },
+      "screen and (min-width: 768px)": {
+        minWidth: 200,
+        maxWidth: 400,
+      },
+    },
+  }),
+  cardTitle: style({
+    fontSize: 14,
+    "@media": {
+      "screen and (min-width: 768px)": {
+        fontSize: 18,
+      },
+    },
+  }),
+  cardContainer: style({
+    display: "flex",
+    flexDirection: "column",
+    gap: 20,
+    marginTop: 16,
+    borderRadius: 10,
+    border: `1px solid ${colors.gray400}`,
+    alignItems: "center",
+    width: "100%",
+    padding: 10,
+    "@media": {
+      "screen and (min-width: 768px)": {
+        padding: 20,
+      },
+    },
+  }),
+  flexItemContainer: style({
+    display: "grid",
+    flexWrap: "wrap",
+    alignItems: "center",
+    gridTemplateColumns: "auto 20px auto",
+    gap: 20,
+    "@media": {
+      "screen and (min-width: 768px)": {
+        minWidth: 600,
+        padding: 20,
+        justifyContent: "space-between",
       },
     },
   }),

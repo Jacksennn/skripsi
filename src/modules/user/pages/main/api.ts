@@ -68,3 +68,46 @@ export const useGetProduct = (
     ...options,
   });
 };
+
+export type ProductSuggestRespondType = {
+  id: string;
+  visibility: true;
+  combinations: {
+    id: string;
+    harga_produk: string;
+    produk: {
+      id: string;
+      nama_produk: string;
+      harga_produk: string;
+      stok_produk: -2;
+      sku_produk: string;
+      kategori: {
+        id: string;
+        nama_kategori: string;
+      };
+      file: {
+        id: string;
+        foto_produk: string;
+        urutan: string;
+        foto_url: string;
+      };
+    };
+  }[];
+};
+export const useGetProductSuggest = (
+  input: {
+    id: string;
+  },
+  options?: UseQueryOptions<{ data: ProductSuggestRespondType[] }, unknown>,
+): UseQueryResult<{ data: ProductSuggestRespondType[] }, unknown> => {
+  return useQuery({
+    queryFn: async () =>
+      await queryFetch({
+        endpoint: `produk/${input.id}/suggest`,
+        method: "GET",
+        type: "user",
+      }),
+    queryKey: ["produk-user-suggest", input],
+    ...options,
+  });
+};
