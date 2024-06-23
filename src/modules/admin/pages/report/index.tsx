@@ -9,6 +9,10 @@ import { colors } from "@/theming/colors";
 import PurchaseTab from "./components/purchase-tab";
 import SalesTab from "./components/sales-tab";
 import ReturTab from "./components/retur-tab";
+import Text from "@/components/elements/text";
+import { Flex } from "antd";
+import Button from "@/components/elements/button";
+import ExportSalesMass from "./components/sales-export-mass-modal";
 
 const activeStyle = {
   backgroundColor: colors.secondary800,
@@ -34,6 +38,16 @@ export default function ReportPage() {
   const [tab, setTab] = useState<string>("sales");
   return (
     <AdminLayout>
+      <Flex justify="space-between">
+        <Text variant="bodyLarge">{`${tab} Transaction History`}</Text>
+        <ExportSalesMass
+          target={(showModal) => (
+            <Button variant="primary" onClick={showModal}>
+              Print
+            </Button>
+          )}
+        ></ExportSalesMass>
+      </Flex>
       <div className={reportContainer}>
         <div
           className={reportTabContainerStyle}

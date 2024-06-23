@@ -58,6 +58,7 @@ type QueryFetchParams = {
   type: "admin" | "user";
   body?: any;
   params?: { [key: string]: any };
+  nojsonFormat?: boolean;
 };
 export const queryFetch = async ({
   endpoint,
@@ -65,6 +66,7 @@ export const queryFetch = async ({
   type,
   body,
   params,
+  nojsonFormat,
 }: QueryFetchParams) => {
   const res = await fetch(
     `${BASE_URL}/${type}/${endpoint}` +
@@ -72,7 +74,7 @@ export const queryFetch = async ({
     {
       method: method,
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": nojsonFormat ? "blob" : "application/json",
         "Access-Control-Allow-Origin": "*",
         Accept: "application/json",
         Authorization: `Bearer ${
@@ -84,7 +86,7 @@ export const queryFetch = async ({
       body: JSON.stringify(body),
     },
   );
-  const _res = await res.json();
+  const _res = nojsonFormat ? await res : await res.json();
   if (!res.ok) {
     catchUnauthorized(res, type);
     throw new Error(_res?.message);

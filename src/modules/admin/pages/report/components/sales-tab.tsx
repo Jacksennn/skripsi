@@ -1,5 +1,9 @@
 import React from "react";
-import { useDeleteSale, useGetSales } from "../../transaction/sales/api";
+import {
+  useDeleteSale,
+  useGetSales,
+  usePrintSales,
+} from "../../transaction/sales/api";
 import { Flex, Table, notification } from "antd";
 import { colors } from "@/theming/colors";
 import Button from "@/components/elements/button";
@@ -10,11 +14,18 @@ import DebounceComponent from "@/components/debounce-component";
 import SearchIcon from "@/components/icon/search-icon";
 import BaseInput from "@/components/elements/input/base-input";
 import FilterBySortComponent from "@/modules/admin/components/filter-by-sort-component";
-
+function blobToBase64(blob: any) {
+  return new Promise((resolve, _) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(blob);
+  });
+}
 export default function SalesTab() {
   const [page, setPage] = React.useState<number>(1);
   const [search, setSearch] = React.useState<string>("");
   const [params, setParams] = React.useState<{ [key: string]: any }>({});
+  const { mutateAsync: printSales } = usePrintSales();
   const { data, isLoading } = useGetSales(
     { page, ...params, q: search },
 
@@ -54,6 +65,30 @@ export default function SalesTab() {
     }
     return [];
   }, [data?.data]);
+
+  const onPrint = async (id: string) => {
+    try {
+      const res = await printSales(id);
+
+      const temp = await blobToBase64(await res.blob());
+
+      const win = window.open();
+      win?.document.write(
+        `
+        <title>PDF</title>
+        <body style="padding:0;margin:0;">
+        <iframe src="
+          ${temp}
+          " frameborder="0" style="margin:0; border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allow="fullscreen"></iframe>
+        </body>
+        `,
+      );
+    } catch (e: any) {
+      notification.error({ message: e?.message });
+    }
+  };
+
+  const onPrintMass = async () => {};
   return (
     <>
       <DebounceComponent value={search} setValue={setSearch}>
@@ -186,9 +221,16 @@ export default function SalesTab() {
                   </Button>
                   <Button
                     variant="white"
+                    info
+                    onClick={() => onPrint(record?.id)}
+                  >
+                    Print
+                  </Button>
+                  <Button
+                    variant="white"
                     error
                     shape={"circle"}
-                    onClick={() => onDelete(record.id)}
+                    onClick={() => onDelete(record?.id)}
                   >
                     <TrashSimple size={22} />
                   </Button>

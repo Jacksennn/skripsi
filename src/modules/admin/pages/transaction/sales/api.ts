@@ -161,3 +161,40 @@ export const useDeleteSale = (): UseMutationResult<
       }),
   });
 };
+
+export const useMassPrintSales = (): UseMutationResult<
+  any,
+  unknown,
+  { date: Date },
+  unknown
+> => {
+  return useMutation({
+    mutationFn: async (input: { date: Date }) =>
+      await queryFetch({
+        endpoint: `penjualan/mass-print`,
+        method: "GET",
+        type: "admin",
+        params: {
+          date: input.date,
+        },
+        nojsonFormat: true,
+      }),
+  });
+};
+
+export const usePrintSales = (): UseMutationResult<
+  any,
+  unknown,
+  string,
+  unknown
+> => {
+  return useMutation({
+    mutationFn: async (input: string) =>
+      await queryFetch({
+        endpoint: `penjualan/${input}/print`,
+        method: "GET",
+        type: "admin",
+        nojsonFormat: true,
+      }),
+  });
+};
