@@ -108,30 +108,32 @@ export default function SignInTab(props: Props) {
           <ArrowRight size={20} />
         </Flex>
       </Button>
-      <Button
-        style={{ width: "100%", textTransform: "uppercase" }}
-        size="middle"
-        loading={isLoading}
-        variant="tertiary"
-        onClick={onSignUpWithGoogle}
-      >
-        <Flex align="center" justify="center" gap={12}>
-          <Image
-            width={20}
-            height={20}
-            src={GoogleIcon}
-            alt="google-icon"
-          ></Image>
-          <Text
-            variant="heading05"
-            weight="medium"
-            style={{ textTransform: "capitalize" }}
-          >
-            Sign Up with Google
-          </Text>{" "}
-          {/* <ArrowRight size={20} /> */}
-        </Flex>
-      </Button>
+      {type !== "admin" && (
+        <Button
+          style={{ width: "100%", textTransform: "uppercase" }}
+          size="middle"
+          loading={isLoading}
+          variant="tertiary"
+          onClick={onSignUpWithGoogle}
+        >
+          <Flex align="center" justify="center" gap={12}>
+            <Image
+              width={20}
+              height={20}
+              src={GoogleIcon}
+              alt="google-icon"
+            ></Image>
+            <Text
+              variant="heading05"
+              weight="medium"
+              style={{ textTransform: "capitalize" }}
+            >
+              Sign Up with Google
+            </Text>{" "}
+            {/* <ArrowRight size={20} /> */}
+          </Flex>
+        </Button>
+      )}
     </form>
   );
 }
