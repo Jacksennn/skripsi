@@ -10,6 +10,8 @@ interface Props extends React.PropsWithChildren {
   contentClassname?: string;
   searchComponent?: React.ReactNode;
   headerLeft?: React.ReactNode;
+  style?: React.CSSProperties;
+  hideRight?: boolean;
 }
 
 export default function Layout(props: Props) {
@@ -21,8 +23,10 @@ export default function Layout(props: Props) {
         type={type}
         searchComponent={props.searchComponent}
         left={props.headerLeft}
+        hideRight={props.hideRight}
       />
       <main
+        style={props.style}
         className={classNames(
           layoutStyles.main({ type }),
           props.contentClassname,

@@ -101,6 +101,7 @@ export default function SettingAccountInformationForm({
                 control={control}
                 placeholder={"Email"}
                 label={"Email"}
+                disabled
               ></Input>
             </SectionForm>
             <SectionForm>

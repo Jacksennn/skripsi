@@ -3,6 +3,7 @@ import { Tabs } from "antd";
 import React from "react";
 import { signInUpStyles } from "./styles.css";
 import SignInTab from "./components/sign-in";
+import SignUpTab from "./components/sign-up";
 
 interface Props {
   type?: "default" | "admin";
@@ -36,7 +37,7 @@ export default function SignInUpPage(props: Props) {
                     label: "Sign Up",
                     children: (
                       <div className={signInUpStyles.tabItemContainer}>
-                        sign up
+                        <SignUpTab />
                       </div>
                     ),
                   },

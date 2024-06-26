@@ -17,6 +17,7 @@ interface Props {
   type?: "default" | "admin";
   searchComponent?: React.ReactNode;
   left?: React.ReactNode;
+  hideRight?: boolean;
 }
 
 export default function Header(props: Props) {
@@ -102,45 +103,53 @@ export default function Header(props: Props) {
               )}
             </div>
           )}
-          {isDefault &&
-            (isAuthenticated ? (
-              <>
-                <Button
-                  shape="circle"
-                  icon={<Truck size={20} color="white" />}
-                  variant="white"
-                  onClick={() => router.push("/order-history")}
-                />
-                <Button
-                  shape="circle"
-                  icon={<CartIcon size={20} color="white" />}
-                  variant="white"
-                  onClick={() => router.push("/cart")}
-                />
+          {!props.hideRight && (
+            <>
+              {" "}
+              {isDefault &&
+                (isAuthenticated ? (
+                  <>
+                    <Button
+                      shape="circle"
+                      icon={<Truck size={20} color="white" />}
+                      variant="white"
+                      onClick={() => router.push("/order-history")}
+                    />
+                    <Button
+                      shape="circle"
+                      icon={<CartIcon size={20} color="white" />}
+                      variant="white"
+                      onClick={() => router.push("/cart")}
+                    />
+                    <Button
+                      shape="circle"
+                      icon={<UserIcon size={20} color="white" />}
+                      variant="white"
+                      onClick={() => router.push("/settings")}
+                    />
+                  </>
+                ) : (
+                  <Text
+                    variant="bodyLarge"
+                    weight="semiBold"
+                    color="gray00"
+                    tabIndex={-1}
+                    style={{
+                      cursor: "pointer",
+                    }}
+                    onClick={() => router.push("/sign-in")}
+                  >
+                    Register | Log in
+                  </Text>
+                ))}
+              {!isDefault && isAuthenticated && (
                 <Button
                   shape="circle"
                   icon={<UserIcon size={20} color="white" />}
                   variant="white"
-                  onClick={() => router.push("/settings")}
                 />
-              </>
-            ) : (
-              <Text
-                variant="bodyLarge"
-                weight="semiBold"
-                color="gray00"
-                tabIndex={-1}
-                onClick={() => router.push("/sign-in")}
-              >
-                Register | Log in
-              </Text>
-            ))}
-          {!isDefault && isAuthenticated && (
-            <Button
-              shape="circle"
-              icon={<UserIcon size={20} color="white" />}
-              variant="white"
-            />
+              )}
+            </>
           )}
         </div>
       </div>
