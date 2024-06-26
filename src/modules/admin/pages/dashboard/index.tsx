@@ -8,9 +8,15 @@ import Text from "@/components/elements/text";
 import { Flex } from "antd";
 import Button from "@/components/elements/button";
 import { useGetDashboard } from "./api";
+import { useGetProductsBestSeller } from "../product/api";
+import { useRouter } from "next/router";
 
 export default function AdminMainPage() {
   const { data } = useGetDashboard();
+  const { data: bestSeller } = useGetProductsBestSeller(true, {
+    limit: 4,
+  });
+  const router = useRouter();
   return (
     <AdminLayout>
       <div className={dashboardStyles.grid}>
@@ -58,31 +64,33 @@ export default function AdminMainPage() {
           >
             BEST SELLING PRODUCT
           </Text>
-          <Button variant="white">View All</Button>
+          {(bestSeller?.meta.current_page || 0) <
+            (bestSeller?.meta.last_page || 0) && (
+            <Button
+              variant="white"
+              onClick={() => router.push("/admin/dashboard/detail")}
+            >
+              View All
+            </Button>
+          )}
         </Flex>
         <div className={dashboardStyles.borderBottom}></div>
         <div className="mb"> </div>
         <div className={dashboardStyles.gridImage}>
-          <ImageCard
-            price={50000}
-            title="Semen Merah Putih 40kg"
-            frequency={18}
-          />
-          <ImageCard
-            price={50000}
-            title="Semen Merah Putih 40kg"
-            frequency={18}
-          />
-          <ImageCard
-            price={50000}
-            title="Semen Merah Putih 40kg"
-            frequency={18}
-          />
-          <ImageCard
-            price={50000}
-            title="Semen Merah Putih 40kg"
-            frequency={18}
-          />
+          {!bestSeller?.data?.length && (
+            <Text variant="bodySmall" style={{ textAlign: "center" }}>
+              No Product
+            </Text>
+          )}
+          {bestSeller?.data?.map((item) => (
+            <ImageCard
+              price={Number(item.harga_produk)}
+              title={item.nama_produk}
+              frequency={Number(item.frequency)}
+              src={item.file?.foto_produk}
+              key={item.id}
+            />
+          ))}
         </div>
       </div>
     </AdminLayout>

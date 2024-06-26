@@ -69,6 +69,29 @@ export type ProductRespondType = {
 export type GetProductRespond = {
   data: ProductRespondType;
 };
+export type ProductBestSellerRespondType = {
+  id: string;
+  nama_produk: string;
+  sku_produk: string;
+  kategori: CategoryRespondType;
+  harga_produk: string;
+  stok_produk: number;
+  ket_produk: string;
+  min_produk: number;
+  visibility: boolean;
+  frequency: string;
+  file: {
+    id: string;
+    foto_produk: string;
+    urutan: number;
+    foto_url: string;
+  };
+};
+export type GetProductBestSellerRespond = {
+  data: ProductBestSellerRespondType[];
+  meta: MetaType;
+  filters: FilterType[];
+};
 
 export const useGetProducts = (
   enabled: boolean = true,
@@ -158,5 +181,28 @@ export const useDeleteProduct = (): UseMutationResult<
         method: "DELETE",
         type: "admin",
       }),
+  });
+};
+
+export const useGetProductsBestSeller = (
+  enabled: boolean = true,
+  filters?: { [key: string]: any },
+  extra?: {
+    onSuccess?: (data: GetProductBestSellerRespond) => void;
+  },
+): UseQueryResult<GetProductBestSellerRespond, unknown> => {
+  return useQuery({
+    queryFn: async () =>
+      await queryFetch({
+        endpoint: "dashboards/best-seller",
+        method: "GET",
+        type: "admin",
+        params: filters,
+      }),
+    queryKey: ["daftar-produk-best-seller", filters],
+    enabled: enabled,
+    onSuccess(data) {
+      extra?.onSuccess?.(data);
+    },
   });
 };
