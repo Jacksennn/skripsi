@@ -128,7 +128,7 @@ export default function SignInTab(props: Props) {
               weight="medium"
               style={{ textTransform: "capitalize" }}
             >
-              Sign Up with Google
+              Sign In with Google
             </Text>{" "}
             {/* <ArrowRight size={20} /> */}
           </Flex>
