@@ -32,7 +32,7 @@ export default function MainDetail() {
     { enabled: !!id },
   );
   const data = (respond?.data || {}) as ProductRespondType;
-  const [val, setVal] = React.useState<number>(0);
+  const [val, setVal] = React.useState<number>(1);
   const { mutateAsync, isLoading: isLoadAddCard } = useAddCart();
 
   const addCard = async () => {
