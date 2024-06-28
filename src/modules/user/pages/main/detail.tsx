@@ -13,6 +13,7 @@ import { useAddCart } from "../../cart/api";
 import ImageCard from "@/modules/components/image-card";
 import { formatPricing } from "@/common/price";
 import ProductSearch from "../../product-search";
+import { setCheckoutBucket } from "../../checkout/helpers";
 
 export default function MainDetail() {
   const {
@@ -45,6 +46,22 @@ export default function MainDetail() {
     } catch (e) {
       message.error((e as any)?.message);
     }
+  };
+  const router = useRouter();
+  const onbuynow = async () => {
+    await setCheckoutBucket([
+      {
+        jumlah_produk: val,
+        sub_total: val * Number(data.harga_produk),
+        produk: {
+          ...data,
+          harga_produk: Number(data.harga_produk),
+          file: data?.files[0],
+        },
+        id: "buy-now",
+      },
+    ]);
+    router.push("/checkout");
   };
 
   if (!data) {
@@ -156,6 +173,7 @@ export default function MainDetail() {
               iconPosition="end"
               variant="secondary"
               className={detailStyle.buyNowButton}
+              onClick={onbuynow}
             >
               Buy Now
             </Button>

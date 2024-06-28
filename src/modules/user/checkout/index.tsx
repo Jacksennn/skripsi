@@ -66,9 +66,15 @@ export default function Checkout() {
     isRefetching,
   } = useGetCalculation(
     {
-      carts: buckets?.map((item) => item.id),
+      carts:
+        buckets.findIndex(({ id }) => id === "buy-now") !== -1
+          ? []
+          : buckets?.map((item) => item.id),
       city: city,
       is_self_pick_up: isSelfPickUp,
+
+      id_produk: buckets?.[0]?.produk?.id,
+      jumlah_produk: buckets?.[0]?.jumlah_produk,
     },
     !!city,
     (data) => {
@@ -84,10 +90,19 @@ export default function Checkout() {
       );
     }
     try {
-      const res = await mutateAsync({
-        ...data,
-        carts: buckets?.map((item) => item.id),
-      });
+      const res = await mutateAsync(
+        buckets.findIndex(({ id }) => id === "buy-now") !== -1
+          ? {
+              ...data,
+              carts: [],
+              id_produk: buckets?.[0]?.produk?.id,
+              jumlah_produk: buckets?.[0]?.jumlah_produk,
+            }
+          : {
+              ...data,
+              carts: buckets?.map((item) => item.id),
+            },
+      );
       window.open(res?.invoice_url);
       message.success(res?.message);
 

@@ -11,7 +11,7 @@ import {
 } from "react-query";
 
 export type CreateTransactionInput = {
-  carts: string[];
+  carts?: string[];
   nama_awal: string;
   nama_akhir: string;
   alamat: string;
@@ -23,6 +23,8 @@ export type CreateTransactionInput = {
   note: string;
   jasa_kirim: string;
   shipping: number;
+  id_produk?: string;
+  jumlah_produk?: number;
 };
 export type CheckoutsRespondType = {
   id: string;
@@ -83,6 +85,8 @@ export type getCalculationInput = {
   carts: string[];
   city: string;
   is_self_pick_up: boolean;
+  id_produk: string;
+  jumlah_produk: number;
 };
 
 export type CalculationRespond = {
