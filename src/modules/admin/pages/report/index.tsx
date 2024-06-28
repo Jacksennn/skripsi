@@ -39,7 +39,10 @@ export default function ReportPage() {
   return (
     <AdminLayout>
       <Flex justify="space-between">
-        <Text variant="bodyLarge">{`${tab} Transaction History`}</Text>
+        <Text
+          variant="bodyLarge"
+          style={{ textTransform: "capitalize" }}
+        >{`${tab} Transaction History`}</Text>
         <ExportSalesMass
           target={(showModal) => (
             <Button variant="primary" onClick={showModal}>
