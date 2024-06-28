@@ -59,20 +59,20 @@ export default function MainDetail() {
     <Layout searchComponent={<ProductSearch />}>
       <div className={detailStyle.container}>
         <div style={{ width: 400, height: 500 }}>
-          {/* <Carousel autoplay> */}
-          {data.files?.map((item) => (
-            <Image
-              width={400}
-              height={500}
-              style={{
-                objectFit: "contain",
-              }}
-              src={item.foto_url}
-              alt={item.foto_produk}
-              key={item.foto_url}
-            ></Image>
-          ))}
-          {/* </Carousel> */}
+          <Carousel autoplay arrows>
+            {data.files?.map((item) => (
+              <Image
+                width={400}
+                height={500}
+                style={{
+                  objectFit: "contain",
+                }}
+                src={item.foto_url}
+                alt={item.foto_produk}
+                key={item.foto_url}
+              ></Image>
+            ))}
+          </Carousel>
         </div>
         <div>
           {/* TEXT */}
