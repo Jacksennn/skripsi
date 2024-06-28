@@ -93,12 +93,12 @@ export default function FilterBySortComponent(props: Props) {
 
                 if (index !== -1) {
                   props.onChange?.({
-                    sorts: state.ascending
+                    sort: state.ascending
                       ? state.ascending
                       : `-${state.descending}`,
                   });
                 } else {
-                  props.onChange?.({ sorts: undefined });
+                  props.onChange?.({ sort: undefined });
                 }
               }}
             >
