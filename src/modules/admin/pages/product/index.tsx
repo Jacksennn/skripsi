@@ -30,6 +30,7 @@ export default function ProductPage() {
 
   const { push } = useRouter();
 
+  console.log(data?.filters);
   return (
     <AdminLayout>
       <FormLayout

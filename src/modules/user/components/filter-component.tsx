@@ -1,7 +1,6 @@
 import { FilterType } from "@/api/type";
 import Button from "@/components/elements/button";
 import Text from "@/components/elements/text";
-import { SlidersHorizontal } from "@phosphor-icons/react";
 import { Checkbox, Dropdown, Flex, Popover, Radio } from "antd";
 import React, { useCallback, useState } from "react";
 
@@ -12,21 +11,21 @@ interface Props {
 }
 export default function FilterComponent(props: Props) {
   const { filters, isLoading } = props;
-  const [open, setIsOpen] = useState<boolean>(false);
 
   const [state, setState] = useState<{ [key: string]: any }>({});
 
   React.useEffect(() => {
     const temp: { [key: string]: any } = {};
-    filters
-      .filter((item) => !!item.value)
-      ?.forEach((item) => {
+    filters.map((item) => {
+      if (!!item.value) {
         if (item.behaviour === "multiple") {
           temp[item.name] = (item.value as string).split(",");
         } else {
           temp[item.name] = item.value;
         }
-      });
+      }
+    });
+
     setState(temp);
   }, [filters]);
 
@@ -116,7 +115,6 @@ export default function FilterComponent(props: Props) {
                 temp[`filter[${s}]`] = val;
               }
             });
-            setIsOpen(false);
             props.onChange?.(temp);
           }}
         >
