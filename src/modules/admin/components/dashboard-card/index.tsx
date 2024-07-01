@@ -27,7 +27,7 @@ export default function DashboardCard(props: Props) {
     <div className={dashboardCardStyles.container({ variant })}>
       <div className={dashboardCardStyles.iconContainer}>{icon}</div>
       <div>
-        <Text variant="bodyXl" weight="medium">
+        <Text variant="bodyLarge" weight="medium">
           {content}
         </Text>
         <Text variant="bodySmall" color={"gray700"}>

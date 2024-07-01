@@ -10,6 +10,7 @@ import Button from "@/components/elements/button";
 import { useGetDashboard } from "./api";
 import { useGetProductsBestSeller } from "../product/api";
 import { useRouter } from "next/router";
+import { formatPricing } from "@/common/price";
 
 export default function AdminMainPage() {
   const { data } = useGetDashboard();
@@ -21,34 +22,40 @@ export default function AdminMainPage() {
     <AdminLayout>
       <div className={dashboardStyles.grid}>
         <DashboardCard
-          content={data?.data?.total_sales_this_month || 0}
+          content={formatPricing.format(
+            data?.data?.total_sales_this_month || 0,
+          )}
           text="Total Sales This Month"
           variant="success"
         />
         <DashboardCard
-          content={data?.data?.total_sales_last_month || 0}
+          content={formatPricing.format(
+            data?.data?.total_sales_last_month || 0,
+          )}
           text="Total Sales Last Month"
           variant="info"
         />
         <DashboardCard
-          content={data?.data?.pending_sales_order || 0}
+          content={formatPricing.format(data?.data?.pending_sales_order || 0)}
           text="Pending Sales Order"
           variant="warning"
         />
         <DashboardCard
-          content={data?.data?.total_income_this_month || 0}
+          content={formatPricing.format(
+            data?.data?.total_income_this_month || 0,
+          )}
           text="Total Income This Month"
           variant="success"
         />
         <DashboardCard
-          content={data?.data?.total_income_last_month || 0}
+          content={formatPricing.format(
+            data?.data?.total_income_last_month || 0,
+          )}
           text="Total Income Last Month"
           variant="info"
         />
         <DashboardCard
-          content={`${(data?.data?.income_difference || 0) > -1 ? "+" : "-"} ${
-            data?.data?.income_difference || 0
-          }`}
+          content={formatPricing.format(data?.data?.income_difference || 0)}
           text="Income Difference"
           variant="warning"
         />
