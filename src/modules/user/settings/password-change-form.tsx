@@ -6,7 +6,7 @@ import Button from "@/components/elements/button";
 import { useChangePassword } from "./api";
 import FormLayout from "@/modules/admin/components/form-layout";
 import { buttonContainer } from "./styles.css";
-import { logout, removeUserLoginToken } from "@/common/fetch-hook";
+import { removeUserLoginToken } from "@/common/fetch-hook";
 import { queryClient } from "@/common/query-client";
 import { useRouter } from "next/router";
 
