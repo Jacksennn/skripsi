@@ -5,6 +5,10 @@ import { Col, Row, message, notification } from "antd";
 import Input from "@/components/elements/input";
 import Button from "@/components/elements/button";
 import { useChangePassword } from "./api";
+import { removeAdminLoginToken } from "@/common/fetch-hook";
+import { queryClient } from "@/common/query-client";
+import { useRouter } from "next/router";
+import { buttonContainer } from "@/modules/user/settings/styles.css";
 
 type Inputs = {
   current_password: string;
@@ -33,6 +37,17 @@ export default function PasswordChangeForm() {
     } catch (e: any) {
       notification.error({ message: e?.message });
     }
+  };
+
+  const router = useRouter();
+
+  const onLogout = async () => {
+    removeAdminLoginToken();
+
+    await queryClient.invalidateQueries();
+    await queryClient.clear();
+    notification.success({ message: "You've been logged out!" });
+    router.push("/admin/sign-in");
   };
   return (
     <FormLayout title="Change Password">
@@ -73,15 +88,25 @@ export default function PasswordChangeForm() {
             />
           </Col>
         </Row>
-        <Button
-          variant="primary"
-          htmlType="submit"
-          key="submit"
-          onClick={handleSubmit(onSubmit)}
-          loading={isLoading}
-        >
-          Change Password
-        </Button>
+        <div className={buttonContainer}>
+          <Button
+            variant="primary"
+            htmlType="submit"
+            key="submit"
+            onClick={handleSubmit(onSubmit)}
+            loading={isLoading}
+          >
+            Change Password
+          </Button>
+          <Button
+            variant="primary"
+            htmlType="button"
+            onClick={onLogout}
+            loading={isLoading}
+          >
+            Log Out
+          </Button>
+        </div>
       </form>
     </FormLayout>
   );

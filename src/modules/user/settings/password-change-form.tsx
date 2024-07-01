@@ -1,10 +1,14 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Col, Row, message, notification } from "antd";
+import { Col, Flex, Row, message, notification } from "antd";
 import Input from "@/components/elements/input";
 import Button from "@/components/elements/button";
 import { useChangePassword } from "./api";
 import FormLayout from "@/modules/admin/components/form-layout";
+import { buttonContainer } from "./styles.css";
+import { logout, removeUserLoginToken } from "@/common/fetch-hook";
+import { queryClient } from "@/common/query-client";
+import { useRouter } from "next/router";
 
 type Inputs = {
   current_password: string;
@@ -33,6 +37,15 @@ export default function PasswordChangeForm() {
     } catch (e: any) {
       notification.error({ message: e?.message });
     }
+  };
+
+  const router = useRouter();
+  const onLogout = async () => {
+    removeUserLoginToken();
+
+    await queryClient.invalidateQueries();
+    await queryClient.clear();
+    notification.success({ message: "You've been logged out!" });
   };
   return (
     <FormLayout title="Change Password">
@@ -73,15 +86,25 @@ export default function PasswordChangeForm() {
             />
           </Col>
         </Row>
-        <Button
-          variant="primary"
-          htmlType="submit"
-          key="submit"
-          onClick={handleSubmit(onSubmit)}
-          loading={isLoading}
-        >
-          Change Password
-        </Button>
+        <div className={buttonContainer}>
+          <Button
+            variant="primary"
+            htmlType="submit"
+            key="submit"
+            onClick={handleSubmit(onSubmit)}
+            loading={isLoading}
+          >
+            Change Password
+          </Button>
+          <Button
+            variant="primary"
+            htmlType="button"
+            onClick={onLogout}
+            loading={isLoading}
+          >
+            Log Out
+          </Button>
+        </div>
       </form>
     </FormLayout>
   );
