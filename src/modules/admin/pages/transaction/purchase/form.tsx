@@ -52,9 +52,11 @@ export default function PurchaseForm(props: Props) {
   });
   const { mutateAsync, isLoading: isCreating } = useCreatePurchase();
   const { mutateAsync: mutateEdit, isLoading: isEditing } = useEditPurchase();
+  const [supplierId, setSupplierId] = useState<string>("");
 
   React.useEffect(() => {
     if (data) {
+      setSupplierId(data?.supplier?.no_supplier);
       const temp: Inputs = {
         details:
           data?.details.map((item) => ({
@@ -64,7 +66,7 @@ export default function PurchaseForm(props: Props) {
             jumlah_produk: Number(item.jumlah_produk),
             name: item.produk.nama_produk,
           })) || [],
-        id_supplier: "",
+        id_supplier: data?.supplier.id || "",
         payment_method: data?.payment_method || "",
         status_pembelian: data?.status_pembelian || "",
         tgl_pembelian: dayjs(data?.tgl_pembelian, "YYYY-MM-DD") || dayjs(),
@@ -90,7 +92,6 @@ export default function PurchaseForm(props: Props) {
     }
   };
 
-  const [supplierId, setSupplierId] = useState<string>("");
   return (
     <FormLayout
       title={`Direct Transaction > ${data ? "Edit" : "Add new"} Purchase`}

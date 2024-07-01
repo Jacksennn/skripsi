@@ -8,6 +8,7 @@ import {
   useQuery,
 } from "react-query";
 import { ProductRespondType } from "../../product/api";
+import { SupplierRespondType } from "../../supplier/api";
 
 export type PurchaseInput = {
   id_supplier: string;
@@ -57,6 +58,8 @@ export type PurchaseRespondType = {
     jumlah_produk: number;
     produk: ProductRespondType;
   }[];
+
+  supplier: SupplierRespondType;
 };
 
 export type GetPurchaseRespond = {

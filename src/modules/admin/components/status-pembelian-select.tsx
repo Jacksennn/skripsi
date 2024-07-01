@@ -13,8 +13,8 @@ export const StatusPembelianStatus = [
     value: "On Delivery",
   },
   {
-    label: "Completed",
-    value: "Completed",
+    label: "Delivered",
+    value: "Delivered",
   },
   {
     label: "Cancelled",

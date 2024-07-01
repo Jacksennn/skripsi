@@ -82,15 +82,17 @@ export default function AdminMainPage() {
               No Product
             </Text>
           )}
-          {bestSeller?.data?.map((item) => (
-            <ImageCard
-              price={Number(item.harga_produk)}
-              title={item.nama_produk}
-              frequency={Number(item.frequency)}
-              src={item.file?.foto_produk}
-              key={item.id}
-            />
-          ))}
+          {bestSeller?.data?.map((item) => {
+            return (
+              <ImageCard
+                price={Number(item.harga_produk)}
+                title={item.nama_produk}
+                frequency={Number(item.frequency)}
+                src={item.file?.foto_url}
+                key={item.id}
+              />
+            );
+          })}
         </div>
       </div>
     </AdminLayout>

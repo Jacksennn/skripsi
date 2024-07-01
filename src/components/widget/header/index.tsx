@@ -52,7 +52,7 @@ export default function Header(props: Props) {
               weight="bold"
               color="gray00"
               className={headerStyles.title}
-              onClick={() => router.push("/")}
+              onClick={() => router.push(isDefault ? "/" : "/admin/dashboard")}
             >
               TB CAHAYA BARU
             </Text>
