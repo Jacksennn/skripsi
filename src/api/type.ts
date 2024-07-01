@@ -2,6 +2,7 @@ export type MetaType = {
   current_page: number;
   last_page: number;
   from: number;
+  total: number;
 };
 
 export type FilterType = {

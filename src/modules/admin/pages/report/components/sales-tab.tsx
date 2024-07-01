@@ -89,6 +89,7 @@ export default function SalesTab() {
   };
 
   const onPrintMass = async () => {};
+
   return (
     <>
       <DebounceComponent value={search} setValue={setSearch}>
@@ -245,7 +246,8 @@ export default function SalesTab() {
         pagination={{
           position: ["bottomCenter"],
           current: page,
-          total: data?.meta?.last_page,
+          total: data?.meta.total,
+
           onChange(page) {
             setPage(page);
           },

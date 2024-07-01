@@ -134,7 +134,7 @@ export default function SupplierPage() {
         pagination={{
           position: ["bottomCenter"],
           current: page,
-          total: data?.meta?.last_page,
+          total: data?.meta?.total,
           onChange(page) {
             setPage(page);
           },

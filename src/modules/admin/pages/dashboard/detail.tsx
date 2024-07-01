@@ -45,7 +45,7 @@ export default function DashboardDetail() {
         <Flex justify="center" style={{ marginTop: 32 }}>
           <Pagination
             current={page}
-            total={data?.meta?.last_page}
+            total={data?.meta?.total}
             onChange={(page) => setPage(page)}
           />
         </Flex>

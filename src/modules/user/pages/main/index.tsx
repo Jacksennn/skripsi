@@ -97,7 +97,7 @@ export default function Main() {
       <Flex justify="center" style={{ marginTop: 20, paddingBottom: 20 }}>
         <Pagination
           current={page}
-          total={data?.meta?.last_page}
+          total={data?.meta?.total}
           onChange={(page) => setPage(page)}
         />
       </Flex>
