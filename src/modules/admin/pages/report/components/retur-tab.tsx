@@ -53,7 +53,13 @@ export default function ReturTab() {
   const { push } = useRouter();
   return (
     <>
-      <DebounceComponent value={search} setValue={setSearch}>
+      <DebounceComponent
+        value={search}
+        setValue={(value) => {
+          setPage(1);
+          setSearch(value);
+        }}
+      >
         {(value, onAfterChange) => (
           <BaseInput
             type="text"

@@ -58,7 +58,13 @@ export default function ProductAdjustmentPage() {
         }
       />
       <Flex style={{ marginBottom: 20 }} gap={32}>
-        <DebounceComponent value={search} setValue={setSearch}>
+        <DebounceComponent
+          value={search}
+          setValue={(value) => {
+            setPage(1);
+            setSearch(value);
+          }}
+        >
           {(value, onAfterChange) => (
             <BaseInput
               type="text"

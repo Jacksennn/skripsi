@@ -104,7 +104,12 @@ export default function SalesOrderPage() {
             Retur
           </button>
         </div>
-        <DebounceComponent value={search} setValue={setSearch}>
+        <DebounceComponent
+          value={search}
+          setValue={(value) => {
+            setSearch(value);
+          }}
+        >
           {(value, onAfterChange) => (
             <BaseInput
               type="text"
