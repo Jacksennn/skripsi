@@ -259,9 +259,6 @@ export default function SalesTab() {
           },
         }}
         loading={isLoading}
-        expandable={{
-          defaultExpandAllRows: true,
-        }}
       />
     </>
   );

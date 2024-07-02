@@ -191,9 +191,6 @@ export default function PurchaseTab() {
           },
         }}
         loading={isLoading}
-        expandable={{
-          defaultExpandAllRows: true,
-        }}
       />
     </>
   );

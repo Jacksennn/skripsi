@@ -179,9 +179,6 @@ export default function ReturTab() {
           },
         }}
         loading={isLoading}
-        expandable={{
-          defaultExpandAllRows: true,
-        }}
       />
     </>
   );
