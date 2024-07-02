@@ -93,8 +93,9 @@ export default function AdminMainPage() {
             return (
               <ImageCard
                 price={Number(item.harga_produk)}
+                hoverable={false}
                 title={item.nama_produk}
-                frequency={Number(item.frequency)}
+                frequency={Number(item.total_jual)}
                 src={item.file?.foto_url}
                 key={item.id}
               />

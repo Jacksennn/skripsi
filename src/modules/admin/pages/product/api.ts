@@ -79,7 +79,7 @@ export type ProductBestSellerRespondType = {
   ket_produk: string;
   min_produk: number;
   visibility: boolean;
-  frequency: string;
+  total_jual: string;
   file: {
     id: string;
     foto_produk: string;

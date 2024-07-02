@@ -142,13 +142,6 @@ export default function Header(props: Props) {
                     Register | Log in
                   </Text>
                 ))}
-              {!isDefault && isAuthenticated && (
-                <Button
-                  shape="circle"
-                  icon={<UserIcon size={20} color="white" />}
-                  variant="white"
-                />
-              )}
             </>
           )}
         </div>

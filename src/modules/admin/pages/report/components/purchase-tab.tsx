@@ -181,7 +181,7 @@ export default function PurchaseTab() {
           },
         ]}
         dataSource={tempData}
-        rowKey={"id"}
+        rowKey={"name"}
         pagination={{
           position: ["bottomCenter"],
           current: page,

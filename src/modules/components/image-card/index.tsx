@@ -13,6 +13,7 @@ interface Props {
   onClick?: () => void;
   classname?: string;
   discountPrice?: number;
+  hoverable?: boolean;
 }
 
 export default function ImageCard(props: Props) {
@@ -23,10 +24,11 @@ export default function ImageCard(props: Props) {
     src = "https://placehold.co/600x400",
     onClick,
     discountPrice,
+    hoverable = true,
   } = props;
   return (
     <Card
-      hoverable
+      hoverable={hoverable}
       className={props.classname}
       cover={
         // eslint-disable-next-line @next/next/no-img-element

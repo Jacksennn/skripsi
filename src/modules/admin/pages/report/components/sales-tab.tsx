@@ -248,7 +248,7 @@ export default function SalesTab() {
           },
         ]}
         dataSource={tempData}
-        rowKey={"id"}
+        rowKey={"name"}
         pagination={{
           position: ["bottomCenter"],
           current: page,
