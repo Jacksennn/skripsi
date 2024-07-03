@@ -117,7 +117,7 @@ export default function PurchaseForm(props: Props) {
               <SupplierSelect
                 control={control}
                 name="id_supplier"
-                onChange={(data) => setSupplierId(data?.id || "")}
+                onChange={(data) => setSupplierId(data?.no_supplier || "")}
               />
             </SectionForm>
             <SectionForm>

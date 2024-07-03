@@ -114,7 +114,7 @@ export default function SalesForm(props: Props) {
               <UserSelect
                 control={control}
                 name="id_user"
-                onChange={(data) => setCustomerId(data?.id || "")}
+                onChange={(data) => setCustomerId(data?.no_user || "")}
               />
             </SectionForm>
             <SectionForm>
