@@ -17,6 +17,7 @@ export type SaleInput = {
   status_pembayaran: string;
   details: {
     id_produk: string;
+    sku_produk?: string;
     jumlah_produk: number;
     harga_produk: number;
     diskon_produk: number;

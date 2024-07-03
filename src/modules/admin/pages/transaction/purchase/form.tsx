@@ -65,6 +65,7 @@ export default function PurchaseForm(props: Props) {
             id_produk: item.produk.id,
             jumlah_produk: Number(item.jumlah_produk),
             name: item.produk.nama_produk,
+            sku_produk: item.produk.sku_produk,
           })) || [],
         id_supplier: data?.supplier.id || "",
         payment_method: data?.payment_method || "",

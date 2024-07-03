@@ -66,9 +66,14 @@ export type SaleOrderType = {
 
 export type GetSalesOrderRespond = { data: SalesOrderType[]; meta: MetaType };
 
-export const useGetSalesOrders = (filters?: {
-  [key: string]: any;
-}): UseQueryResult<GetSalesOrderRespond, unknown> => {
+export const useGetSalesOrders = (
+  filters?: {
+    [key: string]: any;
+  },
+  extra?: {
+    onSuccess?: (data: GetSalesOrderRespond) => void;
+  },
+): UseQueryResult<GetSalesOrderRespond, unknown> => {
   return useQuery({
     queryFn: async () =>
       await queryFetch({
@@ -78,6 +83,9 @@ export const useGetSalesOrders = (filters?: {
         params: filters,
       }),
     queryKey: ["sales-orders", filters],
+    onSuccess(data) {
+      extra?.onSuccess?.(data);
+    },
   });
 };
 

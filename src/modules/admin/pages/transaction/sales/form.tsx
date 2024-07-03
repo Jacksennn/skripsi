@@ -69,6 +69,7 @@ export default function SalesForm(props: Props) {
         details:
           data?.details.map((item) => ({
             id: item.id,
+            sku_produk: item.product.sku_produk,
             diskon_produk: Number(item.diskon_produk),
             harga_produk: Number(item.harga_produk),
             id_produk: item.product.id,

@@ -10,7 +10,7 @@ import { container, tabContainerStyle, tabStyle } from "./styles.css";
 import DebounceComponent from "@/components/debounce-component";
 import BaseInput from "@/components/elements/input/base-input";
 import SearchIcon from "@/components/icon/search-icon";
-import { Flex, Table, message, notification } from "antd";
+import { Flex, Pagination, Table, message, notification } from "antd";
 import AdminLayout from "../../components/admin-layout";
 import dayjs from "dayjs";
 import SalesOrderDetail from "./detail";
@@ -27,11 +27,20 @@ const inactiveStyle = {
 
 export default function SalesOrderPage() {
   const [tab, setTab] = useState<string>("News Order");
+  const [page, setPage] = React.useState<number>(1);
+
   const [search, setSearch] = useState<string>("");
-  const { data, isLoading, isRefetching, refetch } = useGetSalesOrders({
-    status_pemesanan: tab,
-    q: search,
-  });
+  const { data, isLoading, isRefetching, refetch } = useGetSalesOrders(
+    {
+      status_pemesanan: tab,
+      q: search,
+    },
+    {
+      onSuccess(data) {
+        setPage(data.meta.current_page);
+      },
+    },
+  );
 
   const { mutateAsync: declineMutate } = useDeclineSalesOrder();
   const { mutateAsync: acceptMutate } = useAcceptSalesOrder();
@@ -201,6 +210,13 @@ export default function SalesOrderPage() {
         pagination={false}
         loading={isLoading || isRefetching}
       />
+      <Flex justify="center" style={{ marginTop: 20, paddingBottom: 20 }}>
+        <Pagination
+          current={page}
+          total={data?.meta?.total}
+          onChange={(page) => setPage(page)}
+        />
+      </Flex>
     </AdminLayout>
   );
 }

@@ -25,7 +25,7 @@ export default function FormItem({ control }: { control: any }) {
         columns={[
           {
             title: "Product Id",
-            dataIndex: "id_produk",
+            dataIndex: "sku_produk",
             width: 80,
           },
           {
@@ -80,7 +80,8 @@ export default function FormItem({ control }: { control: any }) {
         )}
         onChoose={(product) => {
           append({
-            id_produk: product.sku_produk,
+            id_produk: product.id,
+            sku_produk: product.sku_produk,
             name: product.nama_produk,
             diskon_produk: 0,
             harga_produk: product.harga_produk,
