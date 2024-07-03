@@ -170,7 +170,7 @@ export default function ReturForm(props: Props) {
 
                 <Input
                   type="text"
-                  value={salesShow?.data?.user?.id || ""}
+                  value={salesShow?.data?.user?.no_user || ""}
                   disabled={true}
                 ></Input>
               </div>
