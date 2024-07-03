@@ -93,7 +93,7 @@ export default function AddProductModal(props: Props) {
           columns={[
             {
               title: "Product Id",
-              dataIndex: "id",
+              dataIndex: "sku_produk",
               width: 80,
             },
             {
