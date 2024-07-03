@@ -99,15 +99,21 @@ export default function SignInTab(props: Props) {
           (
             <Flex>
               <Text variant="bodySmall">Password</Text>
-              <Flex
-                justify="flex-end"
-                style={{ width: "100%", flex: 1, cursor: "pointer" }}
-                onClick={() => router.push("/forgot-password")}
-              >
-                <Text variant="bodySmall" weight="regular" color="secondary500">
-                  Forget Password
-                </Text>
-              </Flex>
+              {type === "default" && (
+                <Flex
+                  justify="flex-end"
+                  style={{ width: "100%", flex: 1, cursor: "pointer" }}
+                  onClick={() => router.push("/forgot-password")}
+                >
+                  <Text
+                    variant="bodySmall"
+                    weight="regular"
+                    color="secondary500"
+                  >
+                    Forget Password
+                  </Text>
+                </Flex>
+              )}
             </Flex>
           ) as any
         }
