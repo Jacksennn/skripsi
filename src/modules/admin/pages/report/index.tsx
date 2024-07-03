@@ -43,13 +43,15 @@ export default function ReportPage() {
           variant="bodyLarge"
           style={{ textTransform: "capitalize" }}
         >{`${tab} Transaction History`}</Text>
-        <ExportSalesMass
-          target={(showModal) => (
-            <Button variant="primary" onClick={showModal}>
-              Print
-            </Button>
-          )}
-        ></ExportSalesMass>
+        {tab === "sales" && (
+          <ExportSalesMass
+            target={(showModal) => (
+              <Button variant="primary" onClick={showModal}>
+                Print
+              </Button>
+            )}
+          ></ExportSalesMass>
+        )}
       </Flex>
       <div className={reportContainer}>
         <div
