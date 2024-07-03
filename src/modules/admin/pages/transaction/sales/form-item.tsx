@@ -80,7 +80,7 @@ export default function FormItem({ control }: { control: any }) {
         )}
         onChoose={(product) => {
           append({
-            id_produk: product.id,
+            id_produk: product.sku_produk,
             name: product.nama_produk,
             diskon_produk: 0,
             harga_produk: product.harga_produk,
