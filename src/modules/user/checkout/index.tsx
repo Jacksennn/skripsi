@@ -149,11 +149,11 @@ export default function Checkout() {
             label={"Address"}
             style={{ width: "100%" }}
           />
-          <Row gutter={[16, 0]}>
-            <Col span={12}>
+          <Row gutter={[16, 16]}>
+            <Col span={12} xs={{ span: 24 }}>
               <RegionInput control={control} name="region" type="user" />
             </Col>
-            <Col span={12}>
+            <Col span={12} xs={{ span: 24 }}>
               <Row gutter={[16, 0]}>
                 <Col span={12}>
                   <CityInput

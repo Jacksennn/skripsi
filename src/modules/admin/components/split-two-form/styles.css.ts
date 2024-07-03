@@ -14,7 +14,7 @@ export const sectionContainerStyles = style({
 export const sectionStyles = style({
   width: "100%",
   "@media": {
-    "screen and (min-width: 768px)": {
+    "screen and (min-width: 991px)": {
       width: "50%",
     },
   },
