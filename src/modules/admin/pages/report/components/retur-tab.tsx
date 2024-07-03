@@ -141,7 +141,6 @@ export default function ReturTab() {
             title: "",
             key: "operation",
             fixed: "right",
-            width: 100,
             render: (record) =>
               record?.id ? (
                 <Flex gap={16}>
@@ -154,14 +153,14 @@ export default function ReturTab() {
                   >
                     Details
                   </Button>
-                  <Button
+                  {/* <Button
                     variant="white"
                     error
                     shape={"circle"}
                     onClick={() => onDelete(record.id)}
                   >
                     <TrashSimple size={22} />
-                  </Button>
+                  </Button> */}
                 </Flex>
               ) : (
                 <></>
