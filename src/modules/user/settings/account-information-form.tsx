@@ -16,6 +16,7 @@ import {
   SectionForm,
 } from "@/modules/admin/components/split-two-form";
 import FormLayout from "@/modules/admin/components/form-layout";
+import { usericonContainer } from "./styles.css";
 
 type Inputs = MeUpdateInput;
 export default function SettingAccountInformationForm({
@@ -71,7 +72,9 @@ export default function SettingAccountInformationForm({
   return (
     <FormLayout title="Account Setting">
       <Flex gap={20}>
-        <Image width={170} height={170} src={Avatar} alt="avatar" />
+        <div className={usericonContainer}>
+          <Image width={170} height={170} src={Avatar} alt="avatar" />
+        </div>
 
         <form onSubmit={handleSubmit(onSubmit)} style={{ flex: 1 }}>
           <SectionContainerForm>
