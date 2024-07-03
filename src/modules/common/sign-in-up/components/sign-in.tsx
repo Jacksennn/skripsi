@@ -98,7 +98,7 @@ export default function SignInTab(props: Props) {
         label={
           (
             <Flex>
-              Password
+              <Text variant="bodySmall">Password</Text>
               <Flex
                 justify="flex-end"
                 style={{ width: "100%", flex: 1, cursor: "pointer" }}

@@ -54,10 +54,16 @@ export default function Input(props: InputProps) {
   return (
     <Flex vertical={type !== "checkbox"} gap={type === "checkbox" ? 8 : 0}>
       {!!label && (
-        <Text variant="bodySmall">
-          {label}
-          {required && !noAsterisk && <span className="asterisk">*</span>}
-        </Text>
+        <>
+          {typeof label === "string" ? (
+            <Text variant="bodySmall">
+              {label}
+              {required && !noAsterisk && <span className="asterisk">*</span>}
+            </Text>
+          ) : (
+            label
+          )}
+        </>
       )}
       <Controller
         name={name}

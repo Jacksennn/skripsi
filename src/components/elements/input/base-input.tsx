@@ -16,10 +16,16 @@ export default function BaseInput(props: InputProps) {
   return (
     <>
       {!!label && (
-        <Text variant="bodySmall">
-          {label}
-          {required && !noAsterisk && <span className="asterisk">*</span>}
-        </Text>
+        <>
+          {typeof label === "string" ? (
+            <Text variant="bodySmall">
+              {label}
+              {required && !noAsterisk && <span className="asterisk">*</span>}
+            </Text>
+          ) : (
+            label
+          )}
+        </>
       )}
       <RawInput
         {...restProps}
