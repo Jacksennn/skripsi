@@ -132,7 +132,7 @@ export default function ProductSubForm(props: Props) {
               />
               <Input
                 type="number-control"
-                label="Minimum Purchase Quantity"
+                label="Minimum Quantity"
                 name="min_produk"
                 required
                 control={control}
