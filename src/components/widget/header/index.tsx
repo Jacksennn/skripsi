@@ -42,9 +42,11 @@ export default function Header(props: Props) {
   return (
     <header className={headerStyles.container}>
       <div className={headerStyles.innerContainer}>
-        <Flex gap={12}>
+        <Flex gap={2} align="center">
           {!!props.left && (
-            <div className={headerStyles.searchSmallScreen}>{props.left}</div>
+            <div className={headerStyles.searchSmallScreen} style={{ flex: 0 }}>
+              {props.left}
+            </div>
           )}
           <div className={headerStyles.searchBigScreen}>
             <Text

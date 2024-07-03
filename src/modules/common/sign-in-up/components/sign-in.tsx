@@ -11,6 +11,7 @@ import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { auth, googleProvider, useCreategoogleAcc } from "./register-api";
 import GoogleIcon from "@/svg/Google.svg";
+import { useRouter } from "next/router";
 
 type Inputs = {
   username: string;
@@ -76,6 +77,7 @@ export default function SignInTab(props: Props) {
       });
   };
 
+  const router = useRouter();
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
@@ -93,7 +95,23 @@ export default function SignInTab(props: Props) {
         name="password"
         control={control}
         noAsterisk
-        label="Password"
+        label={
+          (
+            <Flex>
+              Password
+              <Flex
+                justify="flex-end"
+                style={{ width: "100%", flex: 1, cursor: "pointer" }}
+                onClick={() => router.push("/forgot-password")}
+              >
+                <Text variant="bodySmall" weight="regular" color="secondary500">
+                  Forget Password
+                </Text>
+              </Flex>
+            </Flex>
+          ) as any
+        }
+        placeholder="Password"
       />
       <Button
         htmlType="submit"
