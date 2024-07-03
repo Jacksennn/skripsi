@@ -51,7 +51,7 @@ export default function ReturForm(props: Props) {
   const { data } = props;
   const { handleSubmit, control, setValue, reset } = useForm<Inputs>({
     defaultValues: {
-      tgl_retur: dayjs(),
+      tgl_retur: dayjs(new Date(), { utc: false }),
       alasan_retur: "",
       details: {},
       id_jual: "",
@@ -92,7 +92,9 @@ export default function ReturForm(props: Props) {
         alasan_retur: data?.alasan_retur,
         id_jual: data?.id_jual,
         id_user: data?.user?.id,
-        tgl_retur: dayjs(data?.tgl_retur, "YYYY-MM-DD") || dayjs(),
+        tgl_retur:
+          dayjs(new Date(data?.tgl_retur), { utc: false }) ||
+          dayjs(new Date(), { utc: false }),
         status_retur: data?.status_retur,
       };
       Object.keys(input).forEach((key) =>

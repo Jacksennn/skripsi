@@ -90,7 +90,7 @@ export default function ExportSalesMass(props: Props) {
       >
         <Text variant="bodySmall">Choose Date</Text>
         <DatePicker
-          value={dayjs(date)}
+          value={dayjs(new Date(date), { utc: false })}
           onChange={setDate as any}
           className={inputStyles}
           size="large"

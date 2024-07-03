@@ -159,7 +159,9 @@ export default function SalesOrderPage() {
             title: "Order Date",
             dataIndex: "tgl_pemesanan",
             render: (_, record) =>
-              dayjs(record.tgl_pemesanan).format("DD/MM/YYYY"),
+              dayjs(new Date(record.tgl_pemesanan), { utc: false }).format(
+                "DD/MM/YYYY",
+              ),
           },
           {
             title: "",

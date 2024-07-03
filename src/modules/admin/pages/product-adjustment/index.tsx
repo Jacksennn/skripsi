@@ -105,7 +105,8 @@ export default function ProductAdjustmentPage() {
             title: "Date Created",
             dataIndex: "created_at",
             width: 200,
-            render: (record) => dayjs(record).format("DD/MM/YYYY"),
+            render: (record) =>
+              dayjs(new Date(record), { utc: false }).format("DD/MM/YYYY"),
           },
           {
             title: "",

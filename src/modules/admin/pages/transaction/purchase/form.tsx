@@ -47,7 +47,9 @@ export default function PurchaseForm(props: Props) {
       id_supplier: "",
       payment_method: data?.payment_method || "",
       status_pembelian: data?.status_pembelian || "",
-      tgl_pembelian: data?.tgl_pembelian || dayjs(),
+      tgl_pembelian: data?.tgl_pembelian
+        ? dayjs(new Date(data?.tgl_pembelian), { utc: false })
+        : dayjs(new Date(), { utc: false }),
     },
   });
   const { mutateAsync, isLoading: isCreating } = useCreatePurchase();
@@ -70,7 +72,9 @@ export default function PurchaseForm(props: Props) {
         id_supplier: data?.supplier.id || "",
         payment_method: data?.payment_method || "",
         status_pembelian: data?.status_pembelian || "",
-        tgl_pembelian: dayjs(data?.tgl_pembelian, "YYYY-MM-DD") || dayjs(),
+        tgl_pembelian:
+          dayjs(new Date(data?.tgl_pembelian), { utc: false }) ||
+          dayjs(new Date(), { utc: false }),
       };
       Object.keys(temp).forEach((key) =>
         setValue(key as any, (temp as any)[key]),

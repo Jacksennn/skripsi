@@ -89,9 +89,9 @@ export default function SalesOrderDetail(props: Props) {
                 <BaseInput
                   value={
                     data?.data?.tgl_pemesanan
-                      ? `${dayjs(data?.data?.tgl_pemesanan).format(
-                          "DD/MM/YYYY, hh:mm A",
-                        )}`
+                      ? `${dayjs(new Date(data?.data?.tgl_pemesanan), {
+                          utc: false,
+                        }).format("DD/MM/YYYY, hh:mm A")}`
                       : ""
                   }
                   label={"Order ID"}

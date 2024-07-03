@@ -37,7 +37,7 @@ export default function SalesForm(props: Props) {
       metode_bayar: "",
       status_pemesanan: "",
       status_pembayaran: "",
-      tgl_pemesanan: dayjs(),
+      tgl_pemesanan: dayjs(new Date(), { utc: false }),
     },
   });
   const { mutateAsync, isLoading: isCreating } = useCreateSale();
@@ -80,8 +80,9 @@ export default function SalesForm(props: Props) {
         metode_bayar: data?.metode_bayar || "",
         status_pembayaran: data?.status_pembayaran || "",
         tgl_pemesanan: data?.tgl_pemesanan
-          ? dayjs(data?.tgl_pemesanan, "YYYY-MM-DD")
-          : dayjs(),
+          ? dayjs(new Date(data?.tgl_pemesanan), { utc: false })
+          : dayjs(new Date(), { utc: false }),
+
         status_pemesanan: data?.status_pemesanan || "",
       };
       Object.keys(temp).forEach((key) =>
