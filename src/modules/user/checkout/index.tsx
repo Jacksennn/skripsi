@@ -126,14 +126,19 @@ export default function Checkout() {
           <Text variant="bodySmall">User name</Text>
           <SectionContainerForm>
             <SectionForm>
-              <Input control={control} name="nama_awal" type="text" />
+              <Input
+                control={control}
+                name="nama_awal"
+                type="text"
+                placeholder="First Name"
+              />
             </SectionForm>
             <SectionForm>
               <Input
                 control={control}
                 name="nama_akhir"
                 type="text"
-                label={""}
+                placeholder={"Last Name"}
               />
             </SectionForm>
           </SectionContainerForm>

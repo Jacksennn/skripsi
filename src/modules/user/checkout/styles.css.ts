@@ -4,8 +4,14 @@ import { style } from "@vanilla-extract/css";
 export const checkoutstyles = {
   container: style({
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     gap: 16,
+    "@media": {
+      "screen and (min-width:768px)": {
+        flexDirection: "row",
+        justifyContent: "space-between",
+      },
+    },
   }),
   summaryCard: style({
     display: "flex",
@@ -16,11 +22,23 @@ export const checkoutstyles = {
     borderRadius: 4,
   }),
   leftContainer: style({
-    width: "70%",
     paddingBottom: 32,
+    padding: 16,
+    width: "calc(100% - 32px)",
+    "@media": {
+      "screen and (min-width:768px)": {
+        width: "70%",
+      },
+    },
   }),
 
   rightContainer: style({
-    width: "30%",
+    width: "calc(100% - 32px)",
+    paddingLeft: 16,
+    "@media": {
+      "screen and (min-width:768px)": {
+        width: "30%",
+      },
+    },
   }),
 };
