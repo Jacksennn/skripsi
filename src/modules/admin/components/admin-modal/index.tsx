@@ -29,7 +29,6 @@ export default function AdminModal(props: Props) {
     setIsModalOpen(false);
   };
 
-  console.log(isModalOpen);
   return (
     <>
       {props.target(showModal)}

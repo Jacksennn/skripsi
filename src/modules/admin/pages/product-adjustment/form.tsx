@@ -47,9 +47,11 @@ export default function ProductAdjustmentForm(props: Props) {
           ...data.data,
           details: data.data.details.map((item) => ({
             id_produk: item.produk.id,
+            sku_produk: item.produk.sku_produk,
             adjustment: item.adjustment,
             harga_produk: Number(item.harga_produk),
             jumlah_produk: item.jumlah_produk,
+            name: item.produk.nama_produk,
           })),
         };
         Object.keys(temp).forEach((key) =>
@@ -65,9 +67,10 @@ export default function ProductAdjustmentForm(props: Props) {
         ? await mutateEdit({ data, id: id })
         : await mutateAsync(data);
       notification.success({ message: res?.message });
+
+      reset({ details: [], alasan_adjust: "", nama_adjust: "" });
       setIsModalOpen(false);
       props.refetch();
-      reset();
     } catch (e: any) {
       notification.error({ message: e?.message });
     }
@@ -84,12 +87,18 @@ export default function ProductAdjustmentForm(props: Props) {
         }
         open={isModalOpen}
         width={800}
-        onCancel={() => setIsModalOpen(false)}
+        onCancel={() => {
+          setIsModalOpen(false);
+          reset({ details: [], alasan_adjust: "", nama_adjust: "" });
+        }}
         okText="Save Changes"
         footer={[
           <Button
             variant="secondary"
-            onClick={() => setIsModalOpen(false)}
+            onClick={() => {
+              setIsModalOpen(false);
+              reset({ details: [], alasan_adjust: "", nama_adjust: "" });
+            }}
             key="cancel"
             disabled={isCreating || isEditing}
           >

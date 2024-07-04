@@ -52,7 +52,9 @@ export default function ProductCombinationDetail(props: Props) {
         visibility: values.visibility,
         combinations: prices,
       };
+
       const res = await mutateAsync({ data: temp, id });
+      reset();
       queryClient.refetchQueries(["daftar-produk-kombinasi"]);
       notification.success({ message: res.message });
       setIsModalOpen(false);

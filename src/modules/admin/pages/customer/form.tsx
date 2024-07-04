@@ -57,10 +57,10 @@ export default function CustomerForm(props: Props) {
       const res = id
         ? await mutateEdit({ data: { ...data, password: null }, id: id })
         : await mutateAsync(data);
+      reset();
       notification.success({ message: res?.message });
       setIsModalOpen(false);
       props.refetch();
-      reset();
     } catch (e: any) {
       notification.error({ message: e?.message });
     }

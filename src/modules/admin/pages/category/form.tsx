@@ -47,9 +47,9 @@ export default function CategoryForm(props: Props) {
         ? await mutateEdit({ data, id: id })
         : await mutateAsync(data);
       notification.success({ message: res?.message });
+      reset();
       setIsModalOpen(false);
       props.refetch();
-      reset();
     } catch (e: any) {
       notification.error({ message: e?.message });
     }
