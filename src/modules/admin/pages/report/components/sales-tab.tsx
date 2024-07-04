@@ -14,6 +14,7 @@ import DebounceComponent from "@/components/debounce-component";
 import SearchIcon from "@/components/icon/search-icon";
 import BaseInput from "@/components/elements/input/base-input";
 import FilterBySortComponent from "@/modules/admin/components/filter-by-sort-component";
+import { formatPricing } from "@/common/price";
 function blobToBase64(blob: any) {
   return new Promise((resolve, _) => {
     const reader = new FileReader();
@@ -150,7 +151,13 @@ export default function SalesTab() {
             width: 120,
           },
           { title: "Quantity", dataIndex: "total_qty", width: 100 },
-          { title: "Total", dataIndex: "total_harga", width: 100 },
+          {
+            title: "Total",
+            dataIndex: "total_harga",
+            width: 100,
+            render: (value) =>
+              value ? formatPricing.format(Number(value || 0)) : "",
+          },
           {
             title: "Delivery Status",
             dataIndex: "status_pemesanan",
@@ -161,11 +168,12 @@ export default function SalesTab() {
                   return (
                     <span style={{ color: colors.warning500 }}>{value}</span>
                   );
-                case "Packing":
+                case "On Process":
                   return (
                     <span style={{ color: colors.primary500 }}>{value}</span>
                   );
                 case "Delivered":
+                case "New Orders":
                   return (
                     <span style={{ color: colors.success500 }}>{value}</span>
                   );

@@ -18,6 +18,7 @@ import Button from "@/components/elements/button";
 import { ArrowRight } from "@phosphor-icons/react";
 import { colors } from "@/theming/colors";
 import { useRouter } from "next/router";
+import { formatPricing } from "@/common/price";
 
 type Inputs = {
   city: string;
@@ -244,7 +245,7 @@ export default function Checkout() {
               <Text variant="bodySmall" color="gray600">
                 Sub-total
               </Text>
-              <Text variant="bodySmall">{`Rp. ${
+              <Text variant="bodySmall">{`${
                 calculation?.data?.sub_total || 0
               }`}</Text>
             </Flex>
@@ -252,7 +253,7 @@ export default function Checkout() {
               <Text variant="bodySmall" color="gray600">
                 Shipping
               </Text>
-              <Text variant="bodySmall">{`Rp. ${
+              <Text variant="bodySmall">{`${
                 calculation?.data?.shipping || 0
               }`}</Text>
             </Flex>
@@ -272,9 +273,9 @@ export default function Checkout() {
                 <Text variant="bodyMedium" weight="semiBold">
                   Total
                 </Text>
-                <Text variant="bodySmall">{`Rp. ${
-                  calculation?.data?.total || 0
-                }`}</Text>
+                <Text variant="bodySmall">{`${formatPricing.format(
+                  calculation?.data?.total || 0,
+                )}`}</Text>
               </Flex>
             </div>
             <Button

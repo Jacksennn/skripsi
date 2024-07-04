@@ -182,7 +182,7 @@ export default function OrderHistoryDetail(props: Props) {
               >
                 <Text variant="bodySmall">Amount:</Text>
                 <Text variant="bodySmall">
-                  {`Rp.${formatPricing.format(
+                  {`${formatPricing.format(
                     Number(
                       data?.data?.details.reduce(
                         (acc, curr) => (acc += Number(curr.total_harga)),
@@ -193,7 +193,7 @@ export default function OrderHistoryDetail(props: Props) {
                 </Text>
                 <Text variant="bodySmall">Discount:</Text>
                 <Text variant="bodySmall">
-                  {`Rp.${formatPricing.format(
+                  {`${formatPricing.format(
                     Number(
                       data?.data?.details.reduce(
                         (acc, curr) => (acc += Number(curr.diskon_produk)),
@@ -207,7 +207,7 @@ export default function OrderHistoryDetail(props: Props) {
                   Total Amount:
                 </Text>
                 <Text variant="bodyLarge" weight="semiBold">
-                  {`Rp.${formatPricing.format(
+                  {`${formatPricing.format(
                     Number(
                       data?.data?.details.reduce(
                         (acc, curr) =>

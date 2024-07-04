@@ -26,7 +26,7 @@ const inactiveStyle = {
 };
 
 export default function SalesOrderPage() {
-  const [tab, setTab] = useState<string>("News Order");
+  const [tab, setTab] = useState<string>("New Orders");
   const [page, setPage] = React.useState<number>(1);
 
   const [search, setSearch] = useState<string>("");
@@ -64,17 +64,17 @@ export default function SalesOrderPage() {
         <div className={tabContainerStyle} style={{ gridColumn: "1 / span 4" }}>
           <button
             type="button"
-            onClick={() => setTab("News Order")}
+            onClick={() => setTab("New Orders")}
             className={tabStyle}
-            style={tab === "News Order" ? activeStyle : inactiveStyle}
+            style={tab === "New Orders" ? activeStyle : inactiveStyle}
           >
             New Orders
           </button>
           <button
             type="button"
-            onClick={() => setTab("Packing")}
+            onClick={() => setTab("On Process")}
             className={tabStyle}
-            style={tab === "Packing" ? activeStyle : inactiveStyle}
+            style={tab === "On Process" ? activeStyle : inactiveStyle}
           >
             On Process
           </button>
@@ -179,7 +179,7 @@ export default function SalesOrderPage() {
               />
             ),
           },
-          ...(tab === "News Order"
+          ...(tab === "New Orders"
             ? ([
                 {
                   title: "",

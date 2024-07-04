@@ -32,7 +32,7 @@ const inactiveStyle = {
 };
 
 export default function OrderHistory() {
-  const [tab, setTab] = useState<string>("Order Placed");
+  const [tab, setTab] = useState<string>("New Orders");
   const [search, setSearch] = React.useState<string>("");
   const { data, isLoading, isRefetching } = useGetCheckouts({
     status_pemesanan: tab,
@@ -52,17 +52,17 @@ export default function OrderHistory() {
           <div className={tabContainerStyle}>
             <button
               type="button"
-              onClick={() => setTab("Order Placed")}
+              onClick={() => setTab("New Orders")}
               className={tabStyle}
-              style={tab === "Order Placed" ? activeStyle : inactiveStyle}
+              style={tab === "New Orders" ? activeStyle : inactiveStyle}
             >
               Order Placed
             </button>
             <button
               type="button"
-              onClick={() => setTab("Packing")}
+              onClick={() => setTab("On Process")}
               className={tabStyle}
-              style={tab === "Packing" ? activeStyle : inactiveStyle}
+              style={tab === "On Process" ? activeStyle : inactiveStyle}
             >
               Packing
             </button>
@@ -214,7 +214,7 @@ export default function OrderHistory() {
                             weight="regular"
                             color="gray600"
                           >
-                            {`Rp. ${item.total_amount}`}
+                            {`${item.total_amount}`}
                           </Text>
                         </Flex>
                       </Flex>

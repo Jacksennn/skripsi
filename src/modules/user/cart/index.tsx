@@ -128,7 +128,7 @@ export default function Cart() {
                           weight="regular"
                           color="gray600"
                         >
-                          {`Rp. ${cart.produk.harga_produk}`}
+                          {`${formatPricing.format(cart.produk.harga_produk)}`}
                         </Text>
                         <Flex gap={20}>
                           <div style={{ width: 100 }}>
@@ -148,7 +148,9 @@ export default function Cart() {
                               weight="regular"
                               color="gray600"
                             >
-                              {`Rp. ${cart.produk.harga_produk}`}
+                              {`${formatPricing.format(
+                                cart.produk.harga_produk,
+                              )}`}
                             </Text>
                           </Flex>
                         </Flex>
@@ -242,17 +244,17 @@ export default function Cart() {
               <Text variant="bodySmall" color="gray600">
                 Sub-total
               </Text>
-              <Text variant="bodySmall">{`Rp. ${
-                enabled ? calculation?.data?.sub_total || 0 : 0
-              }`}</Text>
+              <Text variant="bodySmall">{`${formatPricing.format(
+                enabled ? calculation?.data?.sub_total || 0 : 0,
+              )}`}</Text>
             </Flex>
             <Flex justify="space-between" gap={20}>
               <Text variant="bodySmall" color="gray600">
                 Discount
               </Text>
-              <Text variant="bodySmall">{`Rp. ${
-                enabled ? calculation?.data?.discount || 0 : 0
-              }`}</Text>
+              <Text variant="bodySmall">{`${formatPricing.format(
+                enabled ? calculation?.data?.discount || 0 : 0,
+              )}`}</Text>
             </Flex>
             <div>
               <Divider />
@@ -260,9 +262,9 @@ export default function Cart() {
                 <Text variant="bodyMedium" weight="semiBold">
                   Total
                 </Text>
-                <Text variant="bodySmall">{`Rp. ${
-                  enabled ? calculation?.data?.total || 0 : 0
-                }`}</Text>
+                <Text variant="bodySmall">{`${formatPricing.format(
+                  enabled ? calculation?.data?.total || 0 : 0,
+                )}`}</Text>
               </Flex>
             </div>
             <Button

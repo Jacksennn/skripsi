@@ -130,7 +130,7 @@ export default function PurchaseTab() {
                   return (
                     <span style={{ color: colors.warning500 }}>{value}</span>
                   );
-                case "Packing":
+                case "On Process":
                   return (
                     <span style={{ color: colors.primary500 }}>{value}</span>
                   );
