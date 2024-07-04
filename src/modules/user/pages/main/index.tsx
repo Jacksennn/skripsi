@@ -98,6 +98,7 @@ export default function Main() {
         <Pagination
           current={page}
           total={data?.meta?.total}
+          pageSize={15}
           onChange={(page) => setPage(page)}
         />
       </Flex>

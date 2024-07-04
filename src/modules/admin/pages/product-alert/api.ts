@@ -25,6 +25,7 @@ export type GetProductAlertRespond = {
 
 export const useGetProductAlert = (
   enabled: boolean = true,
+  params: { [key: string]: any },
 ): UseQueryResult<GetProductAlertRespond, unknown> => {
   return useQuery({
     queryFn: async () =>
@@ -32,8 +33,9 @@ export const useGetProductAlert = (
         endpoint: "peringatan-produk",
         method: "GET",
         type: "admin",
+        params,
       }),
-    queryKey: ["produk-alert"],
+    queryKey: ["produk-alert", params],
     enabled: enabled,
   });
 };

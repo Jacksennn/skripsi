@@ -46,6 +46,7 @@ export default function DashboardDetail() {
           <Pagination
             current={page}
             total={data?.meta?.total}
+            pageSize={15}
             onChange={(page) => setPage(page)}
           />
         </Flex>

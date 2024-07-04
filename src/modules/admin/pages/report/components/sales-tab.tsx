@@ -260,7 +260,7 @@ export default function SalesTab() {
           position: ["bottomCenter"],
           current: page,
           total: data?.meta.total,
-
+          pageSize: 15,
           onChange(page) {
             setPage(page);
           },

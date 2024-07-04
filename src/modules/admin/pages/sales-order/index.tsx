@@ -215,6 +215,7 @@ export default function SalesOrderPage() {
       <Flex justify="center" style={{ marginTop: 20, paddingBottom: 20 }}>
         <Pagination
           current={page}
+          pageSize={15}
           total={data?.meta?.total}
           onChange={(page) => setPage(page)}
         />

@@ -7,7 +7,9 @@ import { Flex, Image, Table, Typography } from "antd";
 import { formatPricing } from "@/common/price";
 
 export default function ProductAlert() {
-  const { data, refetch, isLoading } = useGetProductAlert();
+  const [page, setPage] = React.useState<number>(1);
+
+  const { data, refetch, isLoading } = useGetProductAlert(true, { page });
   return (
     <AdminLayout>
       <Text variant="bodyXxl" style={{ marginBottom: 8 }}>
@@ -80,6 +82,13 @@ export default function ProductAlert() {
         dataSource={data?.data || []}
         pagination={{
           position: ["bottomCenter"],
+          current: page,
+
+          total: data?.meta?.total,
+          pageSize: 15,
+          onChange(page) {
+            setPage(page);
+          },
         }}
       />
     </AdminLayout>

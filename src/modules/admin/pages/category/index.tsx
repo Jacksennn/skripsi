@@ -134,7 +134,9 @@ export default function CategoryPage() {
         pagination={{
           position: ["bottomCenter"],
           current: page,
+
           total: data?.meta?.total,
+          pageSize: 15,
           onChange(page) {
             setPage(page);
           },

@@ -16,7 +16,17 @@ export default function AddProductModal(props: Props) {
     ProductsRespondType | undefined
   >();
 
-  const { data, isLoading } = useGetProducts(isModalOpen);
+  const [page, setPage] = React.useState<number>(1);
+
+  const { data, isLoading } = useGetProducts(
+    isModalOpen,
+    { page },
+    {
+      onSuccess(data) {
+        setPage(data.meta.current_page);
+      },
+    },
+  );
   const onChoose = () => {
     if (!selectedRowKey?.id) {
       message.error({ content: "Please select at least one item / product" });
@@ -124,6 +134,12 @@ export default function AddProductModal(props: Props) {
           rowKey={"id"}
           pagination={{
             position: ["bottomCenter"],
+            current: page,
+            total: data?.meta?.total,
+            pageSize: 15,
+            onChange(page) {
+              setPage(page);
+            },
           }}
         />
       </Modal>
