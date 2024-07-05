@@ -69,16 +69,9 @@ export default function MainDetail() {
     router.push("/checkout");
   };
 
-  if (isLoading) {
-    return (
-      <Flex>
-        <Spin />
-      </Flex>
-    );
-  }
-
   return (
     <Layout searchComponent={<ProductSearch />}>
+      {isLoading && <Spin fullscreen />}
       <div className={detailStyle.container}>
         <div style={{ width: 400, height: 500 }}>
           <Carousel autoplay arrows>
@@ -125,7 +118,7 @@ export default function MainDetail() {
                     Stock:
                   </Text>
                   <Text variant="bodySmall" weight="bold">
-                    {data!.stok_produk}
+                    {data!.stok_produk || "-"}
                   </Text>
                 </Flex>
               </div>
@@ -134,7 +127,7 @@ export default function MainDetail() {
                   Category:
                 </Text>
                 <Text variant="bodySmall" weight="bold">
-                  {data!.kategori?.nama_kategori}
+                  {data!.kategori?.nama_kategori || "-"}
                 </Text>
               </Flex>
             </>
