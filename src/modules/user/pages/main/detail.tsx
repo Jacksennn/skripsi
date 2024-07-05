@@ -24,7 +24,12 @@ export default function MainDetail() {
     {
       id: id as string,
     },
-    { enabled: !!id },
+    {
+      enabled: !!id,
+      onError(err: any) {
+        message.error(err?.message);
+      },
+    },
   );
   const { data: suggest } = useGetProductSuggest(
     {
@@ -64,7 +69,7 @@ export default function MainDetail() {
     router.push("/checkout");
   };
 
-  if (!data) {
+  if (isLoading) {
     return (
       <Flex>
         <Spin />
@@ -201,6 +206,7 @@ export default function MainDetail() {
                       price={Number(combi.produk.harga_produk)}
                       title={combi.produk.nama_produk}
                       discountPrice={Number(combi.harga_produk)}
+                      onClick={() => router.push(`/${combi.produk.id}`)}
                     />
                     {!index && "+"}
                   </React.Fragment>
