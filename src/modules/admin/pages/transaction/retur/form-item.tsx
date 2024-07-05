@@ -51,12 +51,13 @@ export default function FormItem({
             title: "Quantity",
             dataIndex: "qty",
             width: 120,
-            render: (_, record, index) => (
+            render: (_, record: any, index) => (
               <Input
                 type="number"
                 variant="borderless"
                 control={control}
                 name={`details.${record.id}.jumlah_produk`}
+                key={`details.${record.sku_produk}.jumlah_produk`}
                 max={record.jumlah_produk}
                 noMb={true}
               />

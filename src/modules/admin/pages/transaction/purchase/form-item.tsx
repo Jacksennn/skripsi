@@ -37,12 +37,13 @@ export default function FormItem({ control }: { control: any }) {
             title: "Quantity",
             dataIndex: "jumlah_produk",
             width: 120,
-            render: (_, __, index) => (
+            render: (_, record: any, index) => (
               <Input
                 type="number"
                 variant="borderless"
                 control={control}
                 name={`details.${index}.jumlah_produk`}
+                key={`details.${record.sku_produk}.jumlah_produk`}
               />
             ),
           },
@@ -50,12 +51,13 @@ export default function FormItem({ control }: { control: any }) {
             title: "Price",
             dataIndex: "harga_produk",
             width: 120,
-            render: (_, __, index) => (
+            render: (_, record: any, index) => (
               <Input
                 type="number"
                 variant="borderless"
                 control={control}
                 name={`details.${index}.harga_produk`}
+                key={`details.${record.sku_produk}.harga_produk`}
               />
             ),
           },
@@ -63,12 +65,13 @@ export default function FormItem({ control }: { control: any }) {
             title: "Discount",
             dataIndex: "diskon_produk",
             width: 200,
-            render: (_, __, index) => (
+            render: (_, record: any, index) => (
               <Input
                 type="number"
                 variant="borderless"
                 control={control}
                 name={`details.${index}.diskon_produk`}
+                key={`details.${record.sku_produk}.diskon_produk`}
               />
             ),
           },

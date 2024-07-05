@@ -40,13 +40,14 @@ export default function FormItem({ control }: { control: any }) {
             title: "Quantity",
             dataIndex: "jumlah_produk",
             width: 120,
-            render: (_, __, index) => (
+            render: (_, record: any, index) => (
               <Input
                 type="number"
                 variant="borderless"
                 control={control}
                 name={`details.${index}.jumlah_produk`}
                 noMb
+                key={`details.${record.sku_produk}.jumlah_produk`}
               />
             ),
           },
@@ -58,7 +59,7 @@ export default function FormItem({ control }: { control: any }) {
           {
             title: "Adjustment",
             dataIndex: "adjustment",
-            render: (_, __, index) => (
+            render: (_, record, index) => (
               <AdjustmentDetailSelect
                 name={`details.${index}.adjustment`}
                 control={control}
