@@ -5,9 +5,10 @@ import { Table } from "antd";
 import Input from "@/components/elements/input";
 import AddProductModal from "../../product/add-product-modal";
 import Button from "@/components/elements/button";
+import { TrashSimple } from "@phosphor-icons/react";
 
 export default function FormItem({ control }: { control: any }) {
-  const { fields, append } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     name: "details",
     control,
   });
@@ -69,6 +70,22 @@ export default function FormItem({ control }: { control: any }) {
                 control={control}
                 name={`details.${index}.diskon_produk`}
               />
+            ),
+          },
+          {
+            title: "",
+            key: "operation",
+            fixed: "right",
+            width: 100,
+            render: (_, __, index) => (
+              <Button
+                variant="white"
+                error
+                shape={"circle"}
+                onClick={() => remove(index)}
+              >
+                <TrashSimple size={22} />
+              </Button>
             ),
           },
         ]}
