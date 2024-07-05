@@ -21,6 +21,7 @@ import dayjs from "dayjs";
 import DatePicker from "@/components/elements/input/date-picker";
 import { queryClient } from "@/common/query-client";
 import { useRouter } from "next/router";
+import SaleTotalComponent from "./total-component";
 
 type Inputs = SaleInput;
 
@@ -140,6 +141,7 @@ export default function SalesForm(props: Props) {
             </SectionForm>
           </SectionContainerForm>
           <FormItem control={control} />
+          <SaleTotalComponent control={control} />
         </CardWrapper>
         <Flex gap={16} justify="end">
           <CancelButton />
