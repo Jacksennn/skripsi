@@ -79,7 +79,7 @@ export default function FormItem({ control }: { control: any }) {
           {
             title: "Total",
             dataIndex: "total",
-            width: 200,
+
             render: (_, record, index) => (
               <TotalPerRowcomponent index={index} control={control} />
             ),
