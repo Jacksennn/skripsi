@@ -25,6 +25,7 @@ import CancelButton from "@/modules/admin/components/cancel-button";
 import { queryClient } from "@/common/query-client";
 import dayjs from "dayjs";
 import DatePicker from "@/components/elements/input/date-picker";
+import PurchaseTotalComponent from "./total-component";
 
 interface Props {
   data?: PurchaseRespondType;
@@ -141,6 +142,7 @@ export default function PurchaseForm(props: Props) {
             </SectionForm>
           </SectionContainerForm>
           <FormItem control={control} />
+          <PurchaseTotalComponent control={control} />
         </CardWrapper>
         <Flex gap={16} justify="end">
           <CancelButton />
