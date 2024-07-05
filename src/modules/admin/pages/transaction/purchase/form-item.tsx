@@ -17,6 +17,7 @@ export default function FormItem({ control }: { control: any }) {
       <Table
         virtual
         dataSource={fields}
+        pagination={false}
         style={{
           fontSize: 14,
         }}

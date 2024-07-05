@@ -99,6 +99,7 @@ export default function Main() {
           current={page}
           total={data?.meta?.total}
           pageSize={15}
+          showSizeChanger={false}
           onChange={(page) => setPage(page)}
         />
       </Flex>

@@ -16,6 +16,7 @@ export default function FormItem({
       <Table
         virtual
         dataSource={sales?.details || []}
+        pagination={false}
         style={{
           fontSize: 14,
           marginTop: 24,

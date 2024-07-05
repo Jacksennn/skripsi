@@ -216,6 +216,7 @@ export default function SalesOrderPage() {
         <Pagination
           current={page}
           pageSize={15}
+          showSizeChanger={false}
           total={data?.meta?.total}
           onChange={(page) => setPage(page)}
         />

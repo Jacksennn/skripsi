@@ -137,6 +137,7 @@ export default function AddProductModal(props: Props) {
             current: page,
             total: data?.meta?.total,
             pageSize: 15,
+            showSizeChanger: false,
             onChange(page) {
               setPage(page);
             },

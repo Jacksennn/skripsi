@@ -68,9 +68,10 @@ export default function ProductPage() {
         <Flex justify="center" style={{ marginTop: 32 }}>
           <Pagination
             current={page}
-            pageSize={15}
             total={data?.meta?.total}
             onChange={(page) => setPage(page)}
+            pageSize={15}
+            showSizeChanger={false}
           />
         </Flex>
       </FormLayout>

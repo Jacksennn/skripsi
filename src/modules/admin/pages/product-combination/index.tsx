@@ -107,6 +107,7 @@ export default function ProductCombination() {
           <Pagination
             current={page}
             pageSize={15}
+            showSizeChanger={false}
             total={data?.meta?.total}
             onChange={(page) => setPage(page)}
           />

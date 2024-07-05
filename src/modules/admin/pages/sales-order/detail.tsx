@@ -118,11 +118,11 @@ export default function SalesOrderDetail(props: Props) {
             </SectionContainerForm>
             <Table
               virtual
+              pagination={false}
               dataSource={data?.data?.details || []}
               style={{
                 fontSize: 14,
               }}
-              pagination={false}
               columns={[
                 {
                   title: "Product Id",

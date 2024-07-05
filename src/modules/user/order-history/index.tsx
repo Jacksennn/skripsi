@@ -228,6 +228,7 @@ export default function OrderHistory() {
         <div className={itemstyle.tableContainer}>
           <Table
             virtual
+            pagination={false}
             style={{
               fontSize: 14,
             }}
@@ -306,7 +307,6 @@ export default function OrderHistory() {
             ]}
             dataSource={data?.data || []}
             rowKey={"id"}
-            pagination={false}
             loading={isLoading || isRefetching}
           />
         </div>

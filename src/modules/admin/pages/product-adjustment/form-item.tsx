@@ -7,9 +7,10 @@ import Input from "@/components/elements/input";
 import Button from "@/components/elements/button";
 import AddProductModal from "../product/add-product-modal";
 import AdjustmentDetailSelect from "../../components/adjustment-detail";
+import { TrashSimple } from "@phosphor-icons/react";
 
 export default function FormItem({ control }: { control: any }) {
-  const { fields, append } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     name: "details",
     control,
   });
@@ -19,6 +20,7 @@ export default function FormItem({ control }: { control: any }) {
       <Table
         virtual
         dataSource={fields}
+        pagination={false}
         style={{
           fontSize: 14,
         }}
@@ -68,6 +70,23 @@ export default function FormItem({ control }: { control: any }) {
                 name={`details.${index}.adjustment`}
                 control={control}
               />
+            ),
+          },
+
+          {
+            title: "",
+            key: "operation",
+            fixed: "right",
+            width: 100,
+            render: (_, __, index) => (
+              <Button
+                variant="white"
+                error
+                shape={"circle"}
+                onClick={() => remove(index)}
+              >
+                <TrashSimple size={22} />
+              </Button>
             ),
           },
         ]}
