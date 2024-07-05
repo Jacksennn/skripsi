@@ -6,6 +6,7 @@ import Input from "@/components/elements/input";
 import AddProductModal from "../../product/add-product-modal";
 import Button from "@/components/elements/button";
 import { TrashSimple } from "@phosphor-icons/react";
+import TotalPerRowcomponent from "./total-per-row-component";
 
 export default function FormItem({ control }: { control: any }) {
   const { fields, append, remove } = useFieldArray({
@@ -73,6 +74,14 @@ export default function FormItem({ control }: { control: any }) {
                 name={`details.${index}.diskon_produk`}
                 key={`details.${record.sku_produk}.diskon_produk`}
               />
+            ),
+          },
+          {
+            title: "Total",
+            dataIndex: "total",
+            width: 200,
+            render: (_, record, index) => (
+              <TotalPerRowcomponent index={index} control={control} />
             ),
           },
           {
