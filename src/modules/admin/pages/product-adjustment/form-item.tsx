@@ -8,6 +8,7 @@ import Button from "@/components/elements/button";
 import AddProductModal from "../product/add-product-modal";
 import AdjustmentDetailSelect from "../../components/adjustment-detail";
 import { TrashSimple } from "@phosphor-icons/react";
+import { formatPricing } from "@/common/price";
 
 export default function FormItem({ control }: { control: any }) {
   const { fields, append, remove } = useFieldArray({
@@ -45,26 +46,18 @@ export default function FormItem({ control }: { control: any }) {
                 variant="borderless"
                 control={control}
                 name={`details.${index}.jumlah_produk`}
+                noMb
               />
             ),
           },
           {
             title: "Price",
             dataIndex: "harga_produk",
-            width: 120,
-            render: (_, __, index) => (
-              <Input
-                type="number"
-                variant="borderless"
-                control={control}
-                name={`details.${index}.harga_produk`}
-              />
-            ),
+            render: (val) => formatPricing.format(val),
           },
           {
             title: "Adjustment",
             dataIndex: "adjustment",
-            width: 120,
             render: (_, __, index) => (
               <AdjustmentDetailSelect
                 name={`details.${index}.adjustment`}
