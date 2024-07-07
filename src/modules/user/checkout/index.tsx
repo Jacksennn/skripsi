@@ -59,15 +59,16 @@ export default function Checkout() {
   const { mutateAsync, isLoading: isCreating } = useCreateTransaction();
   useGetMe({
     onSuccess(data) {
+      const [awal, ...akhir] = data.data.nama_user.split(" ");
       const temp: Inputs = {
         alamat: data.data.alamat_user,
         city: data.data.city,
         email: data.data.email_user,
-        nama_akhir: data.data.nama_user,
-        nama_awal: data.data.nama_user,
+        nama_akhir: awal,
+        nama_awal: akhir.join(" "),
         no_telp: data.data.notelp_user,
         region: data.data.region,
-        zip_code: data.data.zip_code,
+        zip_code: data.data.zipcode,
         is_self_pick_up: false,
         jasa_kirim: "",
         note: "",
