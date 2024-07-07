@@ -19,6 +19,7 @@ import { ArrowRight } from "@phosphor-icons/react";
 import { colors } from "@/theming/colors";
 import { useRouter } from "next/router";
 import { formatPricing } from "@/common/price";
+import { useGetMe } from "../settings/api";
 
 type Inputs = {
   city: string;
@@ -38,6 +39,7 @@ type Inputs = {
 export default function Checkout() {
   const buckets = getBucket();
   const router = useRouter();
+
   const { handleSubmit, control, setValue, reset } = useForm<Inputs>({
     defaultValues: {
       alamat: "",
@@ -55,6 +57,27 @@ export default function Checkout() {
     },
   });
   const { mutateAsync, isLoading: isCreating } = useCreateTransaction();
+  useGetMe({
+    onSuccess(data) {
+      const temp: Inputs = {
+        alamat: data.data.alamat_user,
+        city: data.data.city,
+        email: data.data.email_user,
+        nama_akhir: data.data.nama_user,
+        nama_awal: data.data.nama_user,
+        no_telp: data.data.notelp_user,
+        region: data.data.region,
+        zip_code: data.data.zip_code,
+        is_self_pick_up: false,
+        jasa_kirim: "",
+        note: "",
+        shipping: 0,
+      };
+      Object.keys(temp).forEach((key) =>
+        setValue(key as any, (temp as any)[key]),
+      );
+    },
+  });
 
   const [regionId, isSelfPickUp, city] = useWatch({
     name: ["region", "is_self_pick_up", "city"],
