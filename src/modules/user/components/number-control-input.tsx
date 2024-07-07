@@ -16,6 +16,7 @@ export default function NumberControlInput(props: Props) {
       size={props.size || "large"}
       style={{ textAlign: "center" }}
       value={props.value as any}
+      readOnly
       {...{
         addonBefore: (
           <button
