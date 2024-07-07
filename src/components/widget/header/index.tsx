@@ -23,7 +23,7 @@ interface Props {
 export default function Header(props: Props) {
   const { type = "default", searchComponent } = props;
   const router = useRouter();
-  const isDefault = type === "default";
+  const isDefault = type === "default"; // USER
   const [isSearchExpand, setIsSearchExpand] = React.useState<boolean>();
 
   const [isAuthenticated, setIsAuthenticated] = React.useState<boolean>(true);

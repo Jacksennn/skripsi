@@ -269,17 +269,17 @@ export default function Checkout() {
               <Text variant="bodySmall" color="gray600">
                 Sub-total
               </Text>
-              <Text variant="bodySmall">{`${
-                calculation?.data?.sub_total || 0
-              }`}</Text>
+              <Text variant="bodySmall">{`${formatPricing.format(
+                calculation?.data?.sub_total || 0,
+              )}`}</Text>
             </Flex>
             <Flex justify="space-between" gap={20}>
               <Text variant="bodySmall" color="gray600">
                 Shipping
               </Text>
-              <Text variant="bodySmall">{`${
-                calculation?.data?.shipping || 0
-              }`}</Text>
+              <Text variant="bodySmall">{`${formatPricing.format(
+                calculation?.data?.shipping || 0,
+              )}`}</Text>
             </Flex>
 
             <>

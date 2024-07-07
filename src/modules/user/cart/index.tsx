@@ -58,6 +58,7 @@ function NumberInput({
     </DebounceComponent>
   );
 }
+
 export default function Cart() {
   const { data, refetch } = useGetCarts();
   const [selectedRowKey, setSelectedRowKey] = React.useState<string[]>([]);
