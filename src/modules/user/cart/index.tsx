@@ -66,6 +66,7 @@ export default function Cart() {
     data: calculation,
     isLoading,
     isRefetching,
+    refetch: refetchCalculation,
   } = useGetCalculation({ carts: selectedRowKey }, enabled);
 
   const router = useRouter();
@@ -73,6 +74,7 @@ export default function Cart() {
   React.useEffect(() => {
     resetBucket();
   }, []);
+
   return (
     <Layout>
       <div className={cartStyles.container}>
@@ -136,7 +138,12 @@ export default function Cart() {
                               id={cart.id}
                               init={cart.jumlah_produk}
                               size="small"
-                              refetch={refetch}
+                              refetch={() => {
+                                refetch();
+                                if (selectedRowKey.includes(cart.id)) {
+                                  refetchCalculation();
+                                }
+                              }}
                             />
                           </div>
                           <Flex vertical align="flex-end">
@@ -199,7 +206,12 @@ export default function Cart() {
                     <NumberInput
                       id={record.id}
                       init={record.jumlah_produk}
-                      refetch={refetch}
+                      refetch={() => {
+                        refetch();
+                        if (selectedRowKey.includes(record.id)) {
+                          refetchCalculation();
+                        }
+                      }}
                     />
                   ),
                 },
