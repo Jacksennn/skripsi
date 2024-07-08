@@ -115,7 +115,7 @@ export default function MainDetail() {
 
                 <Flex style={{ marginBottom: 16 }} gap={2}>
                   <Text variant="bodySmall" weight="regular">
-                    Stock:
+                    Stok:
                   </Text>
                   <Text variant="bodySmall" weight="bold">
                     {data!.stok_produk || "-"}
@@ -124,7 +124,7 @@ export default function MainDetail() {
               </div>
               <Flex gap={2}>
                 <Text variant="bodySmall" weight="regular">
-                  Category:
+                  Kategori:
                 </Text>
                 <Text variant="bodySmall" weight="bold">
                   {data!.kategori?.nama_kategori || "-"}
@@ -135,7 +135,7 @@ export default function MainDetail() {
             <Flex justify="space-between" gap={16}>
               <div>
                 <Text color="gray600" variant="bodySmall">
-                  Price:
+                  Harga:
                 </Text>
                 <Text color="secondary500" variant="heading03">
                   {formatPricing.format(Number(data!.harga_produk) || 0)},-
@@ -144,7 +144,7 @@ export default function MainDetail() {
             </Flex>
             <Divider />
             <Text variant="bodyMedium" weight="bold">
-              Description
+              Deskripsi
             </Text>
             <Text variant="bodySmall" style={{ textAlign: "justify" }}>
               {data.ket_produk}
@@ -165,7 +165,7 @@ export default function MainDetail() {
               onClick={addCard}
               loading={isLoadAddCard}
             >
-              Add to Cart
+              Tambah ke Keranjang
             </Button>
             <Button
               iconPosition="end"
@@ -173,7 +173,7 @@ export default function MainDetail() {
               className={detailStyle.buyNowButton}
               onClick={onbuynow}
             >
-              Buy Now
+              Beli Sekarang
             </Button>
           </div>
         </div>

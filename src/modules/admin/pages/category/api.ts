@@ -115,7 +115,7 @@ export const useDeleteCategory = (): UseMutationResult<
     mutationFn: async (input: CategoryDeleteInput) =>
       await queryFetch({
         endpoint: `kategori/${input.id}`,
-        method: "DELETE",
+        method: "Hapus",
         type: "admin",
       }),
   });

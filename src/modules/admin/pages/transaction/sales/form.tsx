@@ -101,7 +101,7 @@ export default function SalesForm(props: Props) {
             <SectionForm>
               <div style={{ marginBottom: 16 }}>
                 <Text variant="bodySmall">
-                  Customer ID
+                  ID Kustomer
                   <span className="asterisk">*</span>
                 </Text>
 
@@ -109,7 +109,7 @@ export default function SalesForm(props: Props) {
                   type="text"
                   value={customerId}
                   disabled={true}
-                  placeholder={"Choose Customer Name"}
+                  placeholder={"Choose Customer Nama"}
                 ></Input>
               </div>
 
@@ -146,7 +146,7 @@ export default function SalesForm(props: Props) {
         <Flex gap={16} justify="end">
           <CancelButton />
           <Button htmlType="submit" loading={isCreating || isEditing}>
-            Save
+            Simpan
           </Button>
         </Flex>
       </form>

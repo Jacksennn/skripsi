@@ -55,7 +55,7 @@ function ItemCard(props: ProductCombinationsRespondType) {
       </div>
       <ProductCombinationDetail
         target={(showModal) => (
-          <Button onClick={() => showModal()}>Details</Button>
+          <Button onClick={() => showModal()}>Detil</Button>
         )}
         id={props.id}
       ></ProductCombinationDetail>

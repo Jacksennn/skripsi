@@ -77,13 +77,13 @@ export default function CustomerForm(props: Props) {
       <Modal
         title={
           <Text variant="heading04" weight="semiBold">
-            {!id ? "Add New Customer" : "Edit Customer"}
+            {!id ? "Tambah Kustomer" : "Edit Kustomer"}
           </Text>
         }
         open={isModalOpen}
         width={800}
         onCancel={() => setIsModalOpen(false)}
-        okText="Save Changes"
+        okText="Simpan"
         footer={[
           <Button
             variant="secondary"
@@ -91,7 +91,7 @@ export default function CustomerForm(props: Props) {
             key="cancel"
             disabled={isCreating || isEditing}
           >
-            Cancel
+            Batal
           </Button>,
           <Button
             variant="primary"
@@ -100,7 +100,7 @@ export default function CustomerForm(props: Props) {
             loading={isCreating || isEditing}
             onClick={handleSubmit(onSubmit)}
           >
-            Save Changes
+            Simpan
           </Button>,
         ]}
         styles={{
@@ -133,7 +133,7 @@ export default function CustomerForm(props: Props) {
                 <Col span={12}>
                   <Input
                     type="text"
-                    label="Customer ID"
+                    label="ID Kustomer"
                     name="no_user"
                     required
                     control={control}
@@ -143,7 +143,7 @@ export default function CustomerForm(props: Props) {
                 <Col span={12}>
                   <Input
                     type="text"
-                    label="Full Name"
+                    label="Nama Lengkap"
                     name="nama_user"
                     required
                     control={control}
@@ -166,7 +166,7 @@ export default function CustomerForm(props: Props) {
                 <Col span={12}>
                   <Input
                     type="tel"
-                    label="Phone Number"
+                    label="Nomor Hp."
                     name="notelp_user"
                     required
                     control={control}
@@ -192,7 +192,7 @@ export default function CustomerForm(props: Props) {
                     <Col span={24}>
                       <Input
                         type="password"
-                        label="Password Confirmation"
+                        label="Konfirmasi Password"
                         name="password_confirmation"
                         required
                         control={control}
@@ -206,7 +206,7 @@ export default function CustomerForm(props: Props) {
                 <Col span={24}>
                   <Input
                     type="text"
-                    label="Full Address"
+                    label="Alamat Lengkap"
                     name="alamat_user"
                     required
                     control={control}
@@ -230,7 +230,7 @@ export default function CustomerForm(props: Props) {
                     <Col span={12}>
                       <Input
                         type="text"
-                        label="Zip Code"
+                        label="Kode Pos"
                         name="zip_code"
                         required
                         control={control}

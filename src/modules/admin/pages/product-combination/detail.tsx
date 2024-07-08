@@ -125,7 +125,7 @@ export default function ProductCombinationDetail(props: Props) {
                         {item.produk.nama_produk}
                       </Text>
                       <Text variant="bodySmall" color="gray700" weight="medium">
-                        Original Price:
+                        Harga Original:
                         {formatPricing.format(Number(item.harga_produk))},-
                       </Text>
                       <div className="mb"></div>
@@ -133,7 +133,7 @@ export default function ProductCombinationDetail(props: Props) {
                         type="number"
                         name={`price.${item.id}`}
                         control={control}
-                        label="Combination Price"
+                        label="Harga Kombinasi"
                       ></Input>
                     </div>
                   </Flex>
@@ -154,7 +154,7 @@ export default function ProductCombinationDetail(props: Props) {
             />
             <Flex justify="center">
               <Button htmlType="submit" loading={isMutateLoad}>
-                Save
+                Simpan
               </Button>
             </Flex>
           </form>

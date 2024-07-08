@@ -38,7 +38,7 @@ export default function ForgotPassword() {
         .then(() => {
           window.localStorage.setItem("emailForPWReset", data.email_user);
 
-          message.info("Please check your email for further action");
+          message.info("Cek email Anda untuk aksi selanjutnya");
           router.push("/verify-email");
           // ...
         })
@@ -74,17 +74,17 @@ export default function ForgotPassword() {
       >
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <Text variant="bodyLarge" weight="semiBold" className="mb">
-            Forget Password
+            Lupa Password
           </Text>
           <Text variant="bodySmall" weight="regular" color="gray600">
-            Enter the email address associated with your account.
+            Masukkan alamat email yang terkait dengan akun Anda.
           </Text>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input
             type="email"
-            label="Email Address"
+            label="Alamat Email"
             name="email_user"
             required
             control={control}
@@ -102,14 +102,14 @@ export default function ForgotPassword() {
           >
             <Flex align="center" justify="center" gap={12}>
               <Text variant="heading05" color="gray100" weight="semiBold">
-                Send Code
+                Kirim Kode
               </Text>{" "}
               <ArrowRight size={20} />
             </Flex>
           </Button>
           <Flex className="mb">
             <Text variant="heading05" color="gray600" weight="regular">
-              Already have account?
+              Sudah memiliki akun?
             </Text>
             <Text
               variant="heading05"
@@ -118,12 +118,12 @@ export default function ForgotPassword() {
               style={{ cursor: "pointer" }}
               onClick={() => router.push("/sign-in")}
             >
-              Sign In
+              Masuk
             </Text>{" "}
           </Flex>
           <Flex>
             <Text variant="heading05" color="gray600" weight="regular">
-              Dont have account
+              Belum memiliki akun
             </Text>
             <Text
               variant="heading05"
@@ -132,7 +132,7 @@ export default function ForgotPassword() {
               style={{ cursor: "pointer" }}
               onClick={() => router.push("/sign-in")}
             >
-              Sign Up
+              Daftar
             </Text>{" "}
           </Flex>
         </form>

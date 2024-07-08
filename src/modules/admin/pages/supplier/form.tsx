@@ -77,13 +77,13 @@ export default function SupplierForm(props: Props) {
       <Modal
         title={
           <Text variant="heading04" weight="semiBold">
-            {!id ? "Add New Supplier" : "Edit Supplier"}
+            {!id ? "Tambah Supplier" : "Edit Supplier"}
           </Text>
         }
         open={isModalOpen}
         width={800}
         onCancel={() => setIsModalOpen(false)}
-        okText="Save Changes"
+        okText="Simpan"
         footer={[
           <Button
             variant="secondary"
@@ -91,7 +91,7 @@ export default function SupplierForm(props: Props) {
             key="cancel"
             disabled={isCreating || isEditing}
           >
-            Cancel
+            Batal
           </Button>,
           <Button
             variant="primary"
@@ -100,7 +100,7 @@ export default function SupplierForm(props: Props) {
             loading={isCreating || isEditing}
             onClick={handleSubmit(onSubmit)}
           >
-            Save Changes
+            Simpan
           </Button>,
         ]}
         styles={{
@@ -133,7 +133,7 @@ export default function SupplierForm(props: Props) {
                 <Col span={12}>
                   <Input
                     type="text"
-                    label="Supplier ID"
+                    label="ID Supplier"
                     name="no_supplier"
                     required
                     control={control}
@@ -143,7 +143,7 @@ export default function SupplierForm(props: Props) {
                 <Col span={12}>
                   <Input
                     type="text"
-                    label="Full Name"
+                    label="Nama Lengkap"
                     name="nama_supplier"
                     required
                     control={control}
@@ -166,7 +166,7 @@ export default function SupplierForm(props: Props) {
                 <Col span={12}>
                   <Input
                     type="tel"
-                    label="Phone Number"
+                    label="Nomor Hp."
                     name="notelp_supplier"
                     required
                     control={control}
@@ -178,7 +178,7 @@ export default function SupplierForm(props: Props) {
                 <Col span={24}>
                   <Input
                     type="text"
-                    label="Full Address"
+                    label="Alamat Lengkap"
                     name="alamat_supplier"
                     required
                     control={control}
@@ -202,7 +202,7 @@ export default function SupplierForm(props: Props) {
                     <Col span={12}>
                       <Input
                         type="text"
-                        label="Zip Code"
+                        label="Kode Pos"
                         name="zip_code"
                         required
                         control={control}

@@ -46,11 +46,11 @@ export default function SignUpTab() {
       sendSignInLinkToEmail(auth, data.email_user, actionCodeSettings)
         .then(() => {
           // The link was successfully sent. Inform the user.
-          // Save the email_user locally so you don't need to ask the user for it again
+          // Simpan the email_user locally so you don't need to ask the user for it again
           // if they open the link on the same device.
           window.localStorage.setItem("emailForSignIn", data.email_user);
           window.localStorage.setItem("userInfo", JSON.stringify(data));
-          message.info("Please check your email for further action");
+          message.info("Cek email Anda untuk aksi selanjutnya!");
           router.push("/verify-email");
           // ...
         })
@@ -68,7 +68,7 @@ export default function SignUpTab() {
 
   const onSignUpWithGoogle = async (data: Inputs) => {
     message.info(
-      "Please don't close this window, we are validating your account....",
+      "Mohon untuk tidak menutup jendela ini, Kami sedang memvalidasi akun anda ...",
     );
     signInWithPopup(auth, googleProvider)
       .then(async (result) => {
@@ -80,7 +80,7 @@ export default function SignUpTab() {
           });
           login(res?.data.access_token, "user");
           message.success(res.message);
-          message.success("Logged In!");
+          message.success("Berhasil Masuk!");
         } catch (e: any) {
           message.error(e?.message);
         }
@@ -97,7 +97,7 @@ export default function SignUpTab() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
         type="text"
-        label="Name"
+        label="Nama"
         name="nama_user"
         required
         control={control}
@@ -106,7 +106,7 @@ export default function SignUpTab() {
 
       <Input
         type="email"
-        label="Email Address"
+        label="Alamat Email"
         name="email_user"
         required
         control={control}
@@ -127,7 +127,7 @@ export default function SignUpTab() {
         name="password_confirmation"
         control={control}
         noAsterisk
-        label="Password Confimation"
+        label="Konfirmasi Password"
       />
       <Button
         htmlType="submit"
@@ -137,7 +137,7 @@ export default function SignUpTab() {
       >
         <Flex align="center" justify="center" gap={12}>
           <Text variant="heading05" color="gray100" weight="bold">
-            Sign Up
+            Daftar
           </Text>{" "}
           <ArrowRight size={20} />
         </Flex>
@@ -162,7 +162,7 @@ export default function SignUpTab() {
             weight="medium"
             style={{ textTransform: "capitalize" }}
           >
-            Sign Up with Google
+            Daftar dengan Google
           </Text>{" "}
           {/* <ArrowRight size={20} /> */}
         </Flex>

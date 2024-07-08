@@ -54,9 +54,9 @@ export default function ImageUpload(props: Props) {
           url: res.url,
         },
       ]);
-      message.success("upload successfully.");
+      message.success("Sukses Upload");
     } catch (e) {
-      message.error("upload failed.");
+      message.error("Upload Gagal");
     }
     setUploading(false);
   };
@@ -89,7 +89,7 @@ export default function ImageUpload(props: Props) {
   return (
     <div className="mb">
       <Upload {...uploadProps} listType="picture-card">
-        <Button icon={<Upload />}>Select File</Button>
+        <Button icon={<Upload />}>Pilih File</Button>
       </Upload>
     </div>
   );

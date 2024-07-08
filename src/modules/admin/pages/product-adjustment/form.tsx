@@ -82,7 +82,7 @@ export default function ProductAdjustmentForm(props: Props) {
       <Modal
         title={
           <Text variant="heading04" weight="semiBold">
-            {!id ? "Add New Adjustment" : "Edit Adjustment"}
+            {!id ? "Tambah Penyusuaian Produk" : "Edit Penyusuaian Produk"}
           </Text>
         }
         open={isModalOpen}
@@ -91,7 +91,7 @@ export default function ProductAdjustmentForm(props: Props) {
           setIsModalOpen(false);
           reset({ details: [], alasan_adjust: "", nama_adjust: "" });
         }}
-        okText="Save Changes"
+        okText="Simpan"
         footer={[
           <Button
             variant="secondary"
@@ -102,7 +102,7 @@ export default function ProductAdjustmentForm(props: Props) {
             key="cancel"
             disabled={isCreating || isEditing}
           >
-            Cancel
+            Batal
           </Button>,
           <Button
             variant="primary"
@@ -111,7 +111,7 @@ export default function ProductAdjustmentForm(props: Props) {
             loading={isCreating || isEditing}
             onClick={handleSubmit(onSubmit)}
           >
-            Save Changes
+            Simpan
           </Button>,
         ]}
         styles={{
@@ -142,8 +142,8 @@ export default function ProductAdjustmentForm(props: Props) {
               <SectionForm>
                 <Input
                   type="text"
-                  label="Adjustment Name"
-                  placeholder="Adjustment Name"
+                  label="Nama Penyesuaian"
+                  placeholder="Nama Penyesuaian"
                   name="nama_adjust"
                   required
                   control={control}
@@ -152,8 +152,8 @@ export default function ProductAdjustmentForm(props: Props) {
               <SectionForm>
                 <Input
                   type="textarea"
-                  label="Reason"
-                  placeholder="Reason"
+                  label="Alasan"
+                  placeholder="Alasan"
                   name="alasan_adjust"
                   required
                   control={control}

@@ -48,7 +48,7 @@ export default function CategoryPage() {
             refetch={refetch}
             target={(showModal) => (
               <Button variant="primary" onClick={showModal}>
-                ADD NEW
+                Tambah
               </Button>
             )}
           />
@@ -66,7 +66,7 @@ export default function CategoryPage() {
             <BaseInput
               type="text"
               size="large"
-              placeholder="Search for anything..."
+              placeholder="Cari...."
               value={value}
               onChange={(e) => onAfterChange(e.target.value)}
               suffix={<SearchIcon size={20} />}
@@ -89,7 +89,7 @@ export default function CategoryPage() {
         virtual
         columns={[
           {
-            title: "Category ID",
+            title: "Kategori ID",
             dataIndex: "id",
             width: 80,
             render: (a, _, index) => {
@@ -97,7 +97,7 @@ export default function CategoryPage() {
             },
           },
           {
-            title: "Name",
+            title: "Nama",
             dataIndex: "nama_kategori",
             width: 120,
           },
@@ -113,7 +113,7 @@ export default function CategoryPage() {
                   id={record.id}
                   target={(show) => (
                     <Button variant="white" info onClick={show}>
-                      Details
+                      Detil
                     </Button>
                   )}
                   refetch={refetch}

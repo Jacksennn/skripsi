@@ -64,7 +64,7 @@ export default function ReportPage() {
             className={reportTabStyle}
             style={tab === "sales" ? activeStyle : inactiveStyle}
           >
-            Sales
+            Penjualan
           </button>
           <button
             type="button"
@@ -72,7 +72,7 @@ export default function ReportPage() {
             className={reportTabStyle}
             style={tab === "purchase" ? activeStyle : inactiveStyle}
           >
-            Purchase
+            Pembelian
           </button>
           <button
             type="button"

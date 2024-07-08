@@ -132,7 +132,7 @@ export const useDeleteSupplier = (): UseMutationResult<
     mutationFn: async (input: SupplierDeleteInput) =>
       await queryFetch({
         endpoint: `suppliers/${input.id}`,
-        method: "DELETE",
+        method: "Hapus",
         type: "admin",
       }),
   });

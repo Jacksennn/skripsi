@@ -25,17 +25,17 @@ export default function FormItem({ control }: { control: any }) {
         }}
         columns={[
           {
-            title: "Product Id",
+            title: "ID Produk",
             dataIndex: "sku_produk",
             width: 80,
           },
           {
-            title: "Product Name",
+            title: "Nama Produk",
             dataIndex: "name",
             width: 200,
           },
           {
-            title: "Quantity",
+            title: "Kuantitas",
             dataIndex: "jumlah_produk",
             width: 120,
             render: (_, record: any, index) => (
@@ -49,7 +49,7 @@ export default function FormItem({ control }: { control: any }) {
             ),
           },
           {
-            title: "Price",
+            title: "Harga",
             dataIndex: "harga_produk",
             width: 120,
             render: (_, record: any, index) => (
@@ -63,7 +63,7 @@ export default function FormItem({ control }: { control: any }) {
             ),
           },
           {
-            title: "Discount",
+            title: "Diskon",
             dataIndex: "diskon_produk",
             width: 200,
             render: (_, record, index) => (

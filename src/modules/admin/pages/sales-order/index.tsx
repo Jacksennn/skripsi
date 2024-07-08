@@ -123,7 +123,7 @@ export default function SalesOrderPage() {
             <BaseInput
               type="text"
               size="large"
-              placeholder="Search for anything..."
+              placeholder="Cari...."
               value={value}
               onChange={(e) => onAfterChange(e.target.value)}
               suffix={<SearchIcon size={20} />}
@@ -143,7 +143,7 @@ export default function SalesOrderPage() {
         }}
         columns={[
           {
-            title: "Order ID",
+            title: "ID Pemesanan",
             dataIndex: "no_pemesanan",
           },
 
@@ -173,7 +173,7 @@ export default function SalesOrderPage() {
                 id={record.id}
                 target={(show) => (
                   <Button variant="white" info onClick={show}>
-                    Details
+                    Detil
                   </Button>
                 )}
               />

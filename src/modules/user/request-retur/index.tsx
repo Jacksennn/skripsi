@@ -78,7 +78,7 @@ export default function RequestRetur() {
       const res = await mutateAsync(values);
       notification.success({
         message:
-          "Your refund will is on proces, contact us if you need your refund update",
+          "Pengembalian dana Anda sedang dalam proses, hubungi kami jika Anda memerlukan pembaruan pengembalian dana Anda",
       });
       notification.success({ message: res?.message });
 
@@ -96,15 +96,15 @@ export default function RequestRetur() {
 
   return (
     <Layout>
-      <FormLayout title="Delivered Orders > Request Retur">
+      <FormLayout title="Pesanan Terkirim > Pengajuan Pengembalian">
         {isLoading && <Spin fullscreen />}
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <CardWrapper title="Retur Invoice">
+          <CardWrapper title="Invoice Retur">
             <SectionContainerForm>
               <SectionForm>
                 <BaseInput
-                  label="Order ID"
+                  label="ID Pemesanan"
                   disabled
                   value={data?.data?.no_pemesanan}
                 />
@@ -115,7 +115,7 @@ export default function RequestRetur() {
                   name="alasan_retur"
                   type="textarea"
                   required
-                  label="Reason of Retur"
+                  label="Alasan Retur"
                 ></Input>
               </SectionForm>
             </SectionContainerForm>
@@ -129,29 +129,29 @@ export default function RequestRetur() {
               pagination={false}
               columns={[
                 {
-                  title: "Product ID",
+                  title: "ID Produk",
                   dataIndex: "product_id",
                   width: 100,
                 },
                 {
-                  title: "Product Name",
+                  title: "Nama Produk",
                   dataIndex: "product_name",
                 },
                 {
-                  title: "Quantity",
+                  title: "Kuantitas",
                   dataIndex: "jumlah_produk",
                   width: 120,
                 },
 
                 {
-                  title: "Price",
+                  title: "Harga",
                   dataIndex: "harga_produk",
                   width: 120,
                   render: (_, record) =>
                     `${formatPricing.format(record.price)},-`,
                 },
                 {
-                  title: "Price",
+                  title: "Diskon",
                   dataIndex: "diskon_produk",
                   width: 120,
                   render: (_, record) =>
@@ -188,7 +188,7 @@ export default function RequestRetur() {
                   justifyItems: "end",
                 }}
               >
-                <Text variant="bodySmall">Amount:</Text>
+                <Text variant="bodySmall">Jumlah:</Text>
                 <Text variant="bodySmall">
                   {`${formatPricing.format(
                     fields.reduce(
@@ -197,7 +197,7 @@ export default function RequestRetur() {
                     ),
                   )},-`}
                 </Text>
-                <Text variant="bodySmall">Discount:</Text>
+                <Text variant="bodySmall">Diskon:</Text>
                 <Text variant="bodySmall">
                   {`${formatPricing.format(
                     fields.reduce(
@@ -208,7 +208,7 @@ export default function RequestRetur() {
                 </Text>
 
                 <Text variant="bodyLarge" weight="semiBold">
-                  Total Amount:
+                  Total:
                 </Text>
                 <Text variant="bodyLarge" weight="semiBold">
                   {`${formatPricing.format(
@@ -223,7 +223,7 @@ export default function RequestRetur() {
           </CardWrapper>
           <Flex gap={16} justify="end">
             <CancelButton />
-            <Button htmlType="submit">Send Request</Button>
+            <Button htmlType="submit">Kirim Pengajuan</Button>
           </Flex>
         </form>
       </FormLayout>

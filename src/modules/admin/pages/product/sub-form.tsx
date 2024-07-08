@@ -100,14 +100,14 @@ export default function ProductSubForm(props: Props) {
             <CardWrapper title="Product Information">
               <Input
                 type="text"
-                label="Product ID"
+                label="ID Produk"
                 name="sku_produk"
                 required
                 control={control}
               />
               <Input
                 type="text"
-                label="Product Name"
+                label="Nama Produk"
                 name="nama_produk"
                 required
                 control={control}
@@ -115,7 +115,7 @@ export default function ProductSubForm(props: Props) {
               <CategorySelect name="id_kategori" control={control} />
               <Input
                 type="textarea"
-                label="Description"
+                label="Deskripsi"
                 name="ket_produk"
                 control={control}
               />
@@ -125,14 +125,14 @@ export default function ProductSubForm(props: Props) {
             <CardWrapper title="Properties">
               <Input
                 type="number"
-                label="Price"
+                label="Harga"
                 name="harga_produk"
                 required
                 control={control}
               />
               <Input
                 type="number-control"
-                label="Minimum Quantity"
+                label="Kuantitas Minimal"
                 name="min_produk"
                 required
                 control={control}
@@ -140,11 +140,11 @@ export default function ProductSubForm(props: Props) {
             </CardWrapper>
             <CardWrapper title="Visibility">
               <Text variant="bodyTiny" color="gray500">
-                Allow users to see this product on the list
+                Izinkan pengguna melihat produk ini di daftar
               </Text>
               <Input
                 type="checkbox"
-                label="Visibility"
+                label="Visibilitas"
                 name="visibility"
                 required
                 control={control}
@@ -153,7 +153,7 @@ export default function ProductSubForm(props: Props) {
           </Col>
         </Row>
         <Button htmlType="submit" loading={isCreating || isEditing}>
-          Save
+          Simpan
         </Button>
       </form>
     </FormLayout>

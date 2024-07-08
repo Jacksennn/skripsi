@@ -34,7 +34,7 @@ export default function SettingAccountInformationForm({
       notelp_admin: "",
       region: "",
       city: "",
-      zipcode: "",
+      zip_code: "",
     },
   });
 
@@ -68,7 +68,7 @@ export default function SettingAccountInformationForm({
   });
 
   return (
-    <FormLayout title="Account Setting">
+    <FormLayout title="Setting Akun">
       <Flex gap={20}>
         <Image width={170} height={170} src={Avatar} alt="avatar" />
 
@@ -79,8 +79,8 @@ export default function SettingAccountInformationForm({
                 type="text"
                 name="nama_admin"
                 control={control}
-                placeholder={"Full Name"}
-                label={"Full Name"}
+                placeholder={"Nama Lengkap"}
+                label={"Nama Lengkap"}
               ></Input>
             </SectionForm>
             <SectionForm>
@@ -109,8 +109,8 @@ export default function SettingAccountInformationForm({
                 type="tel"
                 name="notelp_admin"
                 control={control}
-                placeholder={"Phone Number"}
-                label={"Phone Number"}
+                placeholder={"Nomor Hp."}
+                label={"Nomor Hp."}
               ></Input>
             </SectionForm>
           </SectionContainerForm>
@@ -118,7 +118,7 @@ export default function SettingAccountInformationForm({
             <Col span={24}>
               <Input
                 type="text"
-                label="Full Address"
+                label="Alamat Lengkap"
                 name="alamat_admin"
                 required
                 control={control}
@@ -143,7 +143,7 @@ export default function SettingAccountInformationForm({
                 <Col span={12}>
                   <Input
                     type="text"
-                    label="Zip Code"
+                    label="Kode Pos"
                     name="zip_code"
                     required
                     control={control}
@@ -160,7 +160,7 @@ export default function SettingAccountInformationForm({
             loading={isCreating}
             onClick={handleSubmit(onSubmit)}
           >
-            Save Changes
+            Simpan
           </Button>
         </form>
       </Flex>

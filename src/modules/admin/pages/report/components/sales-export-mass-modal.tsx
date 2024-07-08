@@ -27,11 +27,11 @@ export default function ExportSalesMass(props: Props) {
   const onPrint = async () => {
     try {
       if (!date) {
-        return notification.error({ message: "Please input date" });
+        return notification.error({ message: "Masukkan Tanggal" });
       }
 
       notification.success({
-        message: "We are generating the pdf, please wait...",
+        message: "Sedang membuat pdf, mohon menunggu... ",
       });
       const res = await printSales({
         date: date.toISOString() as any,
@@ -62,13 +62,13 @@ export default function ExportSalesMass(props: Props) {
       <Modal
         title={
           <Text variant="heading04" weight="semiBold">
-            Choose printing date
+            Pilih tanggal
           </Text>
         }
         width={800}
         open={isModalOpen}
         onCancel={() => setIsModalOpen(false)}
-        okText="Save Changes"
+        okText="Simpan"
         footer={[
           <Button
             variant="secondary"
@@ -76,7 +76,7 @@ export default function ExportSalesMass(props: Props) {
             key="cancel"
             disabled={isLoading}
           >
-            Cancel
+            Batal
           </Button>,
           <Button
             variant="primary"
@@ -84,11 +84,11 @@ export default function ExportSalesMass(props: Props) {
             loading={isLoading}
             onClick={onPrint}
           >
-            Next
+            Selanjutnya
           </Button>,
         ]}
       >
-        <Text variant="bodySmall">Choose Date</Text>
+        <Text variant="bodySmall">Pilih Tanggal</Text>
         <DatePicker
           value={dayjs(new Date(date), { utc: false })}
           onChange={setDate as any}

@@ -37,11 +37,11 @@ export default function PurchaseTotalComponent(props: Props) {
       >
         <Text variant="bodySmall">Amount:</Text>
         <Text variant="bodySmall">{`${formatPricing.format(amount)},-`}</Text>
-        <Text variant="bodySmall">Discount:</Text>
+        <Text variant="bodySmall">Diskon:</Text>
         <Text variant="bodySmall">{`${formatPricing.format(discount)},-`}</Text>
 
         <Text variant="bodyLarge" weight="semiBold">
-          Total Amount:
+          Total:
         </Text>
         <Text variant="bodyLarge" weight="semiBold">
           {`${formatPricing.format(amount - discount)},-`}

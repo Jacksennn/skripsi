@@ -30,10 +30,11 @@ export default function VerifyEmail() {
         }}
       >
         <Text variant="bodyLarge" weight="semiBold" className="mb">
-          Verify Your Email Address
+          Verifikasi Email Anda
         </Text>
         <Text variant="bodySmall" weight="regular" color="gray600">
-          We’ve sent a code link to your email address to verify your account
+          Kami telah mengirimkan link ke alamat email anda untuk memverifikasi
+          akun Anda.
         </Text>
 
         <Button
@@ -49,7 +50,7 @@ export default function VerifyEmail() {
           <Flex align="center" justify="center" gap={12}>
             <ArrowLeft size={20} />
             <Text variant="heading05" color="gray100" weight="bold">
-              BACK
+              Kembali
             </Text>{" "}
           </Flex>
         </Button>

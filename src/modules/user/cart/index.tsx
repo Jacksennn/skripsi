@@ -82,7 +82,7 @@ export default function Cart() {
         <div className={cartStyles.leftContainer}>
           <div className={cartStyles.shoppingCardTitle}>
             <Text variant="bodyLarge" weight="semiBold">
-              Shopping Card
+              Keranjang
             </Text>
           </div>
           <div className={cartStyles.tableSmallContainer}>
@@ -182,7 +182,7 @@ export default function Cart() {
               }}
               columns={[
                 {
-                  title: "Product",
+                  title: "Produk",
                   dataIndex: "produk",
                   render: (_, record) => (
                     <ImageLiteCard
@@ -193,13 +193,13 @@ export default function Cart() {
                 },
 
                 {
-                  title: "Price",
+                  title: "Harga",
                   dataIndex: "harga",
                   render: (_, record) =>
                     formatPricing.format(Number(record.produk.harga_produk)),
                 },
                 {
-                  title: "Quantity",
+                  title: "Kuantitas",
                   dataIndex: "jumlah_produk",
                   width: 200,
 
@@ -243,19 +243,19 @@ export default function Cart() {
               style={{ display: "flex", alignItems: "center" }}
               onClick={() => router.push("/")}
             >
-              Return to shop
+              Kembali
             </Button>
           </Flex>
         </div>
         <div className={cartStyles.rightContainer}>
           <div className={cartStyles.totalCard}>
             <Text variant="bodyLarge" weight="semiBold">
-              Totals
+              Total
             </Text>
 
             <Flex justify="space-between" gap={20}>
               <Text variant="bodySmall" color="gray600">
-                Sub-total
+                Sub total
               </Text>
               <Text variant="bodySmall">{`${formatPricing.format(
                 enabled ? calculation?.data?.sub_total || 0 : 0,
@@ -263,7 +263,7 @@ export default function Cart() {
             </Flex>
             <Flex justify="space-between" gap={20}>
               <Text variant="bodySmall" color="gray600">
-                Discount
+                Diskon
               </Text>
               <Text variant="bodySmall">{`${formatPricing.format(
                 enabled ? calculation?.data?.discount || 0 : 0,
@@ -301,11 +301,11 @@ export default function Cart() {
                   );
                   router.push("/checkout");
                 } else {
-                  message.error("Please select items to checkout");
+                  message.error("Pilih item untuk melanjutkan!");
                 }
               }}
             >
-              Proceed to Checkout
+              Lanjutkan ke pembayaran
             </Button>
           </div>
         </div>

@@ -59,16 +59,17 @@ export default function Checkout() {
   const { mutateAsync, isLoading: isCreating } = useCreateTransaction();
   useGetMe({
     onSuccess(data) {
-      const [awal, ...akhir] = data.data.nama_user.split(" ");
+      const username = data.data.nama_user.split(" ");
+      const [awal, ...akhir] = username;
       const temp: Inputs = {
         alamat: data.data.alamat_user,
         city: data.data.city,
         email: data.data.email_user,
-        nama_akhir: awal,
-        nama_awal: akhir.join(" "),
+        nama_akhir: username.length > 1 ? awal : akhir.join(""),
+        nama_awal: username.length > 1 ? akhir.join(" ") : "",
         no_telp: data.data.notelp_user,
         region: data.data.region,
-        zip_code: data.data.zipcode,
+        zip_code: data.data.zip_code,
         is_self_pick_up: false,
         jasa_kirim: "",
         note: "",
@@ -111,7 +112,7 @@ export default function Checkout() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (!city) {
       return message.error(
-        "Please select your city so we can count your shipping fee",
+        "Silahkan pilih kota Anda agar kami dapat menghitung biaya pengiriman Anda",
       );
     }
     try {
@@ -145,17 +146,17 @@ export default function Checkout() {
       <div className={checkoutstyles.container}>
         <div className={checkoutstyles.leftContainer}>
           <Text variant="bodyLarge" weight="semiBold" className="mb">
-            Billing Information
+            Informasi Pembayaran
           </Text>
 
-          <Text variant="bodySmall">User name</Text>
+          <Text variant="bodySmall">Nama User</Text>
           <SectionContainerForm>
             <SectionForm>
               <Input
                 control={control}
                 name="nama_awal"
                 type="text"
-                placeholder="First Name"
+                placeholder="Nama Awal"
               />
             </SectionForm>
             <SectionForm>
@@ -163,7 +164,7 @@ export default function Checkout() {
                 control={control}
                 name="nama_akhir"
                 type="text"
-                placeholder={"Last Name"}
+                placeholder={"Nama Akhir"}
               />
             </SectionForm>
           </SectionContainerForm>
@@ -171,7 +172,7 @@ export default function Checkout() {
             control={control}
             name="alamat"
             type="text"
-            label={"Address"}
+            label={"Alamat"}
             style={{ width: "100%" }}
           />
           <Row gutter={[16, 16]}>
@@ -191,7 +192,7 @@ export default function Checkout() {
                 <Col span={12}>
                   <Input
                     type="text"
-                    label="Zip Code"
+                    label="Kode Pos"
                     name="zip_code"
                     required
                     control={control}
@@ -215,7 +216,7 @@ export default function Checkout() {
             <SectionForm>
               <Input
                 type="tel"
-                label="Phone Number"
+                label="Nomor Hp."
                 name="no_telp"
                 required
                 control={control}
@@ -234,10 +235,10 @@ export default function Checkout() {
           <div className="mb"></div>
           <div className="mb"></div>
           <Text variant="bodyLarge" weight="semiBold" className="mb">
-            Additional Information
+            Informasi Tambahan
           </Text>
           <Text variant="bodySmall">
-            Order Notes{" "}
+            Catatan Pemesanan
             <span style={{ color: colors.gray500 }}>(Optional)</span>
           </Text>
 
@@ -253,7 +254,7 @@ export default function Checkout() {
         <div className={checkoutstyles.rightContainer}>
           <div className={checkoutstyles.summaryCard}>
             <Text variant="bodyLarge" weight="semiBold">
-              Order Summary
+              Ringkasan Pesanan
             </Text>
             {!!buckets?.length &&
               buckets?.map((bucket) => (
@@ -275,7 +276,7 @@ export default function Checkout() {
             </Flex>
             <Flex justify="space-between" gap={20}>
               <Text variant="bodySmall" color="gray600">
-                Shipping
+                Pengiriman
               </Text>
               <Text variant="bodySmall">{`${formatPricing.format(
                 calculation?.data?.shipping || 0,
@@ -285,9 +286,7 @@ export default function Checkout() {
             <>
               {!isSelfPickUp && (
                 <Text variant="bodySmall" color="gray600">
-                  {`Delivery / Shipping Service : ${
-                    calculation?.data.jasa_kirim || "-"
-                  }`}
+                  {`Jasa Kirim : ${calculation?.data.jasa_kirim || "-"}`}
                 </Text>
               )}
             </>
@@ -317,7 +316,7 @@ export default function Checkout() {
               onClick={handleSubmit(onSubmit)}
               loading={isCreating}
             >
-              Place Order
+              Pesan
             </Button>
           </div>
         </div>

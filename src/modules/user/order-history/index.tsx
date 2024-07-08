@@ -46,7 +46,7 @@ export default function OrderHistory() {
         <div className={container}>
           <div className={title}>
             <Text variant="bodyXl" weight="bold">
-              Order History
+              Riwayat Pesanan
             </Text>
           </div>
           <div className={tabContainerStyle}>
@@ -56,7 +56,7 @@ export default function OrderHistory() {
               className={tabStyle}
               style={tab === "New Orders" ? activeStyle : inactiveStyle}
             >
-              Order Placed
+              Dipesan
             </button>
             <button
               type="button"
@@ -64,7 +64,7 @@ export default function OrderHistory() {
               className={tabStyle}
               style={tab === "On Process" ? activeStyle : inactiveStyle}
             >
-              Packing
+              Dikemas
             </button>
             <button
               type="button"
@@ -72,7 +72,7 @@ export default function OrderHistory() {
               className={tabStyle}
               style={tab === "On Delivery" ? activeStyle : inactiveStyle}
             >
-              On Delivery
+              Dalam Pengiriman
             </button>
 
             <button
@@ -81,7 +81,7 @@ export default function OrderHistory() {
               className={tabStyle}
               style={tab === "Delivered" ? activeStyle : inactiveStyle}
             >
-              Delivered
+              Dikirim
             </button>
 
             <button
@@ -90,7 +90,7 @@ export default function OrderHistory() {
               className={tabStyle}
               style={tab === "Cancelled" ? activeStyle : inactiveStyle}
             >
-              Cancelled
+              Dibatalkan
             </button>
             <button
               type="button"
@@ -98,7 +98,7 @@ export default function OrderHistory() {
               className={tabStyle}
               style={tab === "Retur" ? activeStyle : inactiveStyle}
             >
-              Retur
+              Dikembalikan
             </button>
           </div>
           <DebounceComponent
@@ -111,7 +111,7 @@ export default function OrderHistory() {
               <BaseInput
                 type="text"
                 size="large"
-                placeholder="Search for anything..."
+                placeholder="Cari...."
                 value={value}
                 onChange={(e) => onAfterChange(e.target.value)}
                 suffix={<SearchIcon size={20} />}
@@ -171,7 +171,7 @@ export default function OrderHistory() {
                                 size="small"
                                 style={{ borderRadius: 4 }}
                               >
-                                Details
+                                Detil
                               </Button>
                             )}
                           />
@@ -207,7 +207,7 @@ export default function OrderHistory() {
                         </Text>
                         <Flex vertical align="flex-end" flex={1}>
                           <Text variant="bodyTiny" weight="regular">
-                            Total Amount
+                            Total
                           </Text>
                           <Text
                             variant="bodySmall"
@@ -234,7 +234,7 @@ export default function OrderHistory() {
             }}
             columns={[
               {
-                title: "Product",
+                title: "Produk",
                 dataIndex: "produk",
 
                 render: (_, record) => (
@@ -257,7 +257,7 @@ export default function OrderHistory() {
               },
 
               {
-                title: "Price",
+                title: "Harga",
                 dataIndex: "harga_produk",
                 render: (_, record) =>
                   `${formatPricing.format(
@@ -265,7 +265,7 @@ export default function OrderHistory() {
                   )},-` as string,
               },
               {
-                title: "Quantity",
+                title: "Kuantitas",
                 dataIndex: "jumlah_produk",
               },
               {
@@ -288,7 +288,7 @@ export default function OrderHistory() {
                       id={record.id}
                       target={(show) => (
                         <Button variant="secondary" onClick={show}>
-                          Details
+                          Detil
                         </Button>
                       )}
                     />

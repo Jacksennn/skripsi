@@ -37,18 +37,18 @@ export default function FormItem({
             ),
           },
           {
-            title: "Product Name",
-            dataIndex: "product",
+            title: "Nama Produk",
+            dataIndex: "Produk",
             width: 200,
             render: (_, record, index) => record.product.nama_produk,
           },
           {
-            title: "Quantity",
+            title: "Kuantitas",
             dataIndex: "jumlah_produk",
             width: 120,
           },
           {
-            title: "Quantity",
+            title: "Kuantitas",
             dataIndex: "qty",
             width: 120,
             render: (_, record: any, index) => (
@@ -64,14 +64,14 @@ export default function FormItem({
             ),
           },
           {
-            title: "Price",
+            title: "Harga",
             dataIndex: "harga_produk",
             width: 200,
             render: (_, record) =>
               formatPricing.format(Number(record.harga_produk)),
           },
           {
-            title: "Discount",
+            title: "Diskon",
             dataIndex: "diskon_produk",
             width: 200,
             render: (_, record) =>

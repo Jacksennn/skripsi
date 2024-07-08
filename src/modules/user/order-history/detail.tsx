@@ -36,7 +36,7 @@ export default function OrderHistoryDetail(props: Props) {
       <Modal
         title={
           <Text variant="heading04" weight="semiBold">
-            Order Details
+            Order Detil
           </Text>
         }
         open={isModalOpen}
@@ -71,14 +71,14 @@ export default function OrderHistoryDetail(props: Props) {
               <SectionForm>
                 <BaseInput
                   value={data?.data?.no_pemesanan}
-                  label={"Order ID"}
+                  label={"ID Pemesanan"}
                   disabled
                 ></BaseInput>
               </SectionForm>
               <SectionForm>
                 <BaseInput
                   value={status}
-                  label={"Order status"}
+                  label={"Status Pemesanan"}
                   disabled
                 ></BaseInput>
               </SectionForm>
@@ -93,14 +93,14 @@ export default function OrderHistoryDetail(props: Props) {
                         }).format("DD/MM/YYYY, hh:mm A")}`
                       : ""
                   }
-                  label={"Order ID"}
+                  label={"ID Pemesanan"}
                   disabled
                 ></BaseInput>
               </SectionForm>
               <SectionForm>
                 <BaseInput
                   value={"XENDIT"}
-                  label={"Payment Method"}
+                  label={"Metode Pembayaran"}
                   disabled
                 ></BaseInput>
               </SectionForm>
@@ -124,24 +124,24 @@ export default function OrderHistoryDetail(props: Props) {
               pagination={false}
               columns={[
                 {
-                  title: "Product Id",
+                  title: "ID Produk",
                   dataIndex: "id",
                   width: 80,
                   render: (_, record) => record.produk?.sku_produk,
                 },
                 {
-                  title: "Product",
+                  title: "Produk",
                   dataIndex: "produk",
                   width: 200,
                   render: (_, record) => record.produk?.nama_produk,
                 },
                 {
-                  title: "Quantity",
+                  title: "Kuantitas",
                   dataIndex: "jumlah_produk",
                   width: 120,
                 },
                 {
-                  title: "Price",
+                  title: "Harga",
                   dataIndex: "harga_produk",
                   width: 120,
                   render: (_, record) =>
@@ -150,7 +150,7 @@ export default function OrderHistoryDetail(props: Props) {
                     )},-`,
                 },
                 {
-                  title: "Price",
+                  title: "Harga",
                   dataIndex: "diskon_produk",
                   width: 120,
                   render: (_, record) =>
@@ -191,7 +191,7 @@ export default function OrderHistoryDetail(props: Props) {
                     ),
                   )},-`}
                 </Text>
-                <Text variant="bodySmall">Discount:</Text>
+                <Text variant="bodySmall">Diskon:</Text>
                 <Text variant="bodySmall">
                   {`${formatPricing.format(
                     Number(
@@ -204,7 +204,7 @@ export default function OrderHistoryDetail(props: Props) {
                 </Text>
 
                 <Text variant="bodyLarge" weight="semiBold">
-                  Total Amount:
+                  Total:
                 </Text>
                 <Text variant="bodyLarge" weight="semiBold">
                   {`${formatPricing.format(

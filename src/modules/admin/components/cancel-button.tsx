@@ -6,7 +6,7 @@ export default function CancelButton() {
   const { back } = useRouter();
   return (
     <Button variant="secondary" onClick={back}>
-      Cancel
+      Batal
     </Button>
   );
 }

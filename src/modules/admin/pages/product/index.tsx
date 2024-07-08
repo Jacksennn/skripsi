@@ -37,7 +37,7 @@ export default function ProductPage() {
         title="Products"
         right={
           <Button variant="primary" onClick={() => push("product/add")}>
-            ADD NEW
+            Tambah
           </Button>
         }
       >

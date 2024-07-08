@@ -52,7 +52,7 @@ export default function VerifyForgotEmail() {
         if (!email) {
           // User opened the link on a different device. To prevent session fixation
           // attacks, ask the user to provide the associated email again. For example:
-          email = window.prompt("Please provide your email for confirmation");
+          email = window.prompt("Masukkan email anda untuk konfirmasi");
         }
         // The client SDK will parse the code from the link for you.
         if (isHit === false) {
@@ -101,7 +101,7 @@ export default function VerifyForgotEmail() {
       >
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <Text variant="bodyLarge" weight="semiBold" className="mb">
-            Forget Password
+            Lupa Password
           </Text>
         </div>
 
@@ -120,7 +120,7 @@ export default function VerifyForgotEmail() {
             name="password_confirmation"
             control={control}
             noAsterisk
-            label="Password Confimation"
+            label="Konfirmasi Password"
           />
           <Button
             htmlType="submit"

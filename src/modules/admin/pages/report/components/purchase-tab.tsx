@@ -72,7 +72,7 @@ export default function PurchaseTab() {
           <BaseInput
             type="text"
             size="large"
-            placeholder="Search for anything..."
+            placeholder="Cari...."
             value={value}
             onChange={(e) => onAfterChange(e.target.value)}
             suffix={<SearchIcon size={20} />}
@@ -104,12 +104,12 @@ export default function PurchaseTab() {
         }}
         columns={[
           {
-            title: "Name",
+            title: "Nama",
             dataIndex: "name",
             width: 300,
           },
           {
-            title: "Supplier ID",
+            title: "ID Supplier",
             dataIndex: "no_supplier",
             width: 100,
           },
@@ -118,10 +118,10 @@ export default function PurchaseTab() {
             dataIndex: "produk",
             width: 120,
           },
-          { title: "Quantity", dataIndex: "total_qty", width: 100 },
+          { title: "Kuantitas", dataIndex: "total_qty", width: 100 },
           { title: "Total", dataIndex: "total_harga", width: 100 },
           {
-            title: "Delivery Status",
+            title: "Status Pengiriman",
             dataIndex: "status",
             width: 100,
             render: (value) => {
@@ -163,7 +163,7 @@ export default function PurchaseTab() {
                       push(`/admin/transaction/purchase/edit/${record.id}`)
                     }
                   >
-                    Details
+                    Detil
                   </Button>
                   {/* <Button
                     variant="white"

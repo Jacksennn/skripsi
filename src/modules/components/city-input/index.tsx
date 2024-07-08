@@ -25,7 +25,7 @@ export default function CityInput(props: Props) {
 
   return (
     <>
-      <Text variant="bodySmall">City</Text>
+      <Text variant="bodySmall">Kota</Text>
       <Controller
         name={name}
         control={control}

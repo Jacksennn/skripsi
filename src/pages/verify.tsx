@@ -87,12 +87,12 @@ export default function PageVerify() {
     >
       <div className={signInUpStyles.container}>
         <Spin size={"large"} />
-        <Text variant="bodyLarge">Please wait for a moment</Text>
+        <Text variant="bodyLarge">Harap tunggu sebentar</Text>
         {isCreating && (
-          <Text variant="bodyLarge">We are creating your account</Text>
+          <Text variant="bodyLarge">Kami sedang membuat akun anda</Text>
         )}
         {isLoading && (
-          <Text variant="bodyLarge">We are validating your email</Text>
+          <Text variant="bodyLarge">Kami sedang memvalidasi email anda</Text>
         )}
       </div>
     </Layout>

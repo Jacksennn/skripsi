@@ -29,7 +29,9 @@ export default function AddProductModal(props: Props) {
   );
   const onChoose = () => {
     if (!selectedRowKey?.id) {
-      message.error({ content: "Please select at least one item / product" });
+      message.error({
+        content: "Mohon pilih setidaknya satu item atau produk",
+      });
     } else {
       setSelectedRowKey(undefined);
       setIsModalOpen(false);
@@ -42,13 +44,13 @@ export default function AddProductModal(props: Props) {
       <Modal
         title={
           <Text variant="heading04" weight="semiBold">
-            {"Add Product"}
+            Tambah Produk
           </Text>
         }
         width={900}
         open={isModalOpen}
         onCancel={() => setIsModalOpen(false)}
-        okText="Save Changes"
+        okText="Simpan"
         footer={[
           <Button
             variant="secondary"
@@ -56,7 +58,7 @@ export default function AddProductModal(props: Props) {
             key="cancel"
             disabled={isLoading}
           >
-            Cancel
+            Batal
           </Button>,
           <Button
             variant="primary"
@@ -102,28 +104,28 @@ export default function AddProductModal(props: Props) {
           })}
           columns={[
             {
-              title: "Product Id",
+              title: "ID Produk",
               dataIndex: "sku_produk",
               width: 80,
             },
             {
-              title: "Product Name",
+              title: "Nama Produk",
               dataIndex: "nama_produk",
               width: 200,
             },
             {
-              title: "Product Category",
+              title: "Kategori Produk",
               dataIndex: "kategori.nama_kategori",
               width: 120,
               render: (_, record) => record.kategori.nama_kategori,
             },
             {
-              title: "Stock",
+              title: "Stok",
               dataIndex: "stok_produk",
               width: 120,
             },
             {
-              title: "Price",
+              title: "Harga",
               dataIndex: "harga_produk",
               width: 200,
               render: (_, record) =>

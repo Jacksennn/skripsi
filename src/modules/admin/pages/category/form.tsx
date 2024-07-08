@@ -61,13 +61,13 @@ export default function CategoryForm(props: Props) {
       <Modal
         title={
           <Text variant="heading04" weight="semiBold">
-            {!id ? "Add New Category" : "Edit Category"}
+            {!id ? "Add New Kategori" : "Edit Kategori"}
           </Text>
         }
         open={isModalOpen}
         width={400}
         onCancel={() => setIsModalOpen(false)}
-        okText="Save Changes"
+        okText="Simpan"
         footer={[
           <Button
             variant="secondary"
@@ -75,7 +75,7 @@ export default function CategoryForm(props: Props) {
             key="cancel"
             disabled={isCreating || isEditing}
           >
-            Cancel
+            Batal
           </Button>,
           <Button
             variant="primary"
@@ -84,7 +84,7 @@ export default function CategoryForm(props: Props) {
             loading={isCreating || isEditing}
             onClick={handleSubmit(onSubmit)}
           >
-            Save Changes
+            Simpan
           </Button>,
         ]}
         styles={{
@@ -113,8 +113,8 @@ export default function CategoryForm(props: Props) {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
               type="text"
-              label="Category Name"
-              placeholder="Category Name"
+              label="Kategori Nama"
+              placeholder="Kategori Nama"
               name="nama_kategori"
               required
               control={control}

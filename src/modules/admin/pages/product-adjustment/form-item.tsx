@@ -27,17 +27,17 @@ export default function FormItem({ control }: { control: any }) {
         }}
         columns={[
           {
-            title: "Product Id",
+            title: "ID Produk",
             dataIndex: "sku_produk",
             width: 80,
           },
           {
-            title: "Product Name",
+            title: "Nama Produk",
             dataIndex: "name",
             width: 200,
           },
           {
-            title: "Quantity",
+            title: "Kuantitas",
             dataIndex: "jumlah_produk",
             width: 120,
             render: (_, record: any, index) => (
@@ -52,12 +52,12 @@ export default function FormItem({ control }: { control: any }) {
             ),
           },
           {
-            title: "Price",
+            title: "Harga",
             dataIndex: "harga_produk",
             render: (val) => formatPricing.format(val),
           },
           {
-            title: "Adjustment",
+            title: "Penyesuaian",
             dataIndex: "adjustment",
             render: (_, record, index) => (
               <AdjustmentDetailSelect
@@ -88,7 +88,7 @@ export default function FormItem({ control }: { control: any }) {
       <AddProductModal
         target={(show) => (
           <Button onClick={show} variant="white" info>
-            Add New Product
+            Tambah Produk
           </Button>
         )}
         onChoose={(product) => {

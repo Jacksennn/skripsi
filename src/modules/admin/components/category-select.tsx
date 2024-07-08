@@ -23,7 +23,7 @@ export default function CategorySelect(props: Props) {
   return (
     <div className="mb">
       <Text variant="bodySmall">
-        Product Category
+        Kategori Produk
         <span className="asterisk">*</span>
       </Text>
       <Controller

@@ -25,7 +25,7 @@ export default function DashboardDetail() {
   const { push } = useRouter();
   return (
     <AdminLayout>
-      <FormLayout title="Best Seller">
+      <FormLayout title="Paling Banyak Dibeli">
         <div className={gridStyle}>
           {isLoading && (
             <Flex justify="center">

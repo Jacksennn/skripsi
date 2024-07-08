@@ -116,7 +116,7 @@ export default function PurchaseForm(props: Props) {
                   type="text"
                   value={supplierId}
                   disabled={true}
-                  placeholder={"Choose Supplier Name"}
+                  placeholder={"Choose Supplier Nama"}
                 ></Input>
               </div>
               <SupplierSelect
@@ -146,7 +146,7 @@ export default function PurchaseForm(props: Props) {
         </CardWrapper>
         <Flex gap={16} justify="end">
           <CancelButton />
-          <Button htmlType="submit">Save</Button>
+          <Button htmlType="submit">Simpan</Button>
         </Flex>
       </form>
     </FormLayout>

@@ -49,14 +49,14 @@ export default function ProductAlert() {
             },
           },
           {
-            title: "Price",
+            title: "Harga",
             dataIndex: "harga_produk",
             width: 120,
             render: (_, record) =>
               formatPricing.format(Number(record.harga_produk)),
           },
           {
-            title: "Quantity",
+            title: "Kuantitas",
             dataIndex: "stok_produk",
             width: 120,
             render: (_, record) => (
@@ -69,7 +69,7 @@ export default function ProductAlert() {
             ),
           },
           {
-            title: "Minimum Quantity",
+            title: "Kuantitas Minimal",
             dataIndex: "min_produk",
             width: 120,
             render: (_, record) => (

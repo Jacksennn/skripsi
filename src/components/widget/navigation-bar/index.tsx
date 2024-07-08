@@ -34,13 +34,13 @@ const route: {
     icon: <BellSimple size={20} />,
   },
   product: {
-    name: "product",
-    label: "Product",
+    name: "Produk",
+    label: "Produk",
     icon: <Storefront size={20} />,
     items: [
       {
-        name: "product",
-        label: "Product",
+        name: "Produk",
+        label: "Produk",
         icon: <Storefront size={20} />,
       },
       {
@@ -50,7 +50,7 @@ const route: {
       },
     ],
   },
-  category: { name: "category", label: "Category", icon: <Tag size={20} /> },
+  category: { name: "category", label: "Kategori", icon: <Tag size={20} /> },
   supplier: { name: "supplier", label: "Supplier", icon: <Truck size={20} /> },
   customer: { name: "customer", label: "Customer", icon: <Users size={20} /> },
   sales_order: {

@@ -133,7 +133,7 @@ export const useDeleteCustomer = (): UseMutationResult<
     mutationFn: async (input: CustomerDeleteInput) =>
       await queryFetch({
         endpoint: `users/${input.id}`,
-        method: "DELETE",
+        method: "Hapus",
         type: "admin",
       }),
   });

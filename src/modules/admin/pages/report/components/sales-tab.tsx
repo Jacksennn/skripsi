@@ -104,7 +104,7 @@ export default function SalesTab() {
           <BaseInput
             type="text"
             size="large"
-            placeholder="Search for anything..."
+            placeholder="Cari...."
             value={value}
             onChange={(e) => onAfterChange(e.target.value)}
             suffix={<SearchIcon size={20} />}
@@ -136,7 +136,7 @@ export default function SalesTab() {
         }}
         columns={[
           {
-            title: "Name",
+            title: "Nama",
             dataIndex: "name",
             width: 300,
           },
@@ -150,7 +150,7 @@ export default function SalesTab() {
             dataIndex: "produk",
             width: 120,
           },
-          { title: "Quantity", dataIndex: "total_qty", width: 100 },
+          { title: "Kuantitas", dataIndex: "total_qty", width: 100 },
           {
             title: "Total",
             dataIndex: "total_harga",
@@ -159,7 +159,7 @@ export default function SalesTab() {
               value ? formatPricing.format(Number(value || 0)) : "",
           },
           {
-            title: "Delivery Status",
+            title: "Status Pengiriman",
             dataIndex: "status_pemesanan",
             width: 100,
             render: (value) => {
@@ -231,7 +231,7 @@ export default function SalesTab() {
                       push(`/admin/transaction/sales/edit/${record.id}`)
                     }
                   >
-                    Details
+                    Detil
                   </Button>
                   <Button
                     variant="white"

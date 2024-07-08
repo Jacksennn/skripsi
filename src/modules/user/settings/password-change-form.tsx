@@ -45,16 +45,16 @@ export default function PasswordChangeForm() {
 
     await queryClient.invalidateQueries();
     await queryClient.clear();
-    notification.success({ message: "You've been logged out!" });
+    notification.success({ message: "Anda telah keluar!" });
   };
   return (
-    <FormLayout title="Change Password">
+    <FormLayout title="Ganti Password">
       <form onSubmit={handleSubmit(onSubmit)} style={{ flex: 1 }}>
         <Row>
           <Col span={24}>
             <Input
               type="password"
-              label="Current Password"
+              label="Password Sekarang"
               name="current_password"
               required
               control={control}
@@ -66,7 +66,7 @@ export default function PasswordChangeForm() {
           <Col span={24}>
             <Input
               type="password"
-              label="New Password"
+              label="Password Baru"
               name="password"
               required
               control={control}
@@ -78,7 +78,7 @@ export default function PasswordChangeForm() {
           <Col span={24}>
             <Input
               type="password"
-              label="Confirm Password"
+              label="Konfirmasi Password"
               name="password_confirmation"
               required
               control={control}
@@ -94,7 +94,7 @@ export default function PasswordChangeForm() {
             onClick={handleSubmit(onSubmit)}
             loading={isLoading}
           >
-            Change Password
+            Ganti Password
           </Button>
           <Button
             variant="primary"
@@ -102,7 +102,7 @@ export default function PasswordChangeForm() {
             onClick={onLogout}
             loading={isLoading}
           >
-            Log Out
+            Keluar
           </Button>
         </div>
       </form>

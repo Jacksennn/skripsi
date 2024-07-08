@@ -43,7 +43,7 @@ export default function ProductAdjustmentPage() {
   return (
     <AdminLayout>
       <AdminHeader
-        title="Product Adjustment"
+        title="Penyesuaian Produk"
         onAdd={() => {}}
         noAdd
         right={
@@ -51,7 +51,7 @@ export default function ProductAdjustmentPage() {
             refetch={refetch}
             target={(showModal) => (
               <Button variant="primary" onClick={showModal}>
-                ADD NEW
+                Tambah
               </Button>
             )}
           />
@@ -69,7 +69,7 @@ export default function ProductAdjustmentPage() {
             <BaseInput
               type="text"
               size="large"
-              placeholder="Search for anything..."
+              placeholder="Cari...."
               value={value}
               onChange={(e) => onAfterChange(e.target.value)}
               suffix={<SearchIcon size={20} />}
@@ -92,17 +92,17 @@ export default function ProductAdjustmentPage() {
         virtual
         columns={[
           {
-            title: "Name",
+            title: "Nama",
             dataIndex: "nama_adjust",
             width: 120,
           },
           {
-            title: "Reason",
+            title: "Alasan",
             dataIndex: "alasan_adjust",
             width: 200,
           },
           {
-            title: "Date Created",
+            title: "Tanggal Dibuat",
             dataIndex: "created_at",
             width: 200,
             render: (record) =>
@@ -119,7 +119,7 @@ export default function ProductAdjustmentPage() {
                   id={record.id}
                   target={(show) => (
                     <Button variant="white" info onClick={show}>
-                      Details
+                      Detil
                     </Button>
                   )}
                   refetch={refetch}

@@ -25,38 +25,38 @@ export default function AdminMainPage() {
           content={formatPricing.format(
             data?.data?.total_sales_this_month || 0,
           )}
-          text="Total Sales This Month"
+          text="Total Penjualan Bulan ini"
           variant="success"
         />
         <DashboardCard
           content={formatPricing.format(
             data?.data?.total_sales_last_month || 0,
           )}
-          text="Total Sales Last Month"
+          text="Total Penjualan Bulan lalu"
           variant="info"
         />
         <DashboardCard
           content={formatPricing.format(data?.data?.pending_sales_order || 0)}
-          text="Pending Sales Order"
+          text="Order Penjualan Pending"
           variant="warning"
         />
         <DashboardCard
           content={formatPricing.format(
             data?.data?.total_income_this_month || 0,
           )}
-          text="Total Income This Month"
+          text="Total Pemasukkan Bulan ini"
           variant="success"
         />
         <DashboardCard
           content={formatPricing.format(
             data?.data?.total_income_last_month || 0,
           )}
-          text="Total Income Last Month"
+          text="Total Pemasukkan Bulan lalu"
           variant="info"
         />
         <DashboardCard
           content={formatPricing.format(data?.data?.income_difference || 0)}
-          text="Income Difference"
+          text="Perbandingan Pemasukkan"
           variant="warning"
         />
       </div>
@@ -69,7 +69,7 @@ export default function AdminMainPage() {
             weight="medium"
             style={{ paddingBottom: 12 }}
           >
-            BEST SELLING PRODUCT
+            Produk paling banyak dibeli
           </Text>
           {(bestSeller?.meta.current_page || 0) <
             (bestSeller?.meta.last_page || 0) && (
@@ -77,7 +77,7 @@ export default function AdminMainPage() {
               variant="white"
               onClick={() => router.push("/admin/dashboard/detail")}
             >
-              View All
+              Lihat semua
             </Button>
           )}
         </Flex>
@@ -86,7 +86,7 @@ export default function AdminMainPage() {
         <div className={dashboardStyles.gridImage}>
           {!bestSeller?.data?.length && (
             <Text variant="bodySmall" style={{ textAlign: "center" }}>
-              No Product
+              Tidak Ada Produk
             </Text>
           )}
           {bestSeller?.data?.map((item) => {

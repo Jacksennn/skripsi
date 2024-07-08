@@ -19,7 +19,7 @@ export default function AdminHeader(props: Props) {
       </Text>
       {!props.noAdd && (
         <Button variant="primary" onClick={props.onAdd}>
-          ADD NEW
+          Tambah
         </Button>
       )}
       {props.right}

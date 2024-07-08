@@ -16,7 +16,7 @@ export type MeRespondType = {
   notelp_user: string;
   region: string;
   city: string;
-  zipcode: string;
+  zip_code: string;
 };
 
 export type GetMeRespond = { data: MeRespondType };
@@ -29,7 +29,7 @@ export type MeUpdateInput = {
   notelp_user: string;
   region: string;
   city: string;
-  zipcode: string;
+  zip_code: string;
 };
 
 export type ChangePasswordInput = {

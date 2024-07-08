@@ -52,7 +52,7 @@ export default function SignInTab(props: Props) {
 
   const onSignUpWithGoogle = async () => {
     message.info(
-      "Please don't close this window, we are validating your account....",
+      "Mohon untuk tidak menutup jendela ini, Kami sedang memvalidasi akun anda ...",
     );
     signInWithPopup(auth, googleProvider)
       .then(async (result) => {
@@ -64,7 +64,7 @@ export default function SignInTab(props: Props) {
           });
           login(res?.data.access_token, "user");
           message.success(res.message);
-          message.success("Logged In!");
+          message.success("Berhasil Masuk!");
         } catch (e: any) {
           message.error(e?.message);
         }
@@ -82,7 +82,7 @@ export default function SignInTab(props: Props) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
         type="email"
-        label="Email Address"
+        label="Alamat Email"
         name="username"
         required
         control={control}
@@ -152,7 +152,7 @@ export default function SignInTab(props: Props) {
               weight="medium"
               style={{ textTransform: "capitalize" }}
             >
-              Sign In with Google
+              Masuk dengan Google
             </Text>{" "}
             {/* <ArrowRight size={20} /> */}
           </Flex>

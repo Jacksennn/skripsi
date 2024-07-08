@@ -197,7 +197,7 @@ export default function ReturForm(props: Props) {
         </CardWrapper>
         <Flex gap={16} justify="end">
           <CancelButton />
-          <Button htmlType="submit">Save</Button>
+          <Button htmlType="submit">Simpan</Button>
         </Flex>
       </form>
     </FormLayout>

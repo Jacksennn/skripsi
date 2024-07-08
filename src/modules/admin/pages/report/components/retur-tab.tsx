@@ -64,7 +64,7 @@ export default function ReturTab() {
           <BaseInput
             type="text"
             size="large"
-            placeholder="Search for anything..."
+            placeholder="Cari...."
             value={value}
             onChange={(e) => onAfterChange(e.target.value)}
             suffix={<SearchIcon size={20} />}
@@ -101,7 +101,7 @@ export default function ReturTab() {
             width: 300,
           },
           {
-            title: "Order ID",
+            title: "ID Pemesanan",
             dataIndex: "no_pemesanan",
             width: 100,
           },
@@ -110,7 +110,7 @@ export default function ReturTab() {
             dataIndex: "produk",
             width: 120,
           },
-          { title: "Quantity", dataIndex: "total_qty", width: 100 },
+          { title: "Kuantitas", dataIndex: "total_qty", width: 100 },
           { title: "Total", dataIndex: "total", width: 120 },
           {
             title: "Status",
@@ -151,7 +151,7 @@ export default function ReturTab() {
                       push(`/admin/transaction/retur/edit/${record.id}`)
                     }
                   >
-                    Details
+                    Detil
                   </Button>
                   {/* <Button
                     variant="white"

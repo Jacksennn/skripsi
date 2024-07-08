@@ -106,7 +106,7 @@ export default function ProductFirstForm() {
             <div>
               <Flex style={{ marginBottom: 16 }} gap={2}>
                 <Text variant="bodySmall" weight="regular">
-                  Stock:
+                  Stok:
                 </Text>
                 <Text variant="bodySmall" weight="bold">
                   {data!.stok_produk}
@@ -114,7 +114,7 @@ export default function ProductFirstForm() {
               </Flex>
               <Flex gap={2}>
                 <Text variant="bodySmall" weight="regular">
-                  Category:
+                  Kategori:
                 </Text>
                 <Text variant="bodySmall" weight="bold">
                   {data!.kategori?.nama_kategori}
@@ -126,7 +126,7 @@ export default function ProductFirstForm() {
           <Flex justify="space-between" gap={16}>
             <div>
               <Text color="gray600" variant="bodySmall">
-                Price:
+                Harga:
               </Text>
               <Text color="secondary500" variant="heading03">
                 {formatPricing.format(Number(data!.harga_produk || 0))},-
@@ -139,7 +139,7 @@ export default function ProductFirstForm() {
                   onChange={(e) => setValue(e.target.checked)}
                 />
                 <Text color="gray700" variant="bodySmall">
-                  Product Visibility
+                  Visibilitas Produk
                 </Text>
               </Flex>
             </div>
@@ -151,20 +151,20 @@ export default function ProductFirstForm() {
               onClick={() => onDelete(id as string)}
               loading={isDeleteLoad}
             >
-              DELETE
+              Hapus
             </Button>
             <Button
               variant="secondary"
               onClick={() => edit()}
               loading={isEditing}
             >
-              SAVE
+              Simpan
             </Button>
             <Button
               variant={"secondary"}
               onClick={() => push(`/admin/product/${data.id}/edit`)}
             >
-              {"EDIT"}
+              Edit
             </Button>
           </Flex>
         </div>

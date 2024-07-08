@@ -41,7 +41,7 @@ export default function AdminModal(props: Props) {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        okText="Save Changes"
+        okText="Simpan"
         cancelButtonProps={{
           style: {
             borderRadius: 2,

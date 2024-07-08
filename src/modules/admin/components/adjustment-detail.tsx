@@ -5,12 +5,12 @@ import { Control, Controller } from "react-hook-form";
 
 export const AdjustmentDetail = [
   {
-    name: "Stock out",
-    value: "Stock Out",
+    name: "Stok out",
+    value: "Stok Out",
   },
   {
-    name: "Stock in",
-    value: "Stock In",
+    name: "Stok in",
+    value: "Stok In",
   },
 ];
 

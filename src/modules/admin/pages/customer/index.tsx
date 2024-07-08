@@ -47,7 +47,7 @@ export default function CustomerPage() {
             refetch={refetch}
             target={(showModal) => (
               <Button variant="primary" onClick={showModal}>
-                ADD NEW
+                Tambah
               </Button>
             )}
           />
@@ -65,7 +65,7 @@ export default function CustomerPage() {
             <BaseInput
               type="text"
               size="large"
-              placeholder="Search for anything..."
+              placeholder="Cari...."
               value={value}
               onChange={(e) => onAfterChange(e.target.value)}
               suffix={<SearchIcon size={20} />}
@@ -88,17 +88,17 @@ export default function CustomerPage() {
         virtual
         columns={[
           {
-            title: "Customer ID",
+            title: "ID Kustomer",
             dataIndex: "no_user",
             width: 100,
           },
           {
-            title: "Name",
+            title: "Nama",
             dataIndex: "nama_user",
             width: 120,
           },
           {
-            title: "Phone Number",
+            title: "Nomor Hp.",
             dataIndex: "notelp_user",
             width: 120,
           },
@@ -119,7 +119,7 @@ export default function CustomerPage() {
                   id={record.id}
                   target={(show) => (
                     <Button variant="white" info onClick={show}>
-                      Details
+                      Detil
                     </Button>
                   )}
                 />

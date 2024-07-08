@@ -36,7 +36,7 @@ export default function SettingAccountInformationForm({
       notelp_user: "",
       region: "",
       city: "",
-      zipcode: "",
+      zip_code: "",
     },
   });
 
@@ -83,8 +83,8 @@ export default function SettingAccountInformationForm({
                 type="text"
                 name="nama_user"
                 control={control}
-                placeholder={"Full Name"}
-                label={"Full Name"}
+                placeholder={"Nama Lengkap"}
+                label={"Nama Lengkap"}
               ></Input>
             </SectionForm>
             <SectionForm>
@@ -113,8 +113,8 @@ export default function SettingAccountInformationForm({
                 type="tel"
                 name="notelp_user"
                 control={control}
-                placeholder={"Phone Number"}
-                label={"Phone Number"}
+                placeholder={"Nomor Hp."}
+                label={"Nomor Hp."}
               ></Input>
             </SectionForm>
           </SectionContainerForm>
@@ -122,7 +122,7 @@ export default function SettingAccountInformationForm({
             <Col span={24}>
               <Input
                 type="text"
-                label="Full Address"
+                label="Alamat Lengkap"
                 name="alamat_user"
                 required
                 control={control}
@@ -148,7 +148,7 @@ export default function SettingAccountInformationForm({
                 <Col span={12}>
                   <Input
                     type="text"
-                    label="Zip Code"
+                    label="Kode Pos"
                     name="zip_code"
                     required
                     control={control}
@@ -165,7 +165,7 @@ export default function SettingAccountInformationForm({
             loading={isCreating}
             onClick={handleSubmit(onSubmit)}
           >
-            Save Changes
+            Simpan
           </Button>
         </form>
       </Flex>
