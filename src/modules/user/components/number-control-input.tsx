@@ -18,7 +18,7 @@ export default function NumberControlInput(props: Props) {
       style={{ textAlign: "center" }}
       value={props.value as any}
       max={props.max}
-      onChange={(e) => props.onChange(e.target.value as any as number)}
+      onChange={(e) => props.onChange(Number(e.target.value))}
       {...{
         addonBefore: (
           <button
