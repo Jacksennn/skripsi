@@ -269,7 +269,7 @@ export default function OrderHistory() {
                 dataIndex: "jumlah_produk",
               },
               {
-                title: "Total Amount",
+                title: "Total",
                 dataIndex: "total_amount",
                 render: (_, record) =>
                   `${formatPricing.format(

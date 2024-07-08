@@ -19,7 +19,7 @@ export default function RegionInput(props: Props) {
 
   return (
     <>
-      <Text variant="bodySmall">Region</Text>
+      <Text variant="bodySmall">Wilayah</Text>
       <Controller
         name={name}
         control={control}

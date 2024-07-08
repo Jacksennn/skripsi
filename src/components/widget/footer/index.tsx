@@ -20,7 +20,7 @@ export default function Footer() {
 
         <div className={footerStyles.informationWrapper}>
           <Text variant="bodySmall" weight="bold" color="gray500">
-            Contact us at:
+            Kontak Kami at:
           </Text>
           <Text
             variant="bodyLarge"

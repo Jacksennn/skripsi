@@ -107,7 +107,7 @@ export default function FilterComponent(props: Props) {
                 props.onChange?.(temp);
               }}
             >
-              Apply
+              Terapkan
             </Button>
           </Flex>
         </div>

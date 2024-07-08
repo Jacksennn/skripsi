@@ -30,11 +30,10 @@ export default function ProductPage() {
 
   const { push } = useRouter();
 
-  console.log(data?.filters);
   return (
     <AdminLayout>
       <FormLayout
-        title="Products"
+        title="Produk"
         right={
           <Button variant="primary" onClick={() => push("product/add")}>
             Tambah

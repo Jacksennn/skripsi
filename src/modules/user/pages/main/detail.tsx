@@ -187,7 +187,7 @@ export default function MainDetail() {
               weight="semiBold"
               className={detailStyle.cardTitle}
             >
-              Buy selected products to get discount!
+              Beli kombinasi produk berikut untuk mendapatkan diskon!
             </Text>
             <div className={detailStyle.flexItemContainer}>
               <>

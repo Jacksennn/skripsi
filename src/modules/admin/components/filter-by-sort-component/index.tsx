@@ -102,7 +102,7 @@ export default function FilterBySortComponent(props: Props) {
                 }
               }}
             >
-              Apply
+              Terapkan
             </Button>
           </Flex>
         </div>

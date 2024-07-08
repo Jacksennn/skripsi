@@ -152,7 +152,7 @@ export default function SalesOrderPage() {
             dataIndex: "no_user",
           },
           {
-            title: "Total Amount",
+            title: "Total",
             dataIndex: "total_amount",
           },
           {
