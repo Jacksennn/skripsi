@@ -7,6 +7,7 @@ interface Props {
   value: Number;
   classname?: string;
   size?: "small" | "large";
+  max?: number;
 }
 export default function NumberControlInput(props: Props) {
   return (
@@ -16,7 +17,7 @@ export default function NumberControlInput(props: Props) {
       size={props.size || "large"}
       style={{ textAlign: "center" }}
       value={props.value as any}
-      readOnly
+      max={props.max}
       {...{
         addonBefore: (
           <button

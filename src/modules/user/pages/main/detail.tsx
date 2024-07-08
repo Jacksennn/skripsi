@@ -152,7 +152,11 @@ export default function MainDetail() {
           </div>
           {/* ACTION */}
           <div className={detailStyle.button}>
-            <NumberControlInput value={val} onChange={setVal} />
+            <NumberControlInput
+              value={val}
+              onChange={setVal}
+              max={data.stok_produk}
+            />
             <Button
               icon={<CartIcon size={20} />}
               iconPosition="end"
