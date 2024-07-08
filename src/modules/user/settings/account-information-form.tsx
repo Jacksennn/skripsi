@@ -70,7 +70,7 @@ export default function SettingAccountInformationForm({
   });
 
   return (
-    <FormLayout title="Account Setting">
+    <FormLayout title="Pengaturan Akun">
       <Flex gap={20}>
         <div className={usericonContainer}>
           <Image width={170} height={170} src={Avatar} alt="avatar" />

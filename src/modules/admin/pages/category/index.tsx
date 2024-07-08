@@ -40,7 +40,7 @@ export default function CategoryPage() {
   return (
     <AdminLayout>
       <AdminHeader
-        title="Categories"
+        title="Kategori"
         onAdd={() => {}}
         noAdd
         right={

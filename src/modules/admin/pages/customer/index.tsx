@@ -39,7 +39,7 @@ export default function CustomerPage() {
   return (
     <AdminLayout>
       <AdminHeader
-        title="Customers"
+        title="Kustomer"
         onAdd={() => {}}
         noAdd
         right={

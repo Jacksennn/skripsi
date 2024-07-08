@@ -13,17 +13,17 @@ export default function ProductAlert() {
   return (
     <AdminLayout>
       <Text variant="bodyXxl" style={{ marginBottom: 8 }}>
-        Product Alert
+        Notifikasi Produk
       </Text>
       <Text variant="bodySmall" color="gray500" className="mb">
-        Product Alert will be updated everyday at 00:00 WIB
+        Notifikasi Produk akan di perbaharui setiap 00:00 WIB
       </Text>
       <Table
         virtual
         loading={isLoading}
         columns={[
           {
-            title: "Products",
+            title: "Produk",
             dataIndex: "nama_produk",
             width: 200,
             render: (a, data, index) => {

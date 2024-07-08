@@ -99,9 +99,7 @@ export default function PurchaseForm(props: Props) {
   };
 
   return (
-    <FormLayout
-      title={`Direct Transaction > ${data ? "Edit" : "Add new"} Purchase`}
-    >
+    <FormLayout title={`Transaksi > ${data ? "Edit" : "Add new"} Purchase`}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardWrapper title="Purchase Invoice">
           <SectionContainerForm>

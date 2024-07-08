@@ -135,9 +135,7 @@ export default function ReturForm(props: Props) {
   };
 
   return (
-    <FormLayout
-      title={`Direct Transaction > ${data ? "Edit" : "Add new"} Retur`}
-    >
+    <FormLayout title={`Transaksi > ${data ? "Edit" : "Add new"} Retur`}>
       {isLoading && <Spin fullscreen />}
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardWrapper title="Retur Invoice">

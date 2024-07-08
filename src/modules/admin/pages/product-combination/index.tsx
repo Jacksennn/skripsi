@@ -82,7 +82,7 @@ export default function ProductCombination() {
 
   return (
     <AdminLayout>
-      <FormLayout title="Product Combination">
+      <FormLayout title="Kombinasi Produk">
         <DebounceComponent setValue={setSearch} value={search}>
           {(value, change) => (
             <Input

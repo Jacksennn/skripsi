@@ -39,7 +39,7 @@ export default function SupplierPage() {
   return (
     <AdminLayout>
       <AdminHeader
-        title="Suppliers"
+        title="Supplier"
         onAdd={() => {}}
         noAdd
         right={

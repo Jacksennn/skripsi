@@ -30,22 +30,22 @@ const route: {
   },
   product_alert: {
     name: "product-alert",
-    label: "Product Alert",
+    label: "Notifikasi Produk",
     icon: <BellSimple size={20} />,
   },
   product: {
-    name: "Produk",
+    name: "product",
     label: "Produk",
     icon: <Storefront size={20} />,
     items: [
       {
-        name: "Produk",
+        name: "product",
         label: "Produk",
         icon: <Storefront size={20} />,
       },
       {
         name: "product-adjustment",
-        label: "Product Adjustment",
+        label: "Penyesuaian Produk",
         icon: <Storefront size={20} />,
       },
     ],
@@ -55,21 +55,21 @@ const route: {
   customer: { name: "customer", label: "Customer", icon: <Users size={20} /> },
   sales_order: {
     name: "sales-order",
-    label: "Sales Order",
+    label: "Penjualan",
     icon: <ShoppingCartSimple size={20} />,
   },
   direct_transaction: {
     name: "transaction",
-    label: "Direct Transaction",
+    label: "Transaksi",
     icon: <NotePencil size={20} />,
   },
   product_combination: {
     name: "product-combination",
-    label: "Product Combination",
+    label: "Kombinasi Produk",
     icon: <Heart size={20} />,
   },
-  report: { name: "report", label: "Report", icon: <Notebook size={20} /> },
-  setting: { name: "settings", label: "Setting", icon: <Gear size={20} /> },
+  report: { name: "report", label: "Laporan", icon: <Notebook size={20} /> },
+  setting: { name: "settings", label: "Pengaturan", icon: <Gear size={20} /> },
 };
 
 function NavItem(props: Route & { router: NextRouter }) {

@@ -92,9 +92,7 @@ export default function SalesForm(props: Props) {
     }
   }, [data, setValue]);
   return (
-    <FormLayout
-      title={`Direct Transaction > ${data ? "Edit" : "Add new"} Sales`}
-    >
+    <FormLayout title={`Transaksi > ${data ? "Edit" : "Add new"} Sales`}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardWrapper title="Customer Invoice">
           <SectionContainerForm>
