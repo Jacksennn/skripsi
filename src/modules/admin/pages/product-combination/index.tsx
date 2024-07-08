@@ -87,7 +87,7 @@ export default function ProductCombination() {
           {(value, change) => (
             <Input
               type="text"
-              placeholder="Search for product"
+              placeholder="Cari produk"
               value={value}
               onChange={(e) => change(e.target.value)}
             />

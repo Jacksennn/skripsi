@@ -35,15 +35,15 @@ function CondtionalRender({
 }
 
 export default function ReportPage() {
-  const [tab, setTab] = useState<string>("sales");
+  const [tab, setTab] = useState<string>("penjualan");
   return (
     <AdminLayout>
       <Flex justify="space-between">
         <Text
           variant="bodyLarge"
           style={{ textTransform: "capitalize" }}
-        >{`${tab} Transaction History`}</Text>
-        {tab === "sales" && (
+        >{`History Transaksi ${tab}`}</Text>
+        {tab === "penjualan" && (
           <ExportSalesMass
             target={(showModal) => (
               <Button variant="primary" onClick={showModal}>
@@ -60,17 +60,17 @@ export default function ReportPage() {
         >
           <button
             type="button"
-            onClick={() => setTab("sales")}
+            onClick={() => setTab("penjualan")}
             className={reportTabStyle}
-            style={tab === "sales" ? activeStyle : inactiveStyle}
+            style={tab === "penjualan" ? activeStyle : inactiveStyle}
           >
             Penjualan
           </button>
           <button
             type="button"
-            onClick={() => setTab("purchase")}
+            onClick={() => setTab("pembelian")}
             className={reportTabStyle}
-            style={tab === "purchase" ? activeStyle : inactiveStyle}
+            style={tab === "pembelian" ? activeStyle : inactiveStyle}
           >
             Pembelian
           </button>
@@ -83,10 +83,10 @@ export default function ReportPage() {
             Retur
           </button>
         </div>
-        <CondtionalRender fullfiled={tab === "sales"}>
+        <CondtionalRender fullfiled={tab === "penjualan"}>
           <SalesTab />
         </CondtionalRender>
-        <CondtionalRender fullfiled={tab === "purchase"}>
+        <CondtionalRender fullfiled={tab === "pembelian"}>
           <PurchaseTab />
         </CondtionalRender>
         <CondtionalRender fullfiled={tab === "retur"}>

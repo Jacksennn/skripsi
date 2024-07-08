@@ -97,7 +97,7 @@ export default function ProductSearch() {
     >
       <BaseInput
         type="text"
-        placeholder="Search for product"
+        placeholder="Cari produk"
         value={value}
         onFocus={() => setIsOpen(true)}
         onChange={(e) => {

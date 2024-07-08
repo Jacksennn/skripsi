@@ -44,7 +44,7 @@ export default function UserSelect(props: Props) {
   return (
     <div className="mb">
       <Text variant="bodySmall">
-        Customer Nama
+        Nama Kustomer
         <span className="asterisk">*</span>
       </Text>
       <Controller
@@ -62,7 +62,7 @@ export default function UserSelect(props: Props) {
                 ],
               );
             }}
-            placeholder="Customer Nama"
+            placeholder="Nama Kustomer"
             options={data?.data?.map((item) => ({
               value: item.id,
               label: item.nama_user,

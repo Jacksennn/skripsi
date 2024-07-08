@@ -114,7 +114,7 @@ export default function PurchaseForm(props: Props) {
                   type="text"
                   value={supplierId}
                   disabled={true}
-                  placeholder={"Choose Supplier Nama"}
+                  placeholder={"Choose Nama Supplier"}
                 ></Input>
               </div>
               <SupplierSelect

@@ -107,7 +107,7 @@ export default function SalesForm(props: Props) {
                   type="text"
                   value={customerId}
                   disabled={true}
-                  placeholder={"Choose Customer Nama"}
+                  placeholder={"Choose Nama Kustomer"}
                 ></Input>
               </div>
 

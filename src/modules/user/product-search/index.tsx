@@ -98,7 +98,7 @@ export default function ProductSearch() {
       <BaseInput
         noMb
         type="text"
-        placeholder="Search for product"
+        placeholder="Cari produk"
         value={value}
         onFocus={() => setIsOpen(true)}
         onChange={(e) => {

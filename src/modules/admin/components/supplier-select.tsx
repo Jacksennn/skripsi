@@ -17,7 +17,7 @@ export default function SupplierSelect(props: Props) {
   return (
     <div className="mb">
       <Text variant="bodySmall">
-        Supplier Nama
+        Nama Supplier
         <span className="asterisk">*</span>
       </Text>
       <Controller
