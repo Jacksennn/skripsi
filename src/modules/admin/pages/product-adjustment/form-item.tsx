@@ -48,6 +48,7 @@ export default function FormItem({ control }: { control: any }) {
                 name={`details.${index}.jumlah_produk`}
                 noMb
                 key={`details.${record.sku_produk}.jumlah_produk`}
+                min={0}
               />
             ),
           },
