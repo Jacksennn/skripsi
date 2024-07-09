@@ -36,7 +36,7 @@ export default function AdminMainPage() {
           variant="info"
         />
         <DashboardCard
-          content={formatPricing.format(data?.data?.pending_sales_order || 0)}
+          content={(data?.data?.pending_sales_order || 0)}
           text="Order Penjualan Pending"
           variant="warning"
         />
