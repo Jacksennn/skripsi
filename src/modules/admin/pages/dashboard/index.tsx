@@ -23,14 +23,14 @@ export default function AdminMainPage() {
       <div className={dashboardStyles.grid}>
         <DashboardCard
           content={formatPricing.format(
-            data?.data?.total_sales_this_month || 0,
+            data?.data?.total_income_this_month || 0,
           )}
           text="Total Omset Bulan Ini"
           variant="success"
         />
         <DashboardCard
           content={formatPricing.format(
-            data?.data?.total_sales_last_month || 0,
+            data?.data?.total_income_last_month || 0,
           )}
           text="Total Omset Bulan lalu"
           variant="info"
