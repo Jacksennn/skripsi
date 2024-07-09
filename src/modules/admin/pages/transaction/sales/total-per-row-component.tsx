@@ -13,7 +13,7 @@ export default function TotalPerRowcomponent({
   return (
     <>
       {formatPricing.format(
-        detail.harga_produk * 2 - detail.diskon_produk || 0,
+        detail.harga_produk * detail.jumlah_produk - detail.diskon_produk || 0,
       )}
     </>
   );
