@@ -154,7 +154,7 @@ export const useDeleteProductAdjustment = (): UseMutationResult<
     mutationFn: async (input: ProductAdjustmentDeleteInput) =>
       await queryFetch({
         endpoint: `adjustment-produk/${input.id}`,
-        method: "Hapus",
+        method: "DELETE",
         type: "admin",
       }),
   });

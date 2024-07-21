@@ -145,7 +145,7 @@ export const useDeletePurchase = (): UseMutationResult<
     mutationFn: async (input: PurchaseDeleteInput) =>
       await queryFetch({
         endpoint: `pembelian/${input.id}`,
-        method: "Hapus",
+        method: "DELETE",
         type: "admin",
       }),
   });

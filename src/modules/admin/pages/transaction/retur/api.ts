@@ -158,7 +158,7 @@ export const useDeleteRetur = (): UseMutationResult<
     mutationFn: async (input: ReturDeleteInput) =>
       await queryFetch({
         endpoint: `retur/${input.id}`,
-        method: "Hapus",
+        method: "DELETE",
         type: "admin",
       }),
   });
