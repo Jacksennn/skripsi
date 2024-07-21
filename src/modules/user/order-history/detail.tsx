@@ -93,7 +93,7 @@ export default function OrderHistoryDetail(props: Props) {
                         }).format("DD/MM/YYYY, hh:mm A")}`
                       : ""
                   }
-                  label={"ID Pemesanan"}
+                  label={"Tanggal Pemesanan"}
                   disabled
                 ></BaseInput>
               </SectionForm>

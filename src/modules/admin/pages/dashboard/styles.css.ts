@@ -4,7 +4,7 @@ import { style } from "@vanilla-extract/css";
 export const dashboardStyles = {
   grid: style({
     display: "grid",
-    gridTemplateRows: "1fr 1fr",
+    gridTemplateRows: "1fr",
     // width: "fit-content",
     gap: 16,
     "@media": {
@@ -34,7 +34,7 @@ export const dashboardStyles = {
         gridTemplateColumns: "repeat(3, 1fr)",
       },
       "screen and (min-width: 976px)": {
-        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
       },
     },
   }),

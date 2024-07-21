@@ -5,7 +5,7 @@ import { dashboardStyles } from "./styles.css";
 import DashboardCard from "../../components/dashboard-card";
 import ImageCard from "@/modules/components/image-card";
 import Text from "@/components/elements/text";
-import { Flex } from "antd";
+import { Divider, Flex } from "antd";
 import Button from "@/components/elements/button";
 import { useGetDashboard } from "./api";
 import { useGetProductsBestSeller } from "../product/api";
@@ -15,7 +15,7 @@ import { formatPricing } from "@/common/price";
 export default function AdminMainPage() {
   const { data } = useGetDashboard();
   const { data: bestSeller } = useGetProductsBestSeller(true, {
-    limit: 4,
+    limit: 5,
   });
   const router = useRouter();
   return (
@@ -23,63 +23,44 @@ export default function AdminMainPage() {
       <div className={dashboardStyles.grid}>
         <DashboardCard
           content={formatPricing.format(
-            data?.data?.total_sales_this_month || 0,
-          )}
-          text="Total Penjualan Bulan ini"
-          variant="success"
-        />
-        <DashboardCard
-          content={formatPricing.format(
-            data?.data?.total_sales_last_month || 0,
-          )}
-          text="Total Penjualan Bulan lalu"
-          variant="info"
-        />
-        <DashboardCard
-          content={formatPricing.format(data?.data?.pending_sales_order || 0)}
-          text="Order Penjualan Pending"
-          variant="warning"
-        />
-        <DashboardCard
-          content={formatPricing.format(
             data?.data?.total_income_this_month || 0,
           )}
-          text="Total Pemasukkan Bulan ini"
+          text="Total Omset Bulan Ini"
           variant="success"
         />
         <DashboardCard
           content={formatPricing.format(
             data?.data?.total_income_last_month || 0,
           )}
-          text="Total Pemasukkan Bulan lalu"
+          text="Total Omset Bulan lalu"
           variant="info"
         />
         <DashboardCard
-          content={formatPricing.format(data?.data?.income_difference || 0)}
-          text="Perbandingan Pemasukkan"
+          content={(data?.data?.pending_sales_order || 0)}
+          text="Order Penjualan Pending"
           variant="warning"
         />
+        
       </div>
 
       <div className={dashboardStyles.imageContainer}>
         <Flex justify="space-between">
+          <div>
           <Text
             variant="heading04"
             color="gray900"
-            weight="medium"
+            weight="bold"
             style={{ paddingBottom: 12 }}
           >
-            Produk paling banyak dibeli
+            PRODUK PALING BANYAK DIBELI BULAN LALU
           </Text>
-          {(bestSeller?.meta.current_page || 0) <
-            (bestSeller?.meta.last_page || 0) && (
-            <Button
-              variant="white"
-              onClick={() => router.push("/admin/dashboard/detail")}
-            >
-              Lihat semua
-            </Button>
-          )}
+          <Flex align="center" style={{marginBottom: 12}}>
+            <Text style={{display: "flex", width: "max-content"}} variant="bodyMedium" color="gray900" weight="medium">
+              Menampilkan penjualan produk terlaris dalam 1 bulan
+            </Text>
+          </Flex>
+          {/* <div style={{display: "flex", flex: 1, height: 2, borderBottom: "1px solid black", marginTop: 12}}></div> */}
+          </div>
         </Flex>
         <div className={dashboardStyles.borderBottom}></div>
         <div className="mb"> </div>

@@ -55,12 +55,12 @@ const route: {
   customer: { name: "customer", label: "Customer", icon: <Users size={20} /> },
   sales_order: {
     name: "sales-order",
-    label: "Penjualan",
+    label: "Penjualan Online",
     icon: <ShoppingCartSimple size={20} />,
   },
   direct_transaction: {
     name: "transaction",
-    label: "Transaksi",
+    label: "Transaksi Offline",
     icon: <NotePencil size={20} />,
   },
   product_combination: {

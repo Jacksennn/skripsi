@@ -3,6 +3,7 @@ import { Control, Controller } from "react-hook-form";
 import Text from "@/components/elements/text";
 import { Select } from "antd";
 import { SalesRespondType, useGetSales } from "../pages/transaction/sales/api";
+import { useGetSalesOrders } from "../pages/sales-order/api";
 type SaleType = {
   id: string;
   no_pemesanan: string;
@@ -24,9 +25,9 @@ interface Props {
 
 export default function SalesSelect(props: Props) {
   const { control, name, onChange, disabled } = props;
-  const { data, isLoading } = useGetSales({ limit: -1 }, {});
+  const { data, isLoading } = useGetSalesOrders({ limit: -1, status_pemesanan: "Delivered" }, {});
 
-  const datas: SaleType[] = React.useMemo(
+  const datas: any[] = React.useMemo(
     () => Object.values(data?.data || {}).flat(),
     [data?.data],
   );
