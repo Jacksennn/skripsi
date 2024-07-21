@@ -33,8 +33,9 @@ export default function ExportSalesMass(props: Props) {
       notification.success({
         message: "Sedang membuat pdf, mohon menunggu... ",
       });
+      console.log(dayjs(date).toISOString());
       const res = await printSales({
-        date: date.toISOString() as any,
+        date: dayjs(date).toISOString() as any,
       });
 
       const temp = await blobToBase64(await res.blob());
