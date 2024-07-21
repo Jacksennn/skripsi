@@ -154,7 +154,13 @@ export default function MainDetail() {
           <div className={detailStyle.button}>
             <NumberControlInput
               value={val}
-              onChange={setVal}
+              onChange={(val) => {
+                setVal(val);
+                if (val > data?.stok_produk) {
+                  message.error("Stok produk tidak mencukupi");
+                  setVal(data?.stok_produk);
+                }
+              }}
               max={data.stok_produk}
             />
             <Button
