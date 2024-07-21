@@ -5,7 +5,7 @@ import Text from "@/components/elements/text";
 import Button from "@/components/elements/button";
 import BaseInput from "@/components/elements/input/base-input";
 import { inputStyles } from "@/components/elements/input/styles.css";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 
 interface Props {
   target: (showModal: () => void) => React.ReactNode;
@@ -21,7 +21,7 @@ function blobToBase64(blob: any) {
 
 export default function ExportSalesMass(props: Props) {
   const { mutateAsync: printSales, isLoading } = useMassPrintSales();
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Dayjs>(dayjs(new Date(), { utc: false }));
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onPrint = async () => {
@@ -51,6 +51,7 @@ export default function ExportSalesMass(props: Props) {
             `,
       );
     } catch (e: any) {
+      console.log(e);
       notification.error({ message: e?.message });
       setIsModalOpen(false);
     }
@@ -90,8 +91,8 @@ export default function ExportSalesMass(props: Props) {
       >
         <Text variant="bodySmall">Pilih Tanggal</Text>
         <DatePicker
-          value={dayjs(new Date(date), { utc: false })}
-          onChange={setDate as any}
+          value={date}
+          onChange={setDate}
           className={inputStyles}
           size="large"
           allowClear={false}
