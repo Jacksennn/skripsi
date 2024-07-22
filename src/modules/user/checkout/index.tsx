@@ -61,12 +61,13 @@ export default function Checkout() {
     onSuccess(data) {
       const username = data.data.nama_user.split(" ");
       const [awal, ...akhir] = username;
+      const hasAkhir = username.length > 1;
       const temp: Inputs = {
         alamat: data.data.alamat_user,
         city: data.data.city,
         email: data.data.email_user,
-        nama_awal: username.length > 1 ? awal : akhir.join(""),
-        nama_akhir: username.length > 1 ? akhir.join(" ") : "",
+        nama_awal: hasAkhir ? awal : data.data.nama_user,
+        nama_akhir: hasAkhir ? akhir.join(" ") : "",
         no_telp: data.data.notelp_user,
         region: data.data.region,
         zip_code: data.data.zip_code,
