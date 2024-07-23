@@ -23,7 +23,12 @@ export default function ProductFirstForm() {
     push,
     query: { id },
   } = useRouter();
-  const { data: respond, refetch } = useGetProduct(
+  const {
+    data: respond,
+    refetch,
+    isLoading,
+    isRefetching,
+  } = useGetProduct(
     {
       id: id as string,
     },
@@ -80,6 +85,7 @@ export default function ProductFirstForm() {
 
   return (
     <FormLayout>
+      {(isLoading || isRefetching) && <Spin fullscreen />}
       <div className={firstFormStyle}>
         <div>
           <Image
@@ -104,7 +110,7 @@ export default function ProductFirstForm() {
               </Text>
             </Flex>
             <div>
-              <Flex style={{ marginBottom: 16 }} gap={2}>
+              <Flex style={{ marginBottom: 8 }} gap={2}>
                 <Text variant="bodySmall" weight="regular">
                   Stok:
                 </Text>
@@ -112,12 +118,20 @@ export default function ProductFirstForm() {
                   {data!.stok_produk}
                 </Text>
               </Flex>
-              <Flex gap={2}>
+              <Flex gap={2} style={{ marginBottom: 8 }}>
                 <Text variant="bodySmall" weight="regular">
                   Kategori:
                 </Text>
                 <Text variant="bodySmall" weight="bold">
                   {data!.kategori?.nama_kategori}
+                </Text>
+              </Flex>
+              <Flex gap={2}>
+                <Text variant="bodySmall" weight="regular">
+                  Satuan Produk:
+                </Text>
+                <Text variant="bodySmall" weight="bold">
+                  {data!.satuan}
                 </Text>
               </Flex>
             </div>

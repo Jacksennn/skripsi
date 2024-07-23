@@ -113,12 +113,20 @@ export default function MainDetail() {
                   </Text>
                 </Flex>
 
-                <Flex style={{ marginBottom: 16 }} gap={2}>
+                <Flex style={{ marginBottom: 8 }} gap={2}>
                   <Text variant="bodySmall" weight="regular">
                     Stok:
                   </Text>
                   <Text variant="bodySmall" weight="bold">
                     {data!.stok_produk || "-"}
+                  </Text>
+                </Flex>
+                <Flex style={{ marginBottom: 8 }} gap={2}>
+                  <Text variant="bodySmall" weight="regular">
+                    Satuan:
+                  </Text>
+                  <Text variant="bodySmall" weight="bold">
+                    {data!.satuan || "-"}
                   </Text>
                 </Flex>
               </div>

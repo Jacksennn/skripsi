@@ -58,6 +58,7 @@ export type ProductRespondType = {
   ket_produk: string;
   min_produk: number;
   visibility: boolean;
+  satuan: string;
   files: {
     id: string;
     foto_produk: string;

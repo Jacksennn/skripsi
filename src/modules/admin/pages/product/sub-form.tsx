@@ -25,6 +25,7 @@ type Inputs = {
   min_produk: number;
   visibility: boolean;
   files: any[];
+  satuan: string;
 };
 
 export default function ProductSubForm(props: Props) {
@@ -40,6 +41,7 @@ export default function ProductSubForm(props: Props) {
       nama_produk: product?.nama_produk || "",
       sku_produk: product?.sku_produk || "",
       visibility: product?.visibility || true,
+      satuan: "",
     },
   });
   const { mutateAsync, isLoading: isCreating } = useCreateProduct();
@@ -61,6 +63,7 @@ export default function ProductSubForm(props: Props) {
         nama_produk: product?.nama_produk || "",
         sku_produk: product?.sku_produk || "",
         visibility: product?.visibility || true,
+        satuan: product?.satuan || "",
       };
       Object.keys(temp).forEach((key) =>
         setValue(key as any, (temp as any)[key]),
@@ -134,6 +137,13 @@ export default function ProductSubForm(props: Props) {
                 type="number-control"
                 label="Kuantitas Minimal"
                 name="min_produk"
+                required
+                control={control}
+              />
+              <Input
+                type="text"
+                label="Satuan Produk"
+                name="satuan"
                 required
                 control={control}
               />
